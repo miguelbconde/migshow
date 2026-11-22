@@ -2,7 +2,7 @@
 
 Guia cultural semanal do Rio de Janeiro, de curadoria autoral e com humor. Sai toda quinta.
 
-**Site:** https://miguelbconde.github.io/migshow/ (instalável como app no celular)
+**Site:** https://is.gd/migshow (instalável como app no celular)
 
 ## Como uma edição é feita
 
