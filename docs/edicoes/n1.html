@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MigShow nº 1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=Pacifico&family=Satisfy&display=swap">
+<style>
+/* Hub semanal para o celular: capa com onda do calçadão, texto de abertura, filtros por retranca e a semana dia a dia. */
+:root{
+  --paper:#f3f5f6; --card:#ffffff; --ink:#0f1b2d; --muted:#54627a; --line:#d8dee5;
+  --band:#0f1b2d; --band-fg:#f3f5f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#0a6c8f; --sea-soft:#dbeef5; --kid:#fff0c2; --kid-ink:#6b4a00; --link:#0a5f80;
+  --font-head:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0c1522; --card:#142033; --ink:#eef2f6; --muted:#9fb0c6; --line:#243349;
+  --band:#08101b; --band-fg:#eef2f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#62c6e6; --sea-soft:#14384a; --kid:#3d3210; --kid-ink:#ffd668; --link:#7fd0ec; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0c1522; --card:#142033; --ink:#eef2f6; --muted:#9fb0c6; --line:#243349;
+  --band:#08101b; --band-fg:#eef2f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#62c6e6; --sea-soft:#14384a; --kid:#3d3210; --kid-ink:#ffd668; --link:#7fd0ec; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.5;padding:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:10}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--font-head);margin:0;text-wrap:balance}
+.mast{background:var(--band);color:var(--band-fg);padding-block:28px 22px}
+.mast .kicker{font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin:0 0 6px}
+.mast h1{font-size:clamp(3rem,16vw,4.6rem);font-weight:800;line-height:.95;letter-spacing:-.02em}
+.mast h1 span{color:var(--sun)}
+.mast .week{margin:12px 0 0;font-size:1.05rem;font-weight:500}
+/* onda do calçadão de Copacabana, em máscara para acompanhar o tema */
+.wave{height:16px;background:var(--band);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M0 0H40V8Q30 16 20 8T0 8Z'/%3E%3C/svg%3E") repeat-x top/40px 16px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M0 0H40V8Q30 16 20 8T0 8Z'/%3E%3C/svg%3E") repeat-x top/40px 16px}
+.lede{font-size:1.06rem;line-height:1.6;margin:22px 0 0}
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line);margin-top:18px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:600 .8rem var(--font-body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:focus-visible,.go:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+main{padding-block:12px 36px;display:flex;flex-direction:column;gap:30px}
+.day-sec{display:flex;flex-direction:column;min-width:0}
+.day-sec>h2{font-size:1.35rem;font-weight:800;padding-bottom:6px;border-bottom:3px solid var(--sun);margin-bottom:4px;letter-spacing:-.01em}
+.day-sec>h2 small{font-family:var(--font-body);font-weight:500;font-size:.8rem;color:var(--muted);letter-spacing:0;margin-left:8px}
+.ev{display:grid;grid-template-columns:4.2rem 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);min-width:0}
+.ev.hl{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 12px;margin-block:6px}
+.t{font-weight:700;font-size:.85rem;font-variant-numeric:tabular-nums;line-height:1.35}
+.t small{display:block;font-weight:500;color:var(--muted);font-size:.74rem}
+.b{min-width:0}
+.k{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 3px;font-size:.7rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--sea)}
+.k .hlt{background:var(--sun);color:var(--sun-ink);border-radius:4px;padding:1px 7px;letter-spacing:.06em}
+.k .free{background:var(--sea-soft);color:var(--sea);border-radius:4px;padding:1px 7px}
+.k .kid{background:var(--kid);color:var(--kid-ink);border-radius:4px;padding:1px 7px}
+.b h3{font-size:1.08rem;font-weight:800;line-height:1.22}
+.w{font-size:.88rem;color:var(--muted);margin:2px 0 0}
+.s{font-size:.9rem;font-style:italic;margin:5px 0 0}
+.apoc{margin:18px 0 0;padding:22px 16px 14px;color:#fff8c4;border:5px ridge #f2c94c;border-radius:6px;background:linear-gradient(160deg,#5b2a86 0%,#2b3a9e 52%,#14808c 100%);box-shadow:5px 5px 0 rgba(0,0,0,.35);position:relative}
+.apoc::before{content:"\2726 \2605 \2726 \2605 \2726";position:absolute;top:2px;left:0;right:0;text-align:center;font-size:.7rem;letter-spacing:.4em;color:#f2c94c;line-height:1}
+.apoc blockquote{margin:0;min-width:0}
+.apoc p{margin:0;font-family:"Satisfy","Pacifico","Brush Script MT",cursive;font-size:1.35rem;font-weight:400;line-height:1.3;text-shadow:2px 2px 0 #1b0a3a;text-wrap:balance}
+.apoc cite{display:block;margin-top:8px;font:normal 1rem "Pacifico","Brush Script MT",cursive;color:#f2c94c;text-shadow:1px 1px 0 #1b0a3a;text-align:right}
+.apoc cite::before{content:"\2014 "}
+.go{display:inline-block;margin-top:6px;font-size:.84rem;font-weight:600;color:var(--link);text-decoration:underline;text-underline-offset:3px}
+.days{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:18px 0 4px}
+.days span{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:4px}
+.days a{font-size:.85rem;font-weight:700;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
+.day-sec{scroll-margin-top:12px}
+.day-sec>h2 .up{float:right;font-family:var(--font-body);font-size:.75rem;font-weight:600;color:var(--link);text-decoration:none;margin-top:6px}
+.hls{margin:18px 0 0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.hls-t{margin:0 0 6px;font-family:var(--font-head);font-weight:800;font-size:1rem}
+.hls ol{list-style:none;margin:0;padding:0}
+.hls li{border-top:1px solid var(--line)}
+.hls li:first-child{border-top:0}
+.hls a{display:block;padding:8px 0;color:var(--ink);text-decoration:none;font-weight:600;font-size:.92rem;line-height:1.35}
+.hls a span{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--sea,var(--link))}
+.ev{scroll-margin-top:12px}
+.subs{margin:18px 0 0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.subs-t{margin:0;font-family:var(--font-head);font-weight:800;font-size:1rem}
+.subs .acts{margin-top:8px}
+.subs-n{margin:8px 0 0;font-size:.78rem;line-height:1.45;color:var(--muted)}
+.subs-n a{color:var(--link);font-weight:600}
+.subs-h{margin:14px 0 0;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.acts a{display:inline-block;font-size:.8rem;font-weight:600;line-height:1.2;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
+.acts a.cal{background:var(--sun);border-color:var(--sun);color:var(--sun-ink)}
+.empty{display:none;color:var(--muted);padding:20px 0}
+.src{font-size:.82rem;color:var(--muted);display:flex;flex-direction:column;gap:6px;padding-top:6px;border-top:1px solid var(--line)}
+.src h2{font-size:1.05rem;color:var(--ink)}
+.src p{margin:0}
+footer{padding-block:6px 30px;font-size:.8rem;color:var(--muted)}
+footer b{font-family:var(--font-head);color:var(--ink)}
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <p class="kicker">Guia cultural do Rio · Edição nº 1</p>
+    <h1><span>Mig</span>Show</h1>
+    <p class="week">Agenda de 12 a 15 de novembro de 2026</p>
+  </div>
+</header>
+<div class="wave" aria-hidden="true"></div>
+
+<div class="wrap">
+  <p class="lede">Boas pedidas para hoje: a celebração da obra de Paulo César Pinheiro na Casa do Choro, jazz de graça no IBEU e a peça de Bia Lessa com Luiza Mariani no Teatro Poeira. Sexta é dia de Turandot no Theatro Municipal (galeria a R$ 20, ópera pelo preço de um lanche), de Gilsons com Gilberto Gil, de Tom Zé no Circo Voador e de abertura da YOKAI PARADE no CCBB. No sábado, Sambotica no Largo do Boticário e despedida do Lumen Film Festival. No domingo, a Cinemateca do MAM exibe um filme de 1926, o Festival Internacional de Piano toma a Sala Cecília Meireles e há teatro de fantoches grátis no Aterro. O sofá segue em cartaz.</p>
+
+  <figure class="apoc" style="margin-inline:0">
+    <blockquote>
+    <p>"Amar é esperar de pé: portões às oito, Tom Zé às dez, e a coluna, que ninguém consultou, vai junto."</p>
+    <cite>Mário Quintana</cite>
+    </blockquote>
+  </figure>
+
+  <section class="subs" aria-label="Assinar a agenda do MigShow"><p class="subs-t">Na sua agenda, toda semana</p><p class="subs-n">Assine uma vez e os eventos de cada nova edição entram sozinhos no seu Google Agenda, no computador e no celular. O Google só deixa assinar pelo computador: abra este guia no computador, clique num botão abaixo e depois em “Adicionar”. Se os eventos não aparecerem no celular, abra o menu ☰ do app e marque “MigShow”.</p><p class="acts"><a class="cal" href="https://calendar.google.com/calendar/u/0?cid=YjE4NTczYjAwYzUxYTJhMmI0ZDYzMGNjYTU5ZDZkNGY2MTQxZmI4ZWRkOGU2OGE3ZGNhMDlhYjVkYTYxOTQyMUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" rel="noopener">+ Destaques</a><a class="cal" href="https://calendar.google.com/calendar/u/0?cid=ODBlNDBiMTdjNjhhOTU4ODE3MTE5NWU0NTA2YjQxZjRlNzJiZWJkNjM4MTM0ZTMyZmIzYjhiMGI2OTdjN2NjZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" rel="noopener">+ Tudo</a></p></section>
+
+  <nav class="hls" aria-label="Destaques da semana"><p class="hls-t">Destaques da semana</p><ol><li><a href="#dest-1"><span>Qui 12, 19h</span>Maíra Manga e Miguel Rabello: "Brasil Nativo", a poesia de Paulo César Pinheiro</a></li><li><a href="#dest-2"><span>Qui 12, 20h</span>O Que Meu Peito Carrega Sobre Mim</a></li><li><a href="#dest-3"><span>Sex 13, 9h às 20h</span>YOKAI PARADE: seres sobrenaturais do Japão (abertura)</a></li><li><a href="#dest-4"><span>Sex 13, 19h</span>Turandot, de Puccini</a></li><li><a href="#dest-5"><span>Sex 13, 21h</span>Gilsons com Gilberto Gil</a></li><li><a href="#dest-6"><span>Sex 13, 22h</span>Tom Zé, 90 anos (data extra)</a></li><li><a href="#dest-7"><span>Sáb 14, 14h</span>Sambotica no Largo do Boticário</a></li><li><a href="#dest-8"><span>Dom 15, 16h e 18h</span>"Beijo ardente" (1926) e "Vem que eu te levo" (2022)</a></li><li><a href="#dest-9"><span>Em cartaz</span>MAR: Zanele Muholi e "Tião, um fotógrafo da Providência"</a></li></ol></nav><nav class="days" id="dias" aria-label="Pular para o dia"><span>Pular para</span><a href="#d-12-11">Qui 12</a><a href="#d-13-11">Sex 13</a><a href="#d-14-11">Sáb 14</a><a href="#d-15-11">Dom 15</a><a href="#d-cartaz">Em cartaz</a></nav><div class="filters"><div class="chips" id="chips" role="group" aria-label="Filtrar por tipo de evento"></div></div>
+
+<main id="days">
+
+<section class="day-sec" id="d-12-11"><h2>Quinta 12/11<small>hoje</small><a class="up" href="#dias" aria-label="Voltar aos dias">↑ dias</a></h2>
+  <article class="ev" data-cat="Cinema" data-free="1"><div class="t">14h às 21h45<small>também sex 13</small></div><div class="b">
+    <p class="k">Cinema <span class="free">grátis</span></p>
+    <h3>Mostra de Cinema Negro Ifé</h3>
+    <p class="w">Museu da História e da Cultura Afro-Brasileira (Muhcab), Gamboa · hoje e sexta · grátis · livre</p>
+    <p class="s">Mostra de cinema sobre o protagonismo negro no audiovisual, de graça e em dia útil. O programa detalhado não consta nas fontes, então confira com o Muhcab ou entregue-se ao destino, que ao menos não cobra ingresso.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Cinema" data-free="1"><div class="t">16h e 18h30<small>sex 15h, 16h45, 19h · sáb 15h, 18h</small></div><div class="b">
+    <p class="k">Cinema <span class="free">grátis</span></p>
+    <h3>Lumen Film Festival: sessões duplas de curtas e longas</h3>
+    <p class="w">Cinemateca do MAM, Aterro do Flamengo · grátis · hoje: "Diários de Budapeste" (16h) e "Bebendo e dirigindo" (18h30)</p>
+    <p class="s">Cada sessão traz um curta e um longa de cinema independente de vários países, de graça. Sexta tem 15h, 16h45 e 19h; sábado, 15h e 18h, o último dia. Preguiça é direito de todos, mas este é o último fim de semana.</p>
+    <a class="go" href="https://mam.rio/programacao-deste-mes/" target="_blank" rel="noopener">Programação do MAM ↗</a></div></article>
+  <article class="ev" data-cat="Rua" data-free="1"><div class="t">18h</div><div class="b">
+    <p class="k">Rua · Música <span class="free">grátis</span></p>
+    <h3>Música na Praça, no Leblon</h3>
+    <p class="w">Praça Cláudio Coutinho, Leblon · hoje, 18h às 22h · grátis · jazz ou bossa nova, alternando por semana</p>
+    <p class="s">Jazz ou bossa nova ao ar livre, com o Leblon de cenário. O gênero alterna a cada semana, então confirme antes de sair.</p>
+    <a class="go" href="https://www.jaeprogramacao.com.br/mais" target="_blank" rel="noopener">Agenda JáÉ! ↗</a></div></article>
+  <article class="ev hl" data-cat="Música" id="dest-1"><div class="t">19h</div><div class="b">
+    <p class="k">Música <span class="hlt">Destaque</span></p>
+    <h3>Maíra Manga e Miguel Rabello: "Brasil Nativo", a poesia de Paulo César Pinheiro</h3>
+    <p class="w">Casa do Choro, Rua da Carioca 38, Centro · preço não informado, ingressos na Sympla · duração de 1h</p>
+    <p class="s">Show com as canções que Paulo César Pinheiro escreveu com Dori Caymmi, Tom Jobim e Baden Powell, e duas cantoras convidadas. Letra de peso numa casa de música instrumental, a cinco minutos do metrô.</p>
+    <a class="go" href="https://www.sympla.com.br/evento/maira-manga-miguel-rabello-brasil-nativo-a-poesia-de-paulo-cesar-pinheiro-casa-do-choro/3629931" target="_blank" rel="noopener">Ingressos na Sympla ↗</a></div></article>
+  <article class="ev" data-cat="Música"><div class="t">19h</div><div class="b">
+    <p class="k">Música</p>
+    <h3>Renata Rosa: "Chã dos Passos"</h3>
+    <p class="w">Teatro Sesc Ginástico, Centro · preço não informado · série Música Pulsar</p>
+    <p class="s">Show da série Música Pulsar do Sesc, com uma artista da música popular de raiz nordestina. As fontes não trazem o programa, então a surpresa está garantida.</p>
+    <a class="go" href="https://www.sescrio.org.br/programacao/" target="_blank" rel="noopener">Programação do Sesc RJ ↗</a></div></article>
+  <article class="ev" data-cat="Música" data-free="1"><div class="t">19h</div><div class="b">
+    <p class="k">Música · Jazz <span class="free">grátis</span></p>
+    <h3>IBEU Music Sessions: tributo a Chet Baker</h3>
+    <p class="w">Auditório do Centro Cultural IBEU, Av. N. S. de Copacabana 690, 11º andar · grátis · portas às 18h</p>
+    <p class="s">Quarteto de trompete, piano, baixo e bateria passeando por "My Funny Valentine" e outras baladas de Baker. Jazz de graça no 11º andar de Copacabana; chegue meia hora antes, como pede a casa.</p>
+    <a class="go" href="https://www.sympla.com.br/evento/ibeu-music-sessions-tributo-a-chet-baker/3645166" target="_blank" rel="noopener">Ingressos gratuitos na Sympla ↗</a></div></article>
+  <article class="ev" data-cat="Teatro"><div class="t">19h</div><div class="b">
+    <p class="k">Teatro</p>
+    <h3>Pororoca, comédia de Jô Bilac</h3>
+    <p class="w">Teatro Sesc Ginástico, Av. Graça Aranha 187, Centro · hoje R$ 50 (meia R$ 25); sex e sáb R$ 60 (meia R$ 30) · 10 anos · direção de Rodrigo Portella, com Debora Lamm e Luís Miranda · sex 19h, sáb e dom 17h, até 06/12</p>
+    <p class="s">Comédia de realismo fantástico: numa cidade esquecida do mapa, uma parteira que diz ter 150 anos disputa o recorde de mulher mais velha do mundo, com uma jabuti falante de testemunha, enquanto empreiteiros ameaçam o mangue.</p>
+    <a class="go" href="https://www.ingresso.com/espetaculos/pororoca" target="_blank" rel="noopener">Ingressos e informações ↗</a></div></article>
+  <article class="ev hl" data-cat="Teatro" id="dest-2"><div class="t">20h</div><div class="b">
+    <p class="k">Teatro <span class="hlt">Destaque</span></p>
+    <h3>O Que Meu Peito Carrega Sobre Mim</h3>
+    <p class="w">Teatro Poeira, Rua São João Batista 104, Botafogo · R$ 100 (meia R$ 50) · também sex e sáb 20h, dom à noite (confirme) · até 20/12</p>
+    <p class="s">Direção de Bia Lessa. Luiza Mariani encena a própria história (maternidade, câncer de mama, mastectomia) em cerca de um metro quadrado, com a plateia sentada dentro da cena.</p>
+    <a class="go" href="https://www.correiodamanha.com.br/cultura/teatro/2026/11/331469-uma-batalha-intima-na-primeira-pessoa.html" target="_blank" rel="noopener">Página da peça no Teatro Poeira ↗</a></div></article>
+</section>
+
+<section class="day-sec" id="d-13-11"><h2>Sexta 13/11<a class="up" href="#dias" aria-label="Voltar aos dias">↑ dias</a></h2>
+  <article class="ev hl" data-cat="Exposição" data-kid="1" id="dest-3"><div class="t">9h às 20h</div><div class="b">
+    <p class="k">Exposição <span class="hlt">Destaque</span> <span class="kid">com criança</span></p>
+    <h3>YOKAI PARADE: seres sobrenaturais do Japão (abertura)</h3>
+    <p class="w">CCBB Rio, Centro · em cartaz até 03/01/2027 · quarta a segunda, 9h às 20h; fechado às terças · ingressos no site</p>
+    <p class="s">Os yōkai são os espíritos e monstros do folclore japonês, que ganham exposição inteira no CCBB. Boa para levar um menino de 6 anos, como faz o editor deste guia, desde que ele não tenha medo e o pai tenha.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/yokai-parade-seres-sobrenaturais-do-japao/" target="_blank" rel="noopener">Página da exposição no CCBB ↗</a></div></article>
+  <article class="ev" data-cat="Rua" data-free="1"><div class="t">19h</div><div class="b">
+    <p class="k">Rua · Samba <span class="free">grátis</span></p>
+    <h3>Roda de samba da Pedra do Sal</h3>
+    <p class="w">Pedra do Sal, Saúde · toda sexta, a partir das 19h · grátis</p>
+    <p class="s">A roda do berço do samba carioca segue firme toda sexta, na rua, com copo na mão. Se a semana pede se jogar no meio da gente, é aqui.</p>
+    <a class="go" href="https://www.jaeprogramacao.com.br/mais" target="_blank" rel="noopener">Agenda JáÉ! ↗</a></div></article>
+  <article class="ev hl" data-cat="Música" id="dest-4"><div class="t">19h<small>também sáb 14, 19h</small></div><div class="b">
+    <p class="k">Ópera <span class="hlt">Destaque</span></p>
+    <h3>Turandot, de Puccini</h3>
+    <p class="w">Theatro Municipal, Praça Floriano, Centro · R$ 20 (galeria) a R$ 90 (frisas e camarotes)</p>
+    <p class="s">A última ópera de Puccini, a do "Nessun dorma", de volta ao Municipal depois de 24 anos. Galeria a R$ 20: o ingresso de ópera mais barato da cidade, com vista condicionada à altura do vizinho.</p>
+    <a class="go" href="https://diariodorio.com/agenda/2026/10/30/turandot-volta-ao-theatro-municipal-do-rio-apos-24-anos-e-celebra-centenario.html" target="_blank" rel="noopener">Detalhes da montagem ↗</a></div></article>
+  <article class="ev" data-cat="Música"><div class="t">19h</div><div class="b">
+    <p class="k">Música</p>
+    <h3>Orquestra Sinfônica da UFRJ</h3>
+    <p class="w">Sala Cecília Meireles, Lapa · R$ 40 · série Sala Orquestras</p>
+    <p class="s">Concerto sinfônico na sala de câmara mais querida da cidade. As fontes não trazem o repertório; quem for descobre junto com a plateia.</p>
+    <a class="go" href="https://salaceciliameireles.rj.gov.br/programacao/orquestra-sinfonica-da-ufrj-7/" target="_blank" rel="noopener">Página do concerto ↗</a></div></article>
+  <article class="ev" data-cat="Música"><div class="t">19h</div><div class="b">
+    <p class="k">Música · Samba</p>
+    <h3>Quel canta Elza</h3>
+    <p class="w">Centro da Música Carioca Artur da Távola, Tijuca · R$ 30 a R$ 60 · livre</p>
+    <p class="s">Show intimista que percorre as fases da obra de Elza Soares, com violoncelo, rabeca e percussão.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Dança"><div class="t">19h</div><div class="b">
+    <p class="k">Dança</p>
+    <h3>Festival MonStra, 7ª edição: "Tripas, Coração"</h3>
+    <p class="w">Centro Coreográfico da Cidade do Rio de Janeiro, Rua José Higino 115, Tijuca · R$ 20 a R$ 40 · 14 anos · também sáb 19h e dom 18h</p>
+    <p class="s">Sete trabalhos de artistas da dança e da performance do Rio, do Ceará e do Piauí, com curadoria de Camila Fersi e Gabriela Jung. Sexta: "Super" e "Piratas e as Cinco Paisagens"; sábado e domingo, outros cinco.</p>
+    <a class="go" href="https://www.sympla.com.br/evento/monstra-7/3610967" target="_blank" rel="noopener">Ingressos na Sympla ↗</a></div></article>
+  <article class="ev hl" data-cat="Música" id="dest-5"><div class="t">21h</div><div class="b">
+    <p class="k">Música <span class="hlt">Destaque</span></p>
+    <h3>Gilsons com Gilberto Gil</h3>
+    <p class="w">Vivo Rio, Aterro do Flamengo · R$ 160 (meia) a R$ 320</p>
+    <p class="s">A geração nova da família com o próprio Gilberto Gil no palco. Há compromissos piores para uma sexta, ainda que poucos custem tanto quanto o estacionamento.</p>
+    <a class="go" href="https://vivorio.com.br/" target="_blank" rel="noopener">Site do Vivo Rio ↗</a></div></article>
+  <article class="ev hl" data-cat="Música" id="dest-6"><div class="t">22h</div><div class="b">
+    <p class="k">Música <span class="hlt">Destaque</span></p>
+    <h3>Tom Zé, 90 anos (data extra)</h3>
+    <p class="w">Circo Voador, Lapa · portões 20h, abertura com Antropoceno às 20h30 · R$ 100 (meia/solidário) a R$ 200 · 18 anos</p>
+    <p class="s">O tropicalista de Irará, que em 1969 já estava em 2001, celebra noventa anos em noite extra. Vou ou fico? Aqui o "vou" pede pressa: o lote 3 é o último à venda.</p>
+    <a class="go" href="https://www.circovoador.com.br/" target="_blank" rel="noopener">Agenda do Circo Voador ↗</a></div></article>
+</section>
+
+<section class="day-sec" id="d-14-11"><h2>Sábado 14/11<a class="up" href="#dias" aria-label="Voltar aos dias">↑ dias</a></h2>
+  <article class="ev" data-cat="Rua" data-free="1"><div class="t">10h às 18h</div><div class="b">
+    <p class="k">Rua · Feira <span class="free">grátis</span></p>
+    <h3>Feira MigrArtes</h3>
+    <p class="w">Parque Glória Maria, Santa Teresa · sábado · grátis · livre</p>
+    <p class="s">Segunda edição da feira de migrantes e refugiados na cidade, com artesanato, comida e conversa. Bom jeito de provar o mundo sem tirar o pé de Santa Teresa.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Música" data-free="1" data-kid="1"><div class="t">11h</div><div class="b">
+    <p class="k">Música <span class="free">grátis</span> <span class="kid">com criança</span></p>
+    <h3>OSB e Vale Música: "As origens do Soul Music"</h3>
+    <p class="w">Grande Sala, Cidade das Artes, Barra · grátis · livre</p>
+    <p class="s">A Sinfônica Brasileira com 38 jovens do programa Vale Música, num repertório que vai de James Brown a Tim Maia. Orquestra de verdade, de graça e antes do almoço.</p>
+    <a class="go" href="https://bileto.sympla.com.br/event/129143" target="_blank" rel="noopener">Ingresso gratuito na Sympla ↗</a></div></article>
+  <article class="ev" data-cat="Infantil" data-kid="1"><div class="t">11h</div><div class="b">
+    <p class="k">Infantil <span class="kid">com criança</span></p>
+    <h3>Zuzuê Contos Africanos</h3>
+    <p class="w">Teatro Ruth de Souza, Santa Teresa · R$ 20 a R$ 40 · livre, 50 min · também dom 11h</p>
+    <p class="s">Contos afro-diaspóricos narrados por três atores, com libras na própria cena. Cinquenta minutos é uma duração que cabe em qualquer paciência.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev hl" data-cat="Rua" data-kid="1" id="dest-7"><div class="t">14h</div><div class="b">
+    <p class="k">Rua · Samba <span class="hlt">Destaque</span> <span class="kid">com criança</span></p>
+    <h3>Sambotica no Largo do Boticário</h3>
+    <p class="w">Largo do Boticário, Cosme Velho · sábado, das 14h às 22h · entrada colaborativa · área infantil</p>
+    <p class="s">Dia de samba num dos largos mais bonitos da cidade, com bateria de abertura, três sets e área para crianças. Entrada colaborativa, ou seja, o preço é a sua consciência.</p>
+    <a class="go" href="https://www.sympla.com.br/evento/sambotica-no-largo-do-boticario/3646384" target="_blank" rel="noopener">Informações na Sympla ↗</a></div></article>
+  <article class="ev" data-cat="Cinema"><div class="t">14h30</div><div class="b">
+    <p class="k">Cinema</p>
+    <h3>Clube Offline: "Mundurukuyu: a floresta das mulheres peixe"</h3>
+    <p class="w">Escola do Absurdo, Rua da Quitanda 68, Centro · preço não informado, ingressos na Sympla · até 17h30</p>
+    <p class="s">Documentário dirigido por mulheres do povo Munduruku, com conversa com as curadoras depois. A sessão tem regra de ficar sem celular: três horas de atenção inteira, sem consultar o relógio.</p>
+    <a class="go" href="https://www.sympla.com.br/evento/clube-offline-cinema-mundurukuyu-a-floresta-das-mulheres-peixe-de-aldira-akay-beka-munduruku/3637227" target="_blank" rel="noopener">Ingressos na Sympla ↗</a></div></article>
+  <article class="ev" data-cat="Música"><div class="t">15h</div><div class="b">
+    <p class="k">Música</p>
+    <h3>Orquestra Carioca de Flautas, abertura do 11º Encontro Carioca de Flautas</h3>
+    <p class="w">Centro Cultural Justiça Federal, Av. Rio Branco 241, Centro · preço não informado, ingressos na Sympla · 1h</p>
+    <p class="s">Flautas de todos os tamanhos, do piccolo ao baixo, em Nazareth, Villa-Lobos e Hermeto Pascoal. A página tem uma data divergente na descrição; vale confirmar.</p>
+    <a class="go" href="https://www.sympla.com.br/evento/vitrine-musical-unirio-abertura-do-11o-encontro-carioca-de-flautas/3377553" target="_blank" rel="noopener">Ingressos na Sympla ↗</a></div></article>
+  <article class="ev" data-cat="Literatura"><div class="t">horário não informado</div><div class="b">
+    <p class="k">Literatura</p>
+    <h3>2ª Jornada PUC-Rio no CCBB: Memória e República</h3>
+    <p class="w">CCBB Rio, Centro · sábado · preço não informado</p>
+    <p class="s">Encontro acadêmico sobre memória e república, no CCBB. Interessa a quem lida com história e literatura; confirme o horário e leve café.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/2a-jornada-puc-rio-no-ccbb-memoria-republica-2026/" target="_blank" rel="noopener">Página do evento no CCBB ↗</a></div></article>
+  <article class="ev" data-cat="Infantil" data-kid="1"><div class="t">15h</div><div class="b">
+    <p class="k">Infantil <span class="kid">com criança</span></p>
+    <h3>Frankinh@: uma estória em pedacinhos (Ocupação Frankenstein, do Coletivo Gompa)</h3>
+    <p class="w">CCBB Rio, Teatro I · R$ 30 (meia R$ 15) · livre, 50 min · também dom 11h e 16h</p>
+    <p class="s">Espetáculo para todas as idades sobre o monstro mais famoso da literatura, em temporada que termina domingo. Silêncio na plateia por 50 minutos não é garantido, mas tentar custa pouco.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/coletivo-gompa-no-ccbb-rio-ocupacao-frankenstein-para-todas-as-idades/" target="_blank" rel="noopener">Página da ocupação no CCBB ↗</a></div></article>
+  <article class="ev" data-cat="Samba"><div class="t">17h</div><div class="b">
+    <p class="k">Música · Samba</p>
+    <h3>Herdeiras do Samba: "Sorriso Negro, Quintal Delas"</h3>
+    <p class="w">Centro da Música Carioca Artur da Távola, Tijuca · R$ 20 a R$ 40 · livre</p>
+    <p class="s">As Matriarcas do Samba juntam a filha de Candeia e as netas de Cartola e Clementina de Jesus, alternando música e histórias. Samba de raiz com árvore genealógica.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Rua"><div class="t">18h</div><div class="b">
+    <p class="k">Rua · Samba</p>
+    <h3>Samba e choro na Praça São Salvador</h3>
+    <p class="w">Coreto da Praça São Salvador, Laranjeiras · todo sábado, a partir das 18h · preço não informado (confirme)</p>
+    <p class="s">Samba e choro no coreto. Confirme a edição desta semana.</p>
+    <a class="go" href="https://www.jaeprogramacao.com.br/mais" target="_blank" rel="noopener">Agenda JáÉ! ↗</a></div></article>
+  <article class="ev" data-cat="Dança"><div class="t">19h</div><div class="b">
+    <p class="k">Dança</p>
+    <h3>Equina, de Aline Bernardi e Dani Lima</h3>
+    <p class="w">Espaço Cultural Sérgio Porto, Humaitá · R$ 30 a R$ 60 · 18 anos · também dom 18h, até 29/11</p>
+    <p class="s">Dança contemporânea sobre convivência com humanos e não humanos, a partir de memórias da artista com cavalos. Sala Preta, no segundo andar, por escada.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+</section>
+
+<section class="day-sec" id="d-15-11"><h2>Domingo 15/11<small>feriado</small><a class="up" href="#dias" aria-label="Voltar aos dias">↑ dias</a></h2>
+  <article class="ev" data-cat="Rua" data-free="1"><div class="t">8h às 16h</div><div class="b">
+    <p class="k">Rua · Feira <span class="free">grátis</span></p>
+    <h3>Feira da Glória</h3>
+    <p class="w">Praça Paris e entorno, Glória · domingo, 8h às 16h · entrada franca</p>
+    <p class="s">Mais de 150 barracas, de hortifrúti a vinil, e roda de samba a partir das 14h. Dá para voltar com couve, um LP e a sensação de ter sido produtivo.</p>
+    <a class="go" href="https://www.timeout.com/pt/rio-de-janeiro/compras/feira-da-gloria" target="_blank" rel="noopener">Feira da Glória no Time Out ↗</a></div></article>
+  <article class="ev" data-cat="Música"><div class="t">11h</div><div class="b">
+    <p class="k">Música</p>
+    <h3>Festival Internacional de Piano</h3>
+    <p class="w">Sala Cecília Meireles, Lapa · R$ 20</p>
+    <p class="s">Recital de piano na manhã do feriado, por vinte reais. Os pianistas não constam nas fontes; o piano, ao menos, é garantido.</p>
+    <a class="go" href="https://salaceciliameireles.rj.gov.br/programacao/festival-internacional-de-piano-2/" target="_blank" rel="noopener">Página do recital ↗</a></div></article>
+  <article class="ev" data-cat="Rua" data-free="1"><div class="t">12h</div><div class="b">
+    <p class="k">Rua · Samba <span class="free">grátis</span></p>
+    <h3>Samba do Passeio</h3>
+    <p class="w">Passeio Público, Lapa · domingo, 12h, com música a partir das 14h · grátis, com ingresso gratuito na Sympla</p>
+    <p class="s">Samba ao ar livre no jardim de Mestre Valentim, com comida e visual de cartão-postal. Retire o ingresso antes, ou ouça da calçada, com dignidade.</p>
+    <a class="go" href="https://www.sympla.com.br/evento/samba-do-passeio-todo-domingo-tem/3642713" target="_blank" rel="noopener">Ingresso gratuito na Sympla ↗</a></div></article>
+  <article class="ev" data-cat="Cinema" data-free="1"><div class="t">14h e 16h</div><div class="b">
+    <p class="k">Cinema <span class="free">grátis</span></p>
+    <h3>Cinemateca do MAM no CCBB: mostra do cinema feminino brasileiro</h3>
+    <p class="w">CCBB Rio, Centro · grátis · 14h: "Mulheres de cinema" e "Canção do amor"; 16h: "Coração materno" (1951) · ingressos às 9h do dia</p>
+    <p class="s">Curtas dos anos 1970 e um longa de 1951 na mostra de cinema feito por mulheres no Brasil. Os ingressos saem às 9h: quem dorme até tarde assiste ao próximo ciclo.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/cinemateca-do-mam-no-ccbb/" target="_blank" rel="noopener">Página da mostra no CCBB ↗</a></div></article>
+  <article class="ev" data-cat="Infantil" data-free="1" data-kid="1"><div class="t">15h</div><div class="b">
+    <p class="k">Infantil · Rua <span class="free">grátis</span> <span class="kid">com criança</span></p>
+    <h3>O Salto, 20 anos</h3>
+    <p class="w">Teatro de Fantoches, Praça do Aterro do Flamengo (Posto 3) · grátis · livre</p>
+    <p class="s">Palhaço de olhos vendados promete três saltos sem tirar o pé do banco. Teatro grátis no Aterro, domingo à tarde: programa que não pede ingresso nem desculpa.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev hl" data-cat="Cinema" data-free="1" id="dest-8"><div class="t">16h e 18h</div><div class="b">
+    <p class="k">Cinema <span class="hlt">Destaque</span> <span class="free">grátis</span></p>
+    <h3>"Beijo ardente" (1926) e "Vem que eu te levo" (2022)</h3>
+    <p class="w">Cinemateca do MAM, Aterro do Flamengo · grátis · 16h: filme de 1926; 18h: inédito francês-belga</p>
+    <p class="s">Cinema de cem anos atrás e, depois, um filme recente para ver o que mudou. Resposta curta: o cinema mudo faz cem anos e ainda sabe beijar.</p>
+    <a class="go" href="https://mam.rio/programacao-deste-mes/" target="_blank" rel="noopener">Programação do MAM ↗</a></div></article>
+</section>
+
+<section class="day-sec" id="d-cartaz"><h2>Em cartaz a semana toda<a class="up" href="#dias" aria-label="Voltar aos dias">↑ dias</a></h2>
+  <article class="ev hl" data-cat="Exposição" id="dest-9"><div class="t">Qui a ter<small>11h às 18h</small></div><div class="b">
+    <p class="k">Exposição <span class="hlt">Destaque</span></p>
+    <h3>MAR: Zanele Muholi e "Tião, um fotógrafo da Providência"</h3>
+    <p class="w">Museu de Arte do Rio, Praça Mauá · 11h às 18h; fechado às quartas · até 29/11 · R$ 10 a R$ 20, terça gratuita</p>
+    <p class="s">A fotografia de Zanele Muholi ao lado do acervo de um fotógrafo vizinho do museu. Terça é grátis, o que enfraquece o "depois eu vejo".</p>
+    <a class="go" href="https://museudeartedorio.org.br/exposicoes/atuais/" target="_blank" rel="noopener">Exposições atuais do MAR ↗</a></div></article>
+  <article class="ev" data-cat="Exposição"><div class="t">Qui a ter<small>10h às 18h</small></div><div class="b">
+    <p class="k">Exposição</p>
+    <h3>Museu do Amanhã: "País Brasa, Planeta Fogo"</h3>
+    <p class="w">Praça Mauá, Centro · 10h às 18h; fechado às quartas · até 03/08/2027 · R$ 20 a R$ 40</p>
+    <p class="s">É no Museu do Amanhã, mas dê uma chance: a mostra trata o fogo como tecnologia, linguagem e força política, em instalações imersivas.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Exposição" data-free="1"><div class="t">Qua a seg<small>9h às 20h</small></div><div class="b">
+    <p class="k">Exposição <span class="free">grátis</span></p>
+    <h3>Amazônicas: Poéticas Femininas</h3>
+    <p class="w">CCBB Rio, Centro · 9h às 20h; fechado às terças · até segunda 16/11 · grátis, com ingresso online ou na bilheteria</p>
+    <p class="s">Obras de mulheres com a Amazônia como tema, só até segunda. Prazo apertado, mas o sofá também não vai fugir.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/amazonicas-poeticas-femininas/" target="_blank" rel="noopener">Página da exposição no CCBB ↗</a></div></article>
+  <article class="ev" data-cat="Exposição"><div class="t">Qua a seg<small>9h às 20h</small></div><div class="b">
+    <p class="k">Exposição · Cinema</p>
+    <h3>Palavras em Cena: o cinema que veio dos livros</h3>
+    <p class="w">CCBB Rio, Centro · 9h às 20h; fechado às terças · até 04/01/2027 · ingressos no site</p>
+    <p class="s">Exposição sobre adaptações de livros para o cinema, na encruzilhada de dois vícios do leitor. As fontes não trazem detalhes do acervo.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/palavras-em-cena-o-cinema-que-veio-dos-livros/" target="_blank" rel="noopener">Página da exposição no CCBB ↗</a></div></article>
+  <article class="ev" data-cat="Exposição" data-free="1" data-kid="1"><div class="t">Dom a sáb<small>10h às 18h</small></div><div class="b">
+    <p class="k">Exposição <span class="free">grátis</span> <span class="kid">com criança</span></p>
+    <h3>Maquete de Lego do Rio de Janeiro</h3>
+    <p class="w">Cidade das Artes, Barra · 10h às 18h · permanente · grátis · livre</p>
+    <p class="s">A cidade inteira em peças de Lego, de graça, na Barra. Uma criança de 6 anos acha o Cristo mais impressionante em miniatura; o pai acha o estacionamento.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+</section>
+
+<p class="empty" id="empty">Nenhum evento com esse filtro nesta semana.</p>
+
+<section class="src">
+  <h2>Para conferir</h2>
+  <p>Música na Praça, Pedra do Sal e a roda da Praça São Salvador são recorrentes que não deu para confirmar nesta semana; vale olhar o Instagram deles antes de sair. O Turandot aparece com datas diferentes em algumas agendas: a página consultada indica sexta 13 e sábado 14. A página do concerto de flautas traz uma data divergente na descrição.</p>
+  <p>Estão sem preço confirmado a YOKAI PARADE, a Jornada PUC-Rio, o Clube Offline e o show de Renata Rosa. Os horários do Frankinh@ no CCBB vêm da edição anterior; confirme com a casa. Onde o link leva a uma agenda geral, não havia página própria do evento.</p>
+</section>
+
+</main>
+</div>
+<footer>
+  <div class="wrap"><b>MigShow</b> é um guia pessoal de programação cultural do Rio, montado toda quinta-feira. Confira horários e preços com cada casa antes de sair. E lembre: ficar em casa segue em cartaz o ano inteiro, com entrada franca e estacionamento garantido.<p style="margin:10px 0 0"><a class="go" href="../edicoes.html">Edições anteriores</a></p></div>
+</footer>
+
+<script>
+(function(){
+  var evs=[].slice.call(document.querySelectorAll('.ev'));
+  var days=[].slice.call(document.querySelectorAll('.day-sec'));
+  var chips=document.getElementById('chips');
+  var empty=document.getElementById('empty');
+  var cats=[];
+  evs.forEach(function(e){var c=e.getAttribute('data-cat');if(c&&cats.indexOf(c)<0)cats.push(c)});
+  var opts=[{l:'Tudo',f:function(){return true}},
+             {l:'Destaques',f:function(e){return e.classList.contains('hl')}}]
+    .concat(cats.map(function(c){return {l:c,f:function(e){return e.getAttribute('data-cat')===c}}}))
+    .concat([{l:'Grátis',f:function(e){return e.getAttribute('data-free')==='1'}},
+             {l:'Com criança',f:function(e){return e.getAttribute('data-kid')==='1'}}]);
+  var btns=opts.map(function(o,i){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=o.l;
+    b.setAttribute('aria-pressed',i===0?'true':'false');
+    b.addEventListener('click',function(){apply(i)});
+    chips.appendChild(b);return b;
+  });
+  function apply(i){
+    btns.forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+    var shown=0;
+    evs.forEach(function(e){var ok=opts[i].f(e);e.hidden=!ok;if(ok)shown++});
+    days.forEach(function(d){d.hidden=!d.querySelector('.ev:not([hidden])')});
+    empty.style.display=shown?'none':'block';
+  }
+})();
+</script>

@@ -1,0 +1,27 @@
+name: Ronda das páginas do MigShow
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7 0 * * 4"   # quarta, 21h07 no horário de Brasília
+permissions:
+  contents: write
+jobs:
+  ronda:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 ferramentas/ronda.py --saida coleta
+      - name: Guardar o texto num ramo temporário (fora do site; substituído a cada ronda)
+        run: |
+          cd coleta
+          printf '# Texto da ronda do MigShow (temporário)\n\nCópia de trabalho de páginas públicas de casas culturais do Rio, só para a apuração dos fatos da semana.\nOs textos pertencem aos respectivos sites. Substituída a cada ronda.\n' > LEIA-ME.md
+          git init -q -b coleta
+          git config user.name "migshow-ronda"
+          git config user.email "migshow-ronda@users.noreply.github.com"
+          git add -A
+          git commit -qm "Ronda das páginas (temporário)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" coleta

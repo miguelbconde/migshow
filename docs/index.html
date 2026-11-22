@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MigShow nº 2</title>
+<meta name="description" content="Guia cultural semanal do Rio de Janeiro, com curadoria e humor. Sai toda quinta.">
+<meta name="theme-color" content="#0f1b2d">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icones/icone-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="MigShow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta property="og:title" content="MigShow nº 2">
+<meta property="og:description" content="Agenda de 19 a 22 de novembro de 2026: o que vale a pena (e o que vale ficar em casa) no Rio.">
+<meta property="og:image" content="https://miguelbconde.github.io/migshow/icones/icone-512.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=Pacifico&family=Satisfy&display=swap">
+<style>
+/* Hub semanal para o celular: capa com onda do calçadão, texto de abertura, filtros por retranca e a semana dia a dia. */
+:root{
+  --paper:#f3f5f6; --card:#ffffff; --ink:#0f1b2d; --muted:#54627a; --line:#d8dee5;
+  --band:#0f1b2d; --band-fg:#f3f5f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#0a6c8f; --sea-soft:#dbeef5; --kid:#fff0c2; --kid-ink:#6b4a00; --link:#0a5f80;
+  --font-head:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0c1522; --card:#142033; --ink:#eef2f6; --muted:#9fb0c6; --line:#243349;
+  --band:#08101b; --band-fg:#eef2f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#62c6e6; --sea-soft:#14384a; --kid:#3d3210; --kid-ink:#ffd668; --link:#7fd0ec; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0c1522; --card:#142033; --ink:#eef2f6; --muted:#9fb0c6; --line:#243349;
+  --band:#08101b; --band-fg:#eef2f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#62c6e6; --sea-soft:#14384a; --kid:#3d3210; --kid-ink:#ffd668; --link:#7fd0ec; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.5;padding:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:10}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--font-head);margin:0;text-wrap:balance}
+.mast{background:var(--band);color:var(--band-fg);padding-block:28px 22px}
+.mast .kicker{font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin:0 0 6px}
+.mast h1{font-size:clamp(3rem,16vw,4.6rem);font-weight:800;line-height:.95;letter-spacing:-.02em}
+.mast h1 span{color:var(--sun)}
+.mast .week{margin:12px 0 0;font-size:1.05rem;font-weight:500}
+/* onda do calçadão de Copacabana, em máscara para acompanhar o tema */
+.wave{height:16px;background:var(--band);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M0 0H40V8Q30 16 20 8T0 8Z'/%3E%3C/svg%3E") repeat-x top/40px 16px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M0 0H40V8Q30 16 20 8T0 8Z'/%3E%3C/svg%3E") repeat-x top/40px 16px}
+.lede{font-size:1.06rem;line-height:1.6;margin:22px 0 0}
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line);margin-top:18px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:600 .8rem var(--font-body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:focus-visible,.go:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+main{padding-block:12px 36px;display:flex;flex-direction:column;gap:30px}
+.day-sec{display:flex;flex-direction:column;min-width:0}
+.day-sec>h2{font-size:1.35rem;font-weight:800;padding-bottom:6px;border-bottom:3px solid var(--sun);margin-bottom:4px;letter-spacing:-.01em}
+.day-sec>h2 small{font-family:var(--font-body);font-weight:500;font-size:.8rem;color:var(--muted);letter-spacing:0;margin-left:8px}
+.ev{display:grid;grid-template-columns:4.2rem 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);min-width:0}
+.ev.hl{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 12px;margin-block:6px}
+.t{font-weight:700;font-size:.85rem;font-variant-numeric:tabular-nums;line-height:1.35}
+.t small{display:block;font-weight:500;color:var(--muted);font-size:.74rem}
+.b{min-width:0}
+.k{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 3px;font-size:.7rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--sea)}
+.k .hlt{background:var(--sun);color:var(--sun-ink);border-radius:4px;padding:1px 7px;letter-spacing:.06em}
+.k .free{background:var(--sea-soft);color:var(--sea);border-radius:4px;padding:1px 7px}
+.k .kid{background:var(--kid);color:var(--kid-ink);border-radius:4px;padding:1px 7px}
+.b h3{font-size:1.08rem;font-weight:800;line-height:1.22}
+.w{font-size:.88rem;color:var(--muted);margin:2px 0 0}
+.s{font-size:.9rem;font-style:italic;margin:5px 0 0}
+.apoc{margin:18px 0 0;padding:22px 16px 14px;color:#fff8c4;border:5px ridge #f2c94c;border-radius:6px;background:linear-gradient(160deg,#5b2a86 0%,#2b3a9e 52%,#14808c 100%);box-shadow:5px 5px 0 rgba(0,0,0,.35);position:relative}
+.apoc::before{content:"\2726 \2605 \2726 \2605 \2726";position:absolute;top:2px;left:0;right:0;text-align:center;font-size:.7rem;letter-spacing:.4em;color:#f2c94c;line-height:1}
+.apoc blockquote{margin:0;min-width:0}
+.apoc p{margin:0;font-family:"Satisfy","Pacifico","Brush Script MT",cursive;font-size:1.5rem;font-weight:400;line-height:1.35;text-wrap:balance}
+.apoc cite{display:block;margin-top:8px;font:normal 1rem "Pacifico","Brush Script MT",cursive;color:#f2c94c;text-align:right}
+.apoc cite::before{content:"\2014 "}
+.go{display:inline-block;margin-top:6px;font-size:.84rem;font-weight:600;color:var(--link);text-decoration:underline;text-underline-offset:3px}
+.days{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:18px 0 4px}
+.days span{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:4px}
+.days a{font-size:.85rem;font-weight:700;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
+.day-sec{scroll-margin-top:12px}
+.day-sec>h2 .up{float:right;font-family:var(--font-body);font-size:.75rem;font-weight:600;color:var(--link);text-decoration:none;margin-top:6px}
+.hls{margin:18px 0 0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.hls-t{margin:0 0 6px;font-family:var(--font-head);font-weight:800;font-size:1rem}
+.hls ol{list-style:none;margin:0;padding:0}
+.hls li{border-top:1px solid var(--line)}
+.hls li:first-child{border-top:0}
+.hls a{display:block;padding:8px 0;color:var(--ink);text-decoration:none;font-weight:600;font-size:.92rem;line-height:1.35}
+.hls a span{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--sea,var(--link))}
+.ev{scroll-margin-top:12px}
+.subs{margin:18px 0 0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.subs-t{margin:0;font-family:var(--font-head);font-weight:800;font-size:1rem}
+.subs .acts{margin-top:8px}
+.subs-n{margin:8px 0 0;font-size:.78rem;line-height:1.45;color:var(--muted)}
+.subs-n a{color:var(--link);font-weight:600}
+.subs-h{margin:14px 0 0;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.acts a{display:inline-block;font-size:.8rem;font-weight:600;line-height:1.2;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
+.acts a.cal{background:var(--sun);border-color:var(--sun);color:var(--sun-ink)}
+.empty{display:none;color:var(--muted);padding:20px 0}
+.src{font-size:.82rem;color:var(--muted);display:flex;flex-direction:column;gap:6px;padding-top:6px;border-top:1px solid var(--line)}
+.src h2{font-size:1.05rem;color:var(--ink)}
+.src p{margin:0}
+footer{padding-block:6px 30px;font-size:.8rem;color:var(--muted)}
+footer b{font-family:var(--font-head);color:var(--ink)}
+.hls li.gh{border-top:0;padding:10px 0 0;font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--sea,var(--link))}.hls li.gh:first-child{padding-top:2px}.hls li.gh+li a{padding-top:1px}.hls a{padding:3px 0;line-height:1.2;font-size:.9rem}.hls li.gh{padding:7px 0 0}.hls .hv{font-weight:500;color:var(--muted,#54617a);font-size:.8rem}.hls-t{margin-bottom:2px}.hls li:not(.gh){border-top:0}.hls li.gh~li.gh{border-top:1px solid var(--line);margin-top:6px}.hls a span{display:inline;margin-right:6px;text-transform:none;letter-spacing:0;font-size:.8rem}.zap{margin:18px 0 0}.zap-t{display:flex;align-items:center;gap:7px;margin:0 0 8px;font-family:var(--font-head);font-weight:800;font-size:1rem}.zap .zb{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--sea);border-radius:14px 14px 14px 4px;padding:10px 13px;margin:0 0 8px;font-size:.92rem;line-height:1.45}.zap .zb b{font-family:var(--font-head);font-weight:800}
+.inst{margin:18px 0 0;padding:12px 14px;border:1px dashed var(--sea);border-radius:14px;font-size:.9rem;line-height:1.45;background:var(--sea-soft)}
+.inst b{font-family:var(--font-head)}.inst[hidden]{display:none}.inst button{font:inherit;font-weight:600;margin-left:6px;border:0;background:var(--sea);color:#fff;border-radius:999px;padding:6px 12px;cursor:pointer}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <p class="kicker">Guia cultural do Rio · Edição nº 2</p>
+    <h1><span>Mig</span>Show</h1>
+    <p class="week">Agenda de 19 a 22 de novembro de 2026</p>
+  </div>
+</header>
+<div class="wave" aria-hidden="true"></div>
+
+<div class="wrap">
+  <p class="lede">Nos supermercados do Rio, os panetones deram as caras em setembro; agora, em novembro, as escolas de samba já ensaiam na rua. Em breve o Carnaval chega antes do Natal, e o Natal, com sorte, antes de nós. O feriadão, ao menos, pede o contrário de pressa. Hoje, boas pedidas: o Ilê Aiyê no Circo Voador ou Aquarius com debate no MAM. Sexta, Tia Ciata sai em cortejo e Malcolm X ocupa a tarde. Sábado, o Barão Festival toma Oswaldo Cruz e Minha Vó Ri faz do ativismo solo de teatro; domingo, coral no Municipal, ensaios de rua e a expo dos memes. O sofá, coitado, concorre em desvantagem.</p>
+  <figure class="apoc" style="margin-inline:0">
+    <blockquote>
+    <p>"No meio do caminho tinha um chocotone."</p>
+    <cite>Carlos Drummond de Andrade</cite>
+    </blockquote>
+  </figure>
+<section class="zap" aria-label="Dos leitores"><p class="zap-t"><svg class="zi" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#25a15a" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M8.2 7.4c-.3 0-.7.2-.9.6-.3.6-.5 1.4 0 2.5.6 1.3 1.6 2.6 3 3.6 1.5 1 2.6 1.3 3.6 1.2.7-.1 1.4-.8 1.6-1.4.1-.3 0-.5-.2-.6l-1.5-.7c-.2-.1-.4 0-.6.2l-.5.6c-.2.2-.3.2-.5.1-.9-.4-1.7-1-2.4-2-.1-.2-.1-.3 0-.5l.4-.5c.1-.2.2-.4.1-.6l-.7-1.6c-.1-.2-.3-.3-.5-.3z"/></svg> Dos leitores</p><p class="zb"><b>Comer com os olhos.</b> A leitora J.W. foi conhecer o bistrô Sesc que abriu terça no 22º andar do Edifício Serrador, na Cinelândia, e avisa que o melhor é a vista (mas que vista!).</p><p class="zb"><b>Andar errado.</b> Seguindo a indicação do MigShow nº 1, R.B. e família foram ver a exposição Yokai Parade, no CCBB, e se desapontaram: muito miudinha. Mas a expo dos memes, também em cartaz por lá, valeu a viagem.</p></section>
+<aside class="inst" id="inst"><span id="inst-txt"><b>Tenha o MigShow como app.</b> No Chrome do Android, toque no menu ⋮ e depois em “Instalar app” ou “Adicionar à tela inicial”.</span><button type="button" id="inst-btn" hidden>Instalar</button></aside>
+<section class="subs" aria-label="Assinar a agenda do MigShow"><p class="subs-t">Na sua agenda, toda semana</p><p class="subs-n">Assine uma vez e os eventos de cada nova edição entram sozinhos no seu Google Agenda, no computador e no celular. O Google só deixa assinar pelo computador: abra este guia no computador, clique num botão abaixo e depois em “Adicionar”. Se os eventos não aparecerem no celular, abra o menu ☰ do app e marque “MigShow”.</p><p class="acts"><a class="cal" href="https://calendar.google.com/calendar/u/0?cid=YjE4NTczYjAwYzUxYTJhMmI0ZDYzMGNjYTU5ZDZkNGY2MTQxZmI4ZWRkOGU2OGE3ZGNhMDlhYjVkYTYxOTQyMUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" rel="noopener">+ Destaques</a><a class="cal" href="https://calendar.google.com/calendar/u/0?cid=ODBlNDBiMTdjNjhhOTU4ODE3MTE5NWU0NTA2YjQxZjRlNzJiZWJkNjM4MTM0ZTMyZmIzYjhiMGI2OTdjN2NjZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" rel="noopener">+ Tudo</a></p></section>
+  <nav class="hls" aria-label="Destaques da semana"><p class="hls-t">Destaques da semana</p><ol><li class="gh">Quinta 19</li><li><a href="#dest-1"><span>14h</span>Aquarius, com debate <small class="hv">· Cinemateca do MAM · Encontros de cinema e canção</small></a></li><li><a href="#dest-2"><span>18h</span>Festival Abraço Negro: Ilê Aiyê convida Surdo Um da Mangueira <small class="hv">· Circo Voador, Lapa</small></a></li><li class="gh">Sexta 20</li><li><a href="#dest-3"><span>10h</span>Cortejo da Tia Ciata <small class="hv">· Praça Onze</small></a></li><li><a href="#dest-4"><span>13h</span>Malcolm X, com debate <small class="hv">· Cinemateca do MAM · Cineclube Odeon-CineHistória</small></a></li><li class="gh">Sábado 21</li><li><a href="#dest-5"><span>14h</span>3º Barão Festival, festa de rua para a família <small class="hv">· Oswaldo Cruz</small></a></li><li><a href="#dest-6"><span>20h</span>Minha Vó Ri <small class="hv">· Teatro Sérgio Porto, Humaitá</small></a></li><li class="gh">Domingo 22</li><li><a href="#dest-7"><span>11h</span>Coral Brasil Ensemble da UFRJ <small class="hv">· Theatro Municipal, Salão Assyrio</small></a></li><li><a href="#dest-8"><span>16h</span>Ensaios de rua: Imperatriz, Mangueira e Portela <small class="hv">· Ramos, Mangueira e Madureira</small></a></li><li class="gh">Em cartaz</li><li><a href="#dest-9">MEME: no Br@sil da memeficação <small class="hv">· CCBB Rio</small></a></li></ol></nav><nav class="days" id="dias" aria-label="Pular para o dia"><span>Pular para</span><a href="#d-19-11">Qui 19</a><a href="#d-20-11">Sex 20</a><a href="#d-21-11">Sáb 21</a><a href="#d-22-11">Dom 22</a><a href="#d-cartaz">Em cartaz</a></nav><div class="filters"><div class="chips" id="chips" role="group" aria-label="Filtrar por tipo de evento"></div></div>
+
+<main id="days">
+<section class="day-sec" id="d-19-11"><h2>Quinta 19/11<small>hoje</small><a class="up" href="#dias" aria-label="Voltar aos dias">↑ dias</a></h2>
+  <article class="ev hl" id="dest-1" data-cat="Cinema"><div class="t">14h</div><div class="b">
+    <p class="k">Cinema · Debate <span class="hlt">Destaque</span></p>
+    <h3>Aquarius, com debate</h3>
+    <p class="w">Cinemateca do MAM, Parque do Flamengo · hoje, 14h · 146 min · 16 anos · preço: confirme</p>
+    <p class="s">O filme de 2016 seguido de debate com Rafael Julião (UFRJ) e Nicholas Andueza, do curso Encontros de cinema e canção. Quinta à tarde, sem desculpa de trânsito.</p>
+    <a class="go" href="https://www.google.com/search?q=Cinemateca+do+MAM+Aquarius+Kleber+Mendon%C3%A7a+Filho+debate" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Aquarius%2C+com+debate&amp;dates=20261119T140000/20261119T163000&amp;ctz=America/Sao_Paulo&amp;location=Cinemateca+do+MAM%2C+Av.+Infante+Dom+Henrique+85%2C+Parque+do+Flamengo&amp;details=Aquarius%2C+com+debate%0ACinemateca+do+MAM%2C+Parque+do+Flamengo+%C2%B7+hoje%2C+14h+%C2%B7+146+min+%C2%B7+16+anos+%C2%B7+pre%C3%A7o:+confirme%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DCinemateca%2Bdo%2BMAM%2BAquarius%2BKleber%2BMendon%25C3%25A7a%2BFilho%2Bdebate%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Aquarius%2C%20com%20debate%20%C2%B7%20Cinemateca%20do%20MAM%2C%20Av.%20Infante%20Dom%20Henrique%2085%2C%20Parque%20do%20Flamengo%20%C2%B7%2019/11%2C%2014h%20%C2%B7%20https://www.google.com/search%3Fq%3DCinemateca%2Bdo%2BMAM%2BAquarius%2BKleber%2BMendon%25C3%25A7a%2BFilho%2Bdebate%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev hl" id="dest-2" data-cat="Música"><div class="t">18h</div><div class="b">
+    <p class="k">Música <span class="hlt">Destaque</span></p>
+    <h3>Festival Abraço Negro: Ilê Aiyê convida Surdo Um da Mangueira</h3>
+    <p class="w">Circo Voador, Lapa · hoje, a partir das 18h · preço não confirmado · Kazen Sorriso comanda uma roda de samba</p>
+    <p class="s">Véspera de feriado com o primeiro bloco afro do Brasil, nascido em Salvador em 1974, e a bateria da Mangueira no palco. Barulho de primeira; preço a confirmar.</p>
+    <a class="go" href="https://www.circovoador.com.br/" target="_blank" rel="noopener">Circo Voador ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Festival+Abra%C3%A7o+Negro:+Il%C3%AA+Aiy%C3%AA+convida+Surdo+Um+da+Mangueira&amp;dates=20261119T180000/20261119T200000&amp;ctz=America/Sao_Paulo&amp;location=Circo+Voador%2C+Rua+dos+Arcos%2C+Lapa&amp;details=Festival+Abra%C3%A7o+Negro:+Il%C3%AA+Aiy%C3%AA+convida+Surdo+Um+da+Mangueira%0ACirco+Voador%2C+Lapa+%C2%B7+hoje%2C+a+partir+das+18h+%C2%B7+pre%C3%A7o+n%C3%A3o+confirmado+%C2%B7+Kazen+Sorriso+comanda+uma+roda+de+samba%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.circovoador.com.br/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Festival%20Abra%C3%A7o%20Negro:%20Il%C3%AA%20Aiy%C3%AA%20convida%20Surdo%20Um%20da%20Mangueira%20%C2%B7%20Circo%20Voador%2C%20Rua%20dos%20Arcos%2C%20Lapa%20%C2%B7%2019/11%2C%2018h%20%C2%B7%20https://www.circovoador.com.br/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Teatro"><div class="t">19h<small>às quintas, até 26/11</small></div><div class="b">
+    <p class="k">Teatro</p>
+    <h3>Cordélia Brasil</h3>
+    <p class="w">Teatro Glauce Rocha, Centro · hoje, 19h · preço: confirme com o teatro</p>
+    <p class="s">Antonio Bivar, 1968: Cordélia sustenta o companheiro inerte numa quitinete decadente do Rio, até a chegada de um jovem bagunçar o marasmo. Direção de João Fonseca. Quem já dividiu apartamento reconhece.</p>
+    <a class="go" href="https://riotur.rio/?p=61982" target="_blank" rel="noopener">Serviço da temporada ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Cord%C3%A9lia+Brasil&amp;dates=20261119T190000/20261119T210000&amp;ctz=America/Sao_Paulo&amp;location=Teatro+Glauce+Rocha%2C+Av.+Rio+Branco+179%2C+Centro&amp;details=Cord%C3%A9lia+Brasil%0ATeatro+Glauce+Rocha%2C+Centro+%C2%B7+hoje%2C+19h+%C2%B7+pre%C3%A7o:+confirme+com+o+teatro%0A%0AMais+informa%C3%A7%C3%B5es:+https://riotur.rio/%3Fp%3D61982%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Cord%C3%A9lia%20Brasil%20%C2%B7%20Teatro%20Glauce%20Rocha%2C%20Av.%20Rio%20Branco%20179%2C%20Centro%20%C2%B7%2019/11%2C%2019h%20%C2%B7%20https://riotur.rio/%3Fp%3D61982%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Teatro"><div class="t">19h</div><div class="b">
+    <p class="k">Teatro</p>
+    <h3>Entre o Sim e o Nunca</h3>
+    <p class="w">CCBB Rio, Centro · hoje, 19h · R$ 30 (meia R$ 15)</p>
+    <p class="s">Uma mulher de 35 anos descobre que o pai do registro não é o biológico. Drama com humor, e a prova de que toda família tem seu plot twist.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/entre-sim-e-o-nunca/" target="_blank" rel="noopener">Página no CCBB ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Entre+o+Sim+e+o+Nunca&amp;dates=20261119T190000/20261119T210000&amp;ctz=America/Sao_Paulo&amp;location=CCBB+Rio%2C+Rua+Primeiro+de+Mar%C3%A7o+66%2C+Centro&amp;details=Entre+o+Sim+e+o+Nunca%0ACCBB+Rio%2C+Centro+%C2%B7+hoje%2C+19h+%C2%B7+R%24+30+%28meia+R%24+15%29%0A%0AMais+informa%C3%A7%C3%B5es:+https://ccbb.com.br/rio-de-janeiro/programacao/entre-sim-e-o-nunca/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Entre%20o%20Sim%20e%20o%20Nunca%20%C2%B7%20CCBB%20Rio%2C%20Rua%20Primeiro%20de%20Mar%C3%A7o%2066%2C%20Centro%20%C2%B7%2019/11%2C%2019h%20%C2%B7%20https://ccbb.com.br/rio-de-janeiro/programacao/entre-sim-e-o-nunca/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Rua"><div class="t">19h</div><div class="b">
+    <p class="k">Rua · Samba</p>
+    <h3>Roda da Galinha Enfeitada</h3>
+    <p class="w">Praça Tiradentes, Centro · hoje, 19h · preço não informado · parte da Semana da Consciência Negra</p>
+    <p class="s">Roda na praça para abrir a Semana da Consciência Negra, com as Feiras Afro de manhã. Galinha enfeitada: só o nome já vale a ida.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Roda+da+Galinha+Enfeitada&amp;dates=20261119T190000/20261119T210000&amp;ctz=America/Sao_Paulo&amp;location=Pra%C3%A7a+Tiradentes%2C+Centro&amp;details=Roda+da+Galinha+Enfeitada%0APra%C3%A7a+Tiradentes%2C+Centro+%C2%B7+hoje%2C+19h+%C2%B7+pre%C3%A7o+n%C3%A3o+informado+%C2%B7+parte+da+Semana+da+Consci%C3%AAncia+Negra%0A%0AMais+informa%C3%A7%C3%B5es:+https://cultura.prefeitura.rio/agendacultural/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Roda%20da%20Galinha%20Enfeitada%20%C2%B7%20Pra%C3%A7a%20Tiradentes%2C%20Centro%20%C2%B7%2019/11%2C%2019h%20%C2%B7%20https://cultura.prefeitura.rio/agendacultural/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+</section>
+
+<section class="day-sec" id="d-20-11"><h2>Sexta 20/11<small>feriado</small><a class="up" href="#dias" aria-label="Voltar aos dias">↑ dias</a></h2>
+  <article class="ev hl" id="dest-3" data-cat="Rua" data-free="1"><div class="t">10h</div><div class="b">
+    <p class="k">Rua · Samba <span class="free">grátis</span> <span class="hlt">Destaque</span></p>
+    <h3>Cortejo da Tia Ciata</h3>
+    <p class="w">Concentração no Centro de Artes Calouste Gulbenkian, Rua Benedito Hipólito 125, Praça Onze · sexta, 10h · grátis · livre</p>
+    <p class="s">Afoxé, maracatu e samba levam às ruas uma escultura de 5 metros de Tia Ciata, a matriarca do samba carioca. Depois, roda de samba e feira.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Cortejo+da+Tia+Ciata&amp;dates=20261120T100000/20261120T130000&amp;ctz=America/Sao_Paulo&amp;location=Centro+de+Artes+Calouste+Gulbenkian%2C+Rua+Benedito+Hip%C3%B3lito+125%2C+Pra%C3%A7a+Onze&amp;details=Cortejo+da+Tia+Ciata%0AConcentra%C3%A7%C3%A3o+no+Centro+de+Artes+Calouste+Gulbenkian%2C+Rua+Benedito+Hip%C3%B3lito+125%2C+Pra%C3%A7a+Onze+%C2%B7+sexta%2C+10h+%C2%B7+gr%C3%A1tis+%C2%B7+livre%0A%0AMais+informa%C3%A7%C3%B5es:+https://cultura.prefeitura.rio/agendacultural/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Cortejo%20da%20Tia%20Ciata%20%C2%B7%20Centro%20de%20Artes%20Calouste%20Gulbenkian%2C%20Rua%20Benedito%20Hip%C3%B3lito%20125%2C%20Pra%C3%A7a%20Onze%20%C2%B7%2020/11%2C%2010h%20%C2%B7%20https://cultura.prefeitura.rio/agendacultural/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Infantil" data-free="1" data-kid="1"><div class="t">11h</div><div class="b">
+    <p class="k">Infantil <span class="free">grátis</span> <span class="kid">com criança</span></p>
+    <h3>A Menina Dança</h3>
+    <p class="w">Aterro do Flamengo, Posto 3 · sexta, 11h · grátis · livre</p>
+    <p class="s">Dança-teatro infantil sobre Maria Felipa, marisqueira e heroína da Independência da Bahia, com maracatu, jongo e samba de roda. Aula de história que ninguém percebe que é aula.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=A+Menina+Dan%C3%A7a&amp;dates=20261120T110000/20261120T120000&amp;ctz=America/Sao_Paulo&amp;location=Aterro+do+Flamengo%2C+Posto+3&amp;details=A+Menina+Dan%C3%A7a%0AAterro+do+Flamengo%2C+Posto+3+%C2%B7+sexta%2C+11h+%C2%B7+gr%C3%A1tis+%C2%B7+livre%0A%0AMais+informa%C3%A7%C3%B5es:+https://cultura.prefeitura.rio/agendacultural/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=A%20Menina%20Dan%C3%A7a%20%C2%B7%20Aterro%20do%20Flamengo%2C%20Posto%203%20%C2%B7%2020/11%2C%2011h%20%C2%B7%20https://cultura.prefeitura.rio/agendacultural/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Música" data-free="1"><div class="t">12h<small>também dom 22 (Bateria da Portela)</small></div><div class="b">
+    <p class="k">Música <span class="free">grátis</span></p>
+    <h3>Amanhecer Rio: Jonathan Ferr</h3>
+    <p class="w">Passeio Público, Centro · sexta, 12h; feira das 8h às 13h · grátis · livre</p>
+    <p class="s">Festival de cultura e cuidado no Passeio Público, com feira das 8h às 13h e show do pianista Jonathan Ferr no palco principal, ao meio-dia.</p>
+    <a class="go" href="https://www.google.com/search?q=Festival+Amanhecer+Rio+Cultura+e+Cuidado+Passeio+P%C3%BAblico" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Amanhecer+Rio:+Jonathan+Ferr&amp;dates=20261120T120000/20261120T130000&amp;ctz=America/Sao_Paulo&amp;location=Passeio+P%C3%BAblico%2C+Centro&amp;details=Amanhecer+Rio:+Jonathan+Ferr%0APasseio+P%C3%BAblico%2C+Centro+%C2%B7+sexta%2C+12h%3B+feira+das+8h+%C3%A0s+13h+%C2%B7+gr%C3%A1tis+%C2%B7+livre%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DFestival%2BAmanhecer%2BRio%2BCultura%2Be%2BCuidado%2BPasseio%2BP%25C3%25BAblico%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Amanhecer%20Rio:%20Jonathan%20Ferr%20%C2%B7%20Passeio%20P%C3%BAblico%2C%20Centro%20%C2%B7%2020/11%2C%2012h%20%C2%B7%20https://www.google.com/search%3Fq%3DFestival%2BAmanhecer%2BRio%2BCultura%2Be%2BCuidado%2BPasseio%2BP%25C3%25BAblico%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Música" data-free="1"><div class="t">13h</div><div class="b">
+    <p class="k">Música · Samba <span class="free">grátis</span></p>
+    <h3>Festival Terreiro 2026: Sombrinha e Jongo da Serrinha</h3>
+    <p class="w">Praça das Juras, Padre Miguel · sexta, 13h à meia-noite · grátis com ingresso colaborativo (R$ 5, 10 ou 20) · ônibus opcional saindo do metrô Glória</p>
+    <p class="s">Samba, jongo e Festival Infantil Terreirinho num dia inteiro de feriado, com Sombrinha e o Jongo da Serrinha. Bom passeio para quem prefere tradição a trânsito.</p>
+    <a class="go" href="https://www.google.com/search?q=Festival+Terreiro+2026+Padre+Miguel+Sombrinha" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Festival+Terreiro+2026:+Sombrinha+e+Jongo+da+Serrinha&amp;dates=20261120T130000/20261120T235900&amp;ctz=America/Sao_Paulo&amp;location=Pra%C3%A7a+das+Juras%2C+Padre+Miguel&amp;details=Festival+Terreiro+2026:+Sombrinha+e+Jongo+da+Serrinha%0APra%C3%A7a+das+Juras%2C+Padre+Miguel+%C2%B7+sexta%2C+13h+%C3%A0+meia-noite+%C2%B7+gr%C3%A1tis+com+ingresso+colaborativo+%28R%24+5%2C+10+ou+20%29+%C2%B7+%C3%B4nibus+opcional+saindo+do+metr%C3%B4+Gl%C3%B3ria%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DFestival%2BTerreiro%2B2026%2BPadre%2BMiguel%2BSombrinha%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Festival%20Terreiro%202026:%20Sombrinha%20e%20Jongo%20da%20Serrinha%20%C2%B7%20Pra%C3%A7a%20das%20Juras%2C%20Padre%20Miguel%20%C2%B7%2020/11%2C%2013h%20%C2%B7%20https://www.google.com/search%3Fq%3DFestival%2BTerreiro%2B2026%2BPadre%2BMiguel%2BSombrinha%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev hl" id="dest-4" data-cat="Cinema"><div class="t">13h</div><div class="b">
+    <p class="k">Cinema · Debate <span class="hlt">Destaque</span></p>
+    <h3>Malcolm X, com debate</h3>
+    <p class="w">Cinemateca do MAM, Parque do Flamengo · sexta, 13h · 202 min · 14 anos · preço: confirme</p>
+    <p class="s">De 1992, com Denzel Washington, em cópia digital legendada, seguido de conversa com a historiadora Juliana da Conceição Pereira (UFRJ).</p>
+    <a class="go" href="https://www.google.com/search?q=Cinemateca+do+MAM+Malcolm+X+Spike+Lee+Cineclube+Odeon-CineHist%C3%B3ria" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Malcolm+X%2C+com+debate&amp;dates=20261120T130000/20261120T163000&amp;ctz=America/Sao_Paulo&amp;location=Cinemateca+do+MAM%2C+Av.+Infante+Dom+Henrique+85%2C+Parque+do+Flamengo&amp;details=Malcolm+X%2C+com+debate%0ACinemateca+do+MAM%2C+Parque+do+Flamengo+%C2%B7+sexta%2C+13h+%C2%B7+202+min+%C2%B7+14+anos+%C2%B7+pre%C3%A7o:+confirme%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DCinemateca%2Bdo%2BMAM%2BMalcolm%2BX%2BSpike%2BLee%2BCineclube%2BOdeon-CineHist%25C3%25B3ria%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Malcolm%20X%2C%20com%20debate%20%C2%B7%20Cinemateca%20do%20MAM%2C%20Av.%20Infante%20Dom%20Henrique%2085%2C%20Parque%20do%20Flamengo%20%C2%B7%2020/11%2C%2013h%20%C2%B7%20https://www.google.com/search%3Fq%3DCinemateca%2Bdo%2BMAM%2BMalcolm%2BX%2BSpike%2BLee%2BCineclube%2BOdeon-CineHist%25C3%25B3ria%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Ópera"><div class="t">19h<small>também sáb 21</small></div><div class="b">
+    <p class="k">Ópera</p>
+    <h3>Turandot, de Puccini</h3>
+    <p class="w">Theatro Municipal, Centro · sexta, 19h · galeria R$ 20; camarotes até cerca de R$ 90</p>
+    <p class="s">Volta ao palco do Municipal, com regência de Carlos Vieu e galeria a R$ 20. Para quem perdeu a semana passada: a princesa decapita os pretendentes que não resolvem seus enigmas.</p>
+    <a class="go" href="https://theatromunicipal.rj.gov.br/turandot-de-giacomo-puccini-com-coro-e-orquestra-sinfonica-do-theatro-municipal-do-rio-de-janeiro/" target="_blank" rel="noopener">Theatro Municipal ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Turandot%2C+de+Puccini&amp;dates=20261120T190000/20261120T220000&amp;ctz=America/Sao_Paulo&amp;location=Theatro+Municipal%2C+Pra%C3%A7a+Floriano%2C+Centro&amp;details=Turandot%2C+de+Puccini%0ATheatro+Municipal%2C+Centro+%C2%B7+sexta%2C+19h+%C2%B7+galeria+R%24+20%3B+camarotes+at%C3%A9+cerca+de+R%24+90%0A%0AMais+informa%C3%A7%C3%B5es:+https://theatromunicipal.rj.gov.br/turandot-de-giacomo-puccini-com-coro-e-orquestra-sinfonica-do-theatro-municipal-do-rio-de-janeiro/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Turandot%2C%20de%20Puccini%20%C2%B7%20Theatro%20Municipal%2C%20Pra%C3%A7a%20Floriano%2C%20Centro%20%C2%B7%2020/11%2C%2019h%20%C2%B7%20https://theatromunicipal.rj.gov.br/turandot-de-giacomo-puccini-com-coro-e-orquestra-sinfonica-do-theatro-municipal-do-rio-de-janeiro/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Teatro"><div class="t">20h<small>às quartas, quintas e sextas, até 27/11</small></div><div class="b">
+    <p class="k">Teatro</p>
+    <h3>Embarcação Perdue</h3>
+    <p class="w">Teatro Glaucio Gil, Praça Cardeal Arcoverde, Copacabana · sexta, 20h · preço: confirme com o teatro</p>
+    <p class="s">Um barco promete devolver tudo o que se perdeu, sob capitão enigmático e rumo a 'Lugar Nenhum'. Humor, absurdo e poesia, na estreia de Lucas Pimenta como dramaturgo. Pelo menos o destino é sincero.</p>
+    <a class="go" href="https://riotur.rio/?p=61757" target="_blank" rel="noopener">Serviço da temporada ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Embarca%C3%A7%C3%A3o+Perdue&amp;dates=20261120T200000/20261120T213000&amp;ctz=America/Sao_Paulo&amp;location=Teatro+Glaucio+Gil%2C+Pra%C3%A7a+Cardeal+Arcoverde%2C+Copacabana&amp;details=Embarca%C3%A7%C3%A3o+Perdue%0ATeatro+Glaucio+Gil%2C+Pra%C3%A7a+Cardeal+Arcoverde%2C+Copacabana+%C2%B7+sexta%2C+20h+%C2%B7+pre%C3%A7o:+confirme+com+o+teatro%0A%0AMais+informa%C3%A7%C3%B5es:+https://riotur.rio/%3Fp%3D61757%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Embarca%C3%A7%C3%A3o%20Perdue%20%C2%B7%20Teatro%20Glaucio%20Gil%2C%20Pra%C3%A7a%20Cardeal%20Arcoverde%2C%20Copacabana%20%C2%B7%2020/11%2C%2020h%20%C2%B7%20https://riotur.rio/%3Fp%3D61757%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Circo"><div class="t">20h</div><div class="b">
+    <p class="k">Circo · Dança</p>
+    <h3>Cabaret: edição Consciência Negra</h3>
+    <p class="w">Circo Crescer e Viver, Rua Carmo Neto 143 · sexta, 20h · de R$ 10 a R$ 600, conforme setor</p>
+    <p class="s">Noite de circo, dança, música e humor com artistas negros, e DJs depois. Na 39ª edição, já deixou de ser novidade e virou instituição.</p>
+    <a class="go" href="https://bileto.sympla.com.br/event/121801/d/390956" target="_blank" rel="noopener">Ingressos no Sympla ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Cabaret:+edi%C3%A7%C3%A3o+Consci%C3%AAncia+Negra&amp;dates=20261120T200000/20261120T230000&amp;ctz=America/Sao_Paulo&amp;location=Circo+Crescer+e+Viver%2C+Rua+Carmo+Neto+143&amp;details=Cabaret:+edi%C3%A7%C3%A3o+Consci%C3%AAncia+Negra%0ACirco+Crescer+e+Viver%2C+Rua+Carmo+Neto+143+%C2%B7+sexta%2C+20h+%C2%B7+de+R%24+10+a+R%24+600%2C+conforme+setor%0A%0AMais+informa%C3%A7%C3%B5es:+https://bileto.sympla.com.br/event/121801/d/390956%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Cabaret:%20edi%C3%A7%C3%A3o%20Consci%C3%AAncia%20Negra%20%C2%B7%20Circo%20Crescer%20e%20Viver%2C%20Rua%20Carmo%20Neto%20143%20%C2%B7%2020/11%2C%2020h%20%C2%B7%20https://bileto.sympla.com.br/event/121801/d/390956%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+</section>
+
+<section class="day-sec" id="d-21-11"><h2>Sábado 21/11<a class="up" href="#dias" aria-label="Voltar aos dias">↑ dias</a></h2>
+  <article class="ev" data-cat="Rua" data-free="1"><div class="t">10h</div><div class="b">
+    <p class="k">Rua · Samba <span class="free">grátis</span></p>
+    <h3>Rolé Estácio: Berço do Samba</h3>
+    <p class="w">Praça do Estácio, saída B do metrô · sábado, 10h · grátis · feijoada e música na quadra a partir das 13h</p>
+    <p class="s">Passeio a pé pelo bairro onde nasceu o samba moderno, com paradas e música. Caminhada com propósito: abre o apetite para a feijoada.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Rol%C3%A9+Est%C3%A1cio:+Ber%C3%A7o+do+Samba&amp;dates=20261121T100000/20261121T130000&amp;ctz=America/Sao_Paulo&amp;location=Pra%C3%A7a+do+Est%C3%A1cio+%28sa%C3%ADda+B+do+metr%C3%B4%29&amp;details=Rol%C3%A9+Est%C3%A1cio:+Ber%C3%A7o+do+Samba%0APra%C3%A7a+do+Est%C3%A1cio%2C+sa%C3%ADda+B+do+metr%C3%B4+%C2%B7+s%C3%A1bado%2C+10h+%C2%B7+gr%C3%A1tis+%C2%B7+feijoada+e+m%C3%BAsica+na+quadra+a+partir+das+13h%0A%0AMais+informa%C3%A7%C3%B5es:+https://cultura.prefeitura.rio/agendacultural/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Rol%C3%A9%20Est%C3%A1cio:%20Ber%C3%A7o%20do%20Samba%20%C2%B7%20Pra%C3%A7a%20do%20Est%C3%A1cio%20%28sa%C3%ADda%20B%20do%20metr%C3%B4%29%20%C2%B7%2021/11%2C%2010h%20%C2%B7%20https://cultura.prefeitura.rio/agendacultural/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Infantil" data-kid="1"><div class="t">11h<small>também dom 22, 11h</small></div><div class="b">
+    <p class="k">Infantil · Teatro <span class="kid">com criança</span></p>
+    <h3>Zuzuê: Contos Africanos</h3>
+    <p class="w">Teatro Ruth de Souza, Santa Teresa · sábado, 11h · R$ 20 a R$ 40 · livre · com Libras</p>
+    <p class="s">Contos africanos para crianças, com sessões em Libras. Cabe na manhã e ainda deixa o resto do sábado livre.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Zuzu%C3%AA:+Contos+Africanos&amp;dates=20261121T110000/20261121T120000&amp;ctz=America/Sao_Paulo&amp;location=Teatro+Ruth+de+Souza%2C+Santa+Teresa&amp;details=Zuzu%C3%AA:+Contos+Africanos%0ATeatro+Ruth+de+Souza%2C+Santa+Teresa+%C2%B7+s%C3%A1bado%2C+11h+%C2%B7+R%24+20+a+R%24+40+%C2%B7+livre+%C2%B7+com+Libras%0A%0AMais+informa%C3%A7%C3%B5es:+https://cultura.prefeitura.rio/agendacultural/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Zuzu%C3%AA:%20Contos%20Africanos%20%C2%B7%20Teatro%20Ruth%20de%20Souza%2C%20Santa%20Teresa%20%C2%B7%2021/11%2C%2011h%20%C2%B7%20https://cultura.prefeitura.rio/agendacultural/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev hl" id="dest-5" data-cat="Infantil" data-free="1" data-kid="1"><div class="t">14h</div><div class="b">
+    <p class="k">Infantil · Rua · Festival <span class="free">grátis</span> <span class="kid">com criança</span> <span class="hlt">Destaque</span></p>
+    <h3>3º Barão Festival, festa de rua para a família</h3>
+    <p class="w">Rua Barão de Jacuí, Oswaldo Cruz · sábado, a partir das 14h · grátis · livre</p>
+    <p class="s">Arte, moda, cinema, balé e samba na rua, para a família toda, no subúrbio. Programa raro: dá para levar avó e neto sem negociar o roteiro.</p>
+    <a class="go" href="https://www.google.com/search?q=3%C2%BA+Bar%C3%A3o+Festival%2C+festa+de+rua+para+a+fam%C3%ADlia+Oswaldo+Cruz+21+de+novembro" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=3%C2%BA+Bar%C3%A3o+Festival%2C+festa+de+rua+para+a+fam%C3%ADlia&amp;dates=20261121T140000/20261121T180000&amp;ctz=America/Sao_Paulo&amp;location=Rua+Bar%C3%A3o+de+Jacu%C3%AD%2C+Oswaldo+Cruz&amp;details=3%C2%BA+Bar%C3%A3o+Festival%2C+festa+de+rua+para+a+fam%C3%ADlia%0ARua+Bar%C3%A3o+de+Jacu%C3%AD%2C+Oswaldo+Cruz+%C2%B7+s%C3%A1bado%2C+a+partir+das+14h+%C2%B7+gr%C3%A1tis+%C2%B7+livre%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3D3%25C2%25BA%2BBar%25C3%25A3o%2BFestival%252C%2Bfesta%2Bde%2Brua%2Bpara%2Ba%2Bfam%25C3%25ADlia%2BOswaldo%2BCruz%2B21%2Bde%2Bnovembro%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=3%C2%BA%20Bar%C3%A3o%20Festival%2C%20festa%20de%20rua%20para%20a%20fam%C3%ADlia%20%C2%B7%20Rua%20Bar%C3%A3o%20de%20Jacu%C3%AD%2C%20Oswaldo%20Cruz%20%C2%B7%2021/11%2C%2014h%20%C2%B7%20https://www.google.com/search%3Fq%3D3%25C2%25BA%2BBar%25C3%25A3o%2BFestival%252C%2Bfesta%2Bde%2Brua%2Bpara%2Ba%2Bfam%25C3%25ADlia%2BOswaldo%2BCruz%2B21%2Bde%2Bnovembro%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Infantil" data-kid="1"><div class="t">16h<small>também dom 22, 16h · últimos dias</small></div><div class="b">
+    <p class="k">Infantil · Teatro <span class="kid">com criança</span></p>
+    <h3>Quintal</h3>
+    <p class="w">Teatro Municipal Ziembinski, Tijuca · sábado, 16h · preço: confirme com o teatro · livre</p>
+    <p class="s">Quatro crianças do subúrbio defendem o quintal, com goiabeira mágica, de um supervilão que convence os adultos de que progresso é demolir. Grupo Concreto, direção de Rodrigo de Todos os Santos.</p>
+    <a class="go" href="https://www.google.com/search?q=Quintal+Grupo+Concreto+Teatro+Municipal+Ziembinski" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Quintal&amp;dates=20261121T160000/20261121T170000&amp;ctz=America/Sao_Paulo&amp;location=Teatro+Municipal+Ziembinski%2C+Rua+Heitor+Beltr%C3%A3o%2C+Tijuca&amp;details=Quintal%0ATeatro+Municipal+Ziembinski%2C+Tijuca+%C2%B7+s%C3%A1bado%2C+16h+%C2%B7+pre%C3%A7o:+confirme+com+o+teatro+%C2%B7+livre%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DQuintal%2BGrupo%2BConcreto%2BTeatro%2BMunicipal%2BZiembinski%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Quintal%20%C2%B7%20Teatro%20Municipal%20Ziembinski%2C%20Rua%20Heitor%20Beltr%C3%A3o%2C%20Tijuca%20%C2%B7%2021/11%2C%2016h%20%C2%B7%20https://www.google.com/search%3Fq%3DQuintal%2BGrupo%2BConcreto%2BTeatro%2BMunicipal%2BZiembinski%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Samba" data-free="1"><div class="t">17h</div><div class="b">
+    <p class="k">Samba <span class="free">grátis</span></p>
+    <h3>Samba do Sacramento</h3>
+    <p class="w">CCBB Rio, Centro · sábado, 17h · grátis · Marcos Sacramento com Rita Benneditto, Nilze Carvalho e Nina Rosa</p>
+    <p class="s">Marcos Sacramento recebe Rita Benneditto, Nilze Carvalho e Nina Rosa numa tarde de samba de graça. Se o CCBB lotar, a culpa é do preço.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/" target="_blank" rel="noopener">Programação do CCBB ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Samba+do+Sacramento&amp;dates=20261121T170000/20261121T190000&amp;ctz=America/Sao_Paulo&amp;location=CCBB+Rio%2C+Rua+Primeiro+de+Mar%C3%A7o+66%2C+Centro&amp;details=Samba+do+Sacramento%0ACCBB+Rio%2C+Centro+%C2%B7+s%C3%A1bado%2C+17h+%C2%B7+gr%C3%A1tis+%C2%B7+Marcos+Sacramento+com+Rita+Benneditto%2C+Nilze+Carvalho+e+Nina+Rosa%0A%0AMais+informa%C3%A7%C3%B5es:+https://ccbb.com.br/rio-de-janeiro/programacao/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Samba%20do%20Sacramento%20%C2%B7%20CCBB%20Rio%2C%20Rua%20Primeiro%20de%20Mar%C3%A7o%2066%2C%20Centro%20%C2%B7%2021/11%2C%2017h%20%C2%B7%20https://ccbb.com.br/rio-de-janeiro/programacao/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Música"><div class="t">17h</div><div class="b">
+    <p class="k">Música · Samba</p>
+    <h3>Baú da Dona Ivone Lara: Bruno Castro com Áurea Martins</h3>
+    <p class="w">Sala Paulo Moura, Centro da Música Carioca Artur da Távola, Tijuca · sábado, 17h · R$ 60 (meia R$ 30)</p>
+    <p class="s">Homenagem a Dona Ivone Lara, com Bruno Castro e a presença de Áurea Martins. Dona Ivone dispensa adjetivos; precisa só de plateia.</p>
+    <a class="go" href="https://www.google.com/search?q=Ba%C3%BA+da+Dona+Ivone+Lara+Bruno+Castro+%C3%81urea+Martins+Centro+da+M%C3%BAsica+Carioca" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ba%C3%BA+da+Dona+Ivone+Lara:+Bruno+Castro+com+%C3%81urea+Martins&amp;dates=20261121T170000/20261121T190000&amp;ctz=America/Sao_Paulo&amp;location=Centro+da+M%C3%BAsica+Carioca+Artur+da+T%C3%A1vola%2C+Tijuca&amp;details=Ba%C3%BA+da+Dona+Ivone+Lara:+Bruno+Castro+com+%C3%81urea+Martins%0ASala+Paulo+Moura%2C+Centro+da+M%C3%BAsica+Carioca+Artur+da+T%C3%A1vola%2C+Tijuca+%C2%B7+s%C3%A1bado%2C+17h+%C2%B7+R%24+60+%28meia+R%24+30%29%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DBa%25C3%25BA%2Bda%2BDona%2BIvone%2BLara%2BBruno%2BCastro%2B%25C3%2581urea%2BMartins%2BCentro%2Bda%2BM%25C3%25BAsica%2BCarioca%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Ba%C3%BA%20da%20Dona%20Ivone%20Lara:%20Bruno%20Castro%20com%20%C3%81urea%20Martins%20%C2%B7%20Centro%20da%20M%C3%BAsica%20Carioca%20Artur%20da%20T%C3%A1vola%2C%20Tijuca%20%C2%B7%2021/11%2C%2017h%20%C2%B7%20https://www.google.com/search%3Fq%3DBa%25C3%25BA%2Bda%2BDona%2BIvone%2BLara%2BBruno%2BCastro%2B%25C3%2581urea%2BMartins%2BCentro%2Bda%2BM%25C3%25BAsica%2BCarioca%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Cinema"><div class="t">17h40</div><div class="b">
+    <p class="k">Cinema</p>
+    <h3>As pontes de Madison</h3>
+    <p class="w">Cinemateca do MAM, Parque do Flamengo · sábado, 17h40 · 135 min · 12 anos · preço: confirme</p>
+    <p class="s">Com Meryl Streep e Clint Eastwood, 1995, na série Incontornáveis. Para quem prefere lágrima em tela grande a chuva de sábado.</p>
+    <a class="go" href="https://www.google.com/search?q=Cinemateca+do+MAM+As+pontes+de+Madison+Incontorn%C3%A1veis" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=As+pontes+de+Madison&amp;dates=20261121T174000/20261121T200000&amp;ctz=America/Sao_Paulo&amp;location=Cinemateca+do+MAM%2C+Av.+Infante+Dom+Henrique+85%2C+Parque+do+Flamengo&amp;details=As+pontes+de+Madison%0ACinemateca+do+MAM%2C+Parque+do+Flamengo+%C2%B7+s%C3%A1bado%2C+17h40+%C2%B7+135+min+%C2%B7+12+anos+%C2%B7+pre%C3%A7o:+confirme%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DCinemateca%2Bdo%2BMAM%2BAs%2Bpontes%2Bde%2BMadison%2BIncontorn%25C3%25A1veis%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=As%20pontes%20de%20Madison%20%C2%B7%20Cinemateca%20do%20MAM%2C%20Av.%20Infante%20Dom%20Henrique%2085%2C%20Parque%20do%20Flamengo%20%C2%B7%2021/11%2C%2017h40%20%C2%B7%20https://www.google.com/search%3Fq%3DCinemateca%2Bdo%2BMAM%2BAs%2Bpontes%2Bde%2BMadison%2BIncontorn%25C3%25A1veis%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Rua" data-free="1"><div class="t">18h<small>todo sábado</small></div><div class="b">
+    <p class="k">Rua · Samba <span class="free">grátis</span></p>
+    <h3>Ensaio de rua da Mocidade Independente</h3>
+    <p class="w">Padre Miguel/Bangu (Av. Ministro Ary Franco) · sábado, concentração às 18h · grátis · confirme com a escola</p>
+    <p class="s">Aquecimento para o Carnaval 2027, com a verde e branco na rua e a comunidade atrás. A chuva costuma mudar o programa, mas ninguém avisou o tamborim.</p>
+    <a class="go" href="https://www.google.com/search?q=ensaio+de+rua+Mocidade+Independente+Padre+Miguel+s%C3%A1bado" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ensaio+de+rua+da+Mocidade+Independente&amp;dates=20261121T180000/20261121T210000&amp;ctz=America/Sao_Paulo&amp;location=Av.+Ministro+Ary+Franco%2C+Padre+Miguel/Bangu&amp;details=Ensaio+de+rua+da+Mocidade+Independente%0APadre+Miguel/Bangu+%28Av.+Ministro+Ary+Franco%29+%C2%B7+s%C3%A1bado%2C+concentra%C3%A7%C3%A3o+%C3%A0s+18h+%C2%B7+gr%C3%A1tis+%C2%B7+confirme+com+a+escola%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3Densaio%2Bde%2Brua%2BMocidade%2BIndependente%2BPadre%2BMiguel%2Bs%25C3%25A1bado%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Ensaio%20de%20rua%20da%20Mocidade%20Independente%20%C2%B7%20Av.%20Ministro%20Ary%20Franco%2C%20Padre%20Miguel/Bangu%20%C2%B7%2021/11%2C%2018h%20%C2%B7%20https://www.google.com/search%3Fq%3Densaio%2Bde%2Brua%2BMocidade%2BIndependente%2BPadre%2BMiguel%2Bs%25C3%25A1bado%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Cinema"><div class="t">18h</div><div class="b">
+    <p class="k">Cinema</p>
+    <h3>Os Arrependidos</h3>
+    <p class="w">CCBB Rio, Centro · sábado, 18h · 81 min + curta · 12 anos · preço: confirme</p>
+    <p class="s">Documentário de 2021: ex-militantes de esquerda, presos e torturados nos anos 1970, foram coagidos a renegar a luta armada em público e a elogiar o regime. Antes, um curta distópico de 7 minutos.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/" target="_blank" rel="noopener">Programação do CCBB ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Os+Arrependidos&amp;dates=20261121T180000/20261121T193000&amp;ctz=America/Sao_Paulo&amp;location=CCBB+Rio%2C+Rua+Primeiro+de+Mar%C3%A7o+66%2C+Centro&amp;details=Os+Arrependidos%0ACCBB+Rio%2C+Centro+%C2%B7+s%C3%A1bado%2C+18h+%C2%B7+81+min+%2B+curta+%C2%B7+12+anos+%C2%B7+pre%C3%A7o:+confirme%0A%0AMais+informa%C3%A7%C3%B5es:+https://ccbb.com.br/rio-de-janeiro/programacao/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Os%20Arrependidos%20%C2%B7%20CCBB%20Rio%2C%20Rua%20Primeiro%20de%20Mar%C3%A7o%2066%2C%20Centro%20%C2%B7%2021/11%2C%2018h%20%C2%B7%20https://ccbb.com.br/rio-de-janeiro/programacao/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev hl" id="dest-6" data-cat="Teatro"><div class="t">20h<small>também dom 22, 19h</small></div><div class="b">
+    <p class="k">Teatro <span class="hlt">Destaque</span></p>
+    <h3>Minha Vó Ri</h3>
+    <p class="w">Teatro Sérgio Porto, Humaitá · sábado, 20h · R$ 30 a R$ 60 · 14 anos</p>
+    <p class="s">Primeiro solo de Júlia Bernat, que cruza autoficção com três anos de pesquisa sobre a história do ativismo lésbico. Direção de Débora Lamm.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Minha+V%C3%B3+Ri&amp;dates=20261121T200000/20261121T213000&amp;ctz=America/Sao_Paulo&amp;location=Teatro+S%C3%A9rgio+Porto%2C+Humait%C3%A1&amp;details=Minha+V%C3%B3+Ri%0ATeatro+S%C3%A9rgio+Porto%2C+Humait%C3%A1+%C2%B7+s%C3%A1bado%2C+20h+%C2%B7+R%24+30+a+R%24+60+%C2%B7+14+anos%0A%0AMais+informa%C3%A7%C3%B5es:+https://cultura.prefeitura.rio/agendacultural/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Minha%20V%C3%B3%20Ri%20%C2%B7%20Teatro%20S%C3%A9rgio%20Porto%2C%20Humait%C3%A1%20%C2%B7%2021/11%2C%2020h%20%C2%B7%20https://cultura.prefeitura.rio/agendacultural/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Música"><div class="t">20h<small>também qui e sex 19h · sáb 17h</small></div><div class="b">
+    <p class="k">Música · Teatro</p>
+    <h3>Moraes Musical Moreira</h3>
+    <p class="w">Teatro Carlos Gomes, Praça Tiradentes, Centro · sábado, 20h · a partir de R$ 22</p>
+    <p class="s">Musical sobre Moraes Moreira, dos Novos Baianos ao trio elétrico, com dois intérpretes, música, teatro e dança. Direção de Ana Paula Bouzas. Dois em cena para um trio elétrico: matemática de teatro.</p>
+    <a class="go" href="https://riotur.rio/?p=62017" target="_blank" rel="noopener">Serviço da temporada ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Moraes+Musical+Moreira&amp;dates=20261121T200000/20261121T220000&amp;ctz=America/Sao_Paulo&amp;location=Teatro+Carlos+Gomes%2C+Pra%C3%A7a+Tiradentes%2C+Centro&amp;details=Moraes+Musical+Moreira%0ATeatro+Carlos+Gomes%2C+Pra%C3%A7a+Tiradentes%2C+Centro+%C2%B7+s%C3%A1bado%2C+20h+%C2%B7+a+partir+de+R%24+22%0A%0AMais+informa%C3%A7%C3%B5es:+https://riotur.rio/%3Fp%3D62017%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Moraes%20Musical%20Moreira%20%C2%B7%20Teatro%20Carlos%20Gomes%2C%20Pra%C3%A7a%20Tiradentes%2C%20Centro%20%C2%B7%2021/11%2C%2020h%20%C2%B7%20https://riotur.rio/%3Fp%3D62017%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+</section>
+
+<section class="day-sec" id="d-22-11"><h2>Domingo 22/11<a class="up" href="#dias" aria-label="Voltar aos dias">↑ dias</a></h2>
+  <article class="ev hl" id="dest-7" data-cat="Música"><div class="t">11h</div><div class="b">
+    <p class="k">Música · Coral <span class="hlt">Destaque</span></p>
+    <h3>Coral Brasil Ensemble da UFRJ</h3>
+    <p class="w">Salão Assyrio, Theatro Municipal, Centro · domingo, 11h · R$ 50 (meia R$ 25) · entrada pelo boulevard da Av. Treze de Maio</p>
+    <p class="s">Concerto matinal no salão do Municipal, com o coral da universidade pública. Domingo bem começado, e sem despertador de vizinho.</p>
+    <a class="go" href="https://theatromunicipal.rj.gov.br/tmrj-recebe-o-coral-brasil-ensemble-ufrj-dia-22-11-as-11h/" target="_blank" rel="noopener">Theatro Municipal ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Coral+Brasil+Ensemble+da+UFRJ&amp;dates=20261122T110000/20261122T123000&amp;ctz=America/Sao_Paulo&amp;location=Theatro+Municipal%2C+Pra%C3%A7a+Floriano%2C+Centro&amp;details=Coral+Brasil+Ensemble+da+UFRJ%0ASal%C3%A3o+Assyrio%2C+Theatro+Municipal%2C+Centro+%C2%B7+domingo%2C+11h+%C2%B7+R%24+50+%28meia+R%24+25%29+%C2%B7+entrada+pelo+boulevard+da+Av.+Treze+de+Maio%0A%0AMais+informa%C3%A7%C3%B5es:+https://theatromunicipal.rj.gov.br/tmrj-recebe-o-coral-brasil-ensemble-ufrj-dia-22-11-as-11h/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Coral%20Brasil%20Ensemble%20da%20UFRJ%20%C2%B7%20Theatro%20Municipal%2C%20Pra%C3%A7a%20Floriano%2C%20Centro%20%C2%B7%2022/11%2C%2011h%20%C2%B7%20https://theatromunicipal.rj.gov.br/tmrj-recebe-o-coral-brasil-ensemble-ufrj-dia-22-11-as-11h/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Música" data-free="1"><div class="t">12h</div><div class="b">
+    <p class="k">Música · Samba <span class="free">grátis</span></p>
+    <h3>Amanhecer Rio: Bateria da Portela e Quintal da Magia</h3>
+    <p class="w">Passeio Público, Centro · domingo, 12h (Bateria da Portela, Mestre Vitinho) e 13h (roda Quintal da Magia) · grátis · livre</p>
+    <p class="s">Último dia do festival: a bateria da Portela ao meio-dia, e depois roda de samba. Meditação por percussão.</p>
+    <a class="go" href="https://www.google.com/search?q=Festival+Amanhecer+Rio+Cultura+e+Cuidado+Passeio+P%C3%BAblico" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Amanhecer+Rio:+Bateria+da+Portela+e+Quintal+da+Magia&amp;dates=20261122T120000/20261122T140000&amp;ctz=America/Sao_Paulo&amp;location=Passeio+P%C3%BAblico%2C+Centro&amp;details=Amanhecer+Rio:+Bateria+da+Portela+e+Quintal+da+Magia%0APasseio+P%C3%BAblico%2C+Centro+%C2%B7+domingo%2C+12h+%28Bateria+da+Portela%2C+Mestre+Vitinho%29+e+13h+%28roda+Quintal+da+Magia%29+%C2%B7+gr%C3%A1tis+%C2%B7+livre%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DFestival%2BAmanhecer%2BRio%2BCultura%2Be%2BCuidado%2BPasseio%2BP%25C3%25BAblico%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Amanhecer%20Rio:%20Bateria%20da%20Portela%20e%20Quintal%20da%20Magia%20%C2%B7%20Passeio%20P%C3%BAblico%2C%20Centro%20%C2%B7%2022/11%2C%2012h%20%C2%B7%20https://www.google.com/search%3Fq%3DFestival%2BAmanhecer%2BRio%2BCultura%2Be%2BCuidado%2BPasseio%2BP%25C3%25BAblico%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Infantil" data-kid="1"><div class="t">16h<small>também sáb 21, 16h</small></div><div class="b">
+    <p class="k">Infantil · Teatro <span class="kid">com criança</span></p>
+    <h3>Sudi: O Elogio da Surdez</h3>
+    <p class="w">CCBB Rio, Centro · domingo, 16h · R$ 30 (meia R$ 15)</p>
+    <p class="s">Espetáculo para crianças sobre a surdez, sem condescendência.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/" target="_blank" rel="noopener">Programação do CCBB ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Sudi:+O+Elogio+da+Surdez&amp;dates=20261122T160000/20261122T170000&amp;ctz=America/Sao_Paulo&amp;location=CCBB+Rio%2C+Rua+Primeiro+de+Mar%C3%A7o+66%2C+Centro&amp;details=Sudi:+O+Elogio+da+Surdez%0ACCBB+Rio%2C+Centro+%C2%B7+domingo%2C+16h+%C2%B7+R%24+30+%28meia+R%24+15%29%0A%0AMais+informa%C3%A7%C3%B5es:+https://ccbb.com.br/rio-de-janeiro/programacao/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Sudi:%20O%20Elogio%20da%20Surdez%20%C2%B7%20CCBB%20Rio%2C%20Rua%20Primeiro%20de%20Mar%C3%A7o%2066%2C%20Centro%20%C2%B7%2022/11%2C%2016h%20%C2%B7%20https://ccbb.com.br/rio-de-janeiro/programacao/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev hl" id="dest-8" data-cat="Rua" data-free="1"><div class="t">16h<small>todo domingo</small></div><div class="b">
+    <p class="k">Rua · Samba <span class="free">grátis</span> <span class="hlt">Destaque</span></p>
+    <h3>Ensaios de rua: Imperatriz, Mangueira e Portela</h3>
+    <p class="w">Imperatriz, Rua Euclides Faria, Ramos, a partir das 16h · Mangueira, Rua Visconde de Niterói, a partir das 17h · Portela, esquina da Rua Clara Nunes com Estrada do Portela, Madureira, a partir das 18h · grátis · confirme com cada escola</p>
+    <p class="s">Três escolas na rua no mesmo domingo, para quem acha que o Carnaval só começa em fevereiro. Dá para escolher uma, ou fazer a Zona Norte inteira.</p>
+    <a class="go" href="https://www.google.com/search?q=ensaio+de+rua+Imperatriz+Mangueira+Portela+domingo" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ensaios+de+rua:+Imperatriz%2C+Mangueira+e+Portela&amp;dates=20261122T160000/20261122T200000&amp;ctz=America/Sao_Paulo&amp;location=Ramos%2C+Mangueira+e+Madureira+%28endere%C3%A7os+no+guia%29&amp;details=Ensaios+de+rua:+Imperatriz%2C+Mangueira+e+Portela%0AImperatriz%2C+Rua+Euclides+Faria%2C+Ramos%2C+a+partir+das+16h+%C2%B7+Mangueira%2C+Rua+Visconde+de+Niter%C3%B3i%2C+a+partir+das+17h+%C2%B7+Portela%2C+esquina+da+Rua+Clara+Nunes+com+Estrada+do+Portela%2C+Madureira%2C+a+partir+das+18h+%C2%B7+gr%C3%A1tis+%C2%B7+confirme+com+cada+escola%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3Densaio%2Bde%2Brua%2BImperatriz%2BMangueira%2BPortela%2Bdomingo%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Ensaios%20de%20rua:%20Imperatriz%2C%20Mangueira%20e%20Portela%20%C2%B7%20Ramos%2C%20Mangueira%20e%20Madureira%20%28endere%C3%A7os%20no%20guia%29%20%C2%B7%2022/11%2C%2016h%20%C2%B7%20https://www.google.com/search%3Fq%3Densaio%2Bde%2Brua%2BImperatriz%2BMangueira%2BPortela%2Bdomingo%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Cinema"><div class="t">16h</div><div class="b">
+    <p class="k">Cinema</p>
+    <h3>Brasiliana: o musical negro que apresentou o Brasil ao mundo</h3>
+    <p class="w">CCBB Rio, Centro · domingo, 16h · 83 min + curta · 16 anos · preço: confirme</p>
+    <p class="s">Joel Zito Araújo conta a Companhia Brasiliana, fundada em 1949, que levou samba e maracatu a mais de 90 países e quase sumiu da história em casa.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/" target="_blank" rel="noopener">Programação do CCBB ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Brasiliana:+o+musical+negro+que+apresentou+o+Brasil+ao+mundo&amp;dates=20261122T160000/20261122T174500&amp;ctz=America/Sao_Paulo&amp;location=CCBB+Rio%2C+Rua+Primeiro+de+Mar%C3%A7o+66%2C+Centro&amp;details=Brasiliana:+o+musical+negro+que+apresentou+o+Brasil+ao+mundo%0ACCBB+Rio%2C+Centro+%C2%B7+domingo%2C+16h+%C2%B7+83+min+%2B+curta+%C2%B7+16+anos+%C2%B7+pre%C3%A7o:+confirme%0A%0AMais+informa%C3%A7%C3%B5es:+https://ccbb.com.br/rio-de-janeiro/programacao/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Brasiliana:%20o%20musical%20negro%20que%20apresentou%20o%20Brasil%20ao%20mundo%20%C2%B7%20CCBB%20Rio%2C%20Rua%20Primeiro%20de%20Mar%C3%A7o%2066%2C%20Centro%20%C2%B7%2022/11%2C%2016h%20%C2%B7%20https://ccbb.com.br/rio-de-janeiro/programacao/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Teatro"><div class="t">18h<small>também qui 19 e sex 20, 20h · sáb 21, 18h · últimos dias</small></div><div class="b">
+    <p class="k">Teatro</p>
+    <h3>Boca de Ouro, de Nelson Rodrigues</h3>
+    <p class="w">Arena do Sesc Copacabana, Rua Domingos Ferreira 160 · domingo, 18h (última sessão) · R$ 40 (meia R$ 20)</p>
+    <p class="s">O bicheiro lendário é assassinado, e Dona Guigui, ex-amante, dá ao repórter Caveirinha versões contraditórias do crime. Tuca Andrada no papel-título. Em Nelson Rodrigues, ninguém conta a verdade uma vez só.</p>
+    <a class="go" href="https://www.ingresso.com/espetaculos/boca-de-ouro" target="_blank" rel="noopener">Ingressos ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Boca+de+Ouro%2C+de+Nelson+Rodrigues&amp;dates=20261122T180000/20261122T193000&amp;ctz=America/Sao_Paulo&amp;location=Arena+do+Sesc+Copacabana%2C+Rua+Domingos+Ferreira+160&amp;details=Boca+de+Ouro%2C+de+Nelson+Rodrigues%0AArena+do+Sesc+Copacabana%2C+Rua+Domingos+Ferreira+160+%C2%B7+domingo%2C+18h+%28%C3%BAltima+sess%C3%A3o%29+%C2%B7+R%24+40+%28meia+R%24+20%29%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.ingresso.com/espetaculos/boca-de-ouro%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Boca%20de%20Ouro%2C%20de%20Nelson%20Rodrigues%20%C2%B7%20Arena%20do%20Sesc%20Copacabana%2C%20Rua%20Domingos%20Ferreira%20160%20%C2%B7%2022/11%2C%2018h%20%C2%B7%20https://www.ingresso.com/espetaculos/boca-de-ouro%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+</section>
+
+<section class="day-sec" id="d-cartaz"><h2>Em cartaz a semana toda<a class="up" href="#dias" aria-label="Voltar aos dias">↑ dias</a></h2>
+  <article class="ev" data-cat="Cinema" data-free="1"><div class="t">Até 30/11<small>grátis, retirada a partir das 9h</small></div><div class="b">
+    <p class="k">Cinema <span class="free">grátis</span></p>
+    <h3>21º Festival de Cinema Italiano</h3>
+    <p class="w">CCBB Rio, Centro · até 30/11 · grátis, com retirada de ingresso a partir das 9h</p>
+    <p class="s">Sessões grátis até 30/11; domingo, às 15h, A Doce Vida, de Fellini. Boa desculpa para o domingo, e para fingir que não precisa da legenda.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/21o-festival-de-cinema-italiano-no-brasil/" target="_blank" rel="noopener">Página no CCBB ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=21%C2%BA+Festival+de+Cinema+Italiano&amp;dates=20261119T090000/20261119T110000&amp;ctz=America/Sao_Paulo&amp;location=CCBB+Rio%2C+Rua+Primeiro+de+Mar%C3%A7o+66%2C+Centro&amp;details=21%C2%BA+Festival+de+Cinema+Italiano%0ACCBB+Rio%2C+Centro+%C2%B7+at%C3%A9+30/11+%C2%B7+gr%C3%A1tis%2C+com+retirada+de+ingresso+a+partir+das+9h%0A%0AMais+informa%C3%A7%C3%B5es:+https://ccbb.com.br/rio-de-janeiro/programacao/21o-festival-de-cinema-italiano-no-brasil/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=21%C2%BA%20Festival%20de%20Cinema%20Italiano%20%C2%B7%20CCBB%20Rio%2C%20Rua%20Primeiro%20de%20Mar%C3%A7o%2066%2C%20Centro%20%C2%B7%20em%20cartaz%20%C2%B7%20https://ccbb.com.br/rio-de-janeiro/programacao/21o-festival-de-cinema-italiano-no-brasil/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev hl" id="dest-9" data-cat="Exposição" data-free="1"><div class="t">Qua a seg<small>9h às 20h</small></div><div class="b">
+    <p class="k">Exposição <span class="free">grátis</span> <span class="hlt">Destaque</span></p>
+    <h3>MEME: no Br@sil da memeficação</h3>
+    <p class="w">CCBB Rio, Centro, 1º andar · quarta a segunda, 9h às 20h · até 01/02/2027 · grátis, com retirada de ingresso · livre</p>
+    <p class="s">800 obras de 200 criadores em cinco núcleos, da onça-pintada da nota de R$ 50 à nutricionista do sanduíche-íche. Curadoria de Clarissa Diniz e Ismael Monticelli. Meme com catálogo: é o fim do meme?</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/meme-no-brsil-da-memeficacao/" target="_blank" rel="noopener">Página no CCBB ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=MEME:+no+Br%40sil+da+memefica%C3%A7%C3%A3o&amp;dates=20261119T090000/20261119T200000&amp;ctz=America/Sao_Paulo&amp;location=CCBB+Rio%2C+Rua+Primeiro+de+Mar%C3%A7o+66%2C+Centro&amp;details=MEME:+no+Br%40sil+da+memefica%C3%A7%C3%A3o%0ACCBB+Rio%2C+Centro%2C+1%C2%BA+andar+%C2%B7+quarta+a+segunda%2C+9h+%C3%A0s+20h+%C2%B7+at%C3%A9+01/02/2027+%C2%B7+gr%C3%A1tis%2C+com+retirada+de+ingresso+%C2%B7+livre%0A%0AMais+informa%C3%A7%C3%B5es:+https://ccbb.com.br/rio-de-janeiro/programacao/meme-no-brsil-da-memeficacao/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=MEME:%20no%20Br%40sil%20da%20memefica%C3%A7%C3%A3o%20%C2%B7%20CCBB%20Rio%2C%20Rua%20Primeiro%20de%20Mar%C3%A7o%2066%2C%20Centro%20%C2%B7%20em%20cartaz%20%C2%B7%20https://ccbb.com.br/rio-de-janeiro/programacao/meme-no-brsil-da-memeficacao/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Exposição"><div class="t">Qua a seg<small>10h às 17h</small></div><div class="b">
+    <p class="k">Exposição · Samba</p>
+    <h3>Carnaval Como Método</h3>
+    <p class="w">MAM Rio, Parque do Flamengo · até 21/02/2027 · horário e preço a confirmar</p>
+    <p class="s">Os processos das escolas de samba no museu: obras inéditas de seis carnavalescos, peças de Joãosinho Trinta e Rosa Magalhães, pinturas de Heitor dos Prazeres e Nelson Sargento. Carnaval sem pisão no pé.</p>
+    <a class="go" href="https://www.google.com/search?q=Carnaval+Como+M%C3%A9todo+MAM+Rio" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Carnaval+Como+M%C3%A9todo&amp;dates=20261119T100000/20261119T170000&amp;ctz=America/Sao_Paulo&amp;location=MAM+Rio%2C+Av.+Infante+Dom+Henrique+85%2C+Parque+do+Flamengo&amp;details=Carnaval+Como+M%C3%A9todo%0AMAM+Rio%2C+Parque+do+Flamengo+%C2%B7+at%C3%A9+21/02/2027+%C2%B7+hor%C3%A1rio+e+pre%C3%A7o+a+confirmar%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DCarnaval%2BComo%2BM%25C3%25A9todo%2BMAM%2BRio%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Carnaval%20Como%20M%C3%A9todo%20%C2%B7%20MAM%20Rio%2C%20Av.%20Infante%20Dom%20Henrique%2085%2C%20Parque%20do%20Flamengo%20%C2%B7%20em%20cartaz%20%C2%B7%20https://www.google.com/search%3Fq%3DCarnaval%2BComo%2BM%25C3%25A9todo%2BMAM%2BRio%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Exposição"><div class="t">Todo dia<small>11h às 19h</small></div><div class="b">
+    <p class="k">Exposição</p>
+    <h3>Diários de Classe, de Fernanda Morais</h3>
+    <p class="w">Centro Cultural Justiça Federal, Av. Rio Branco 241 · até domingo 22/11 · horário e preço a confirmar</p>
+    <p class="s">Seis anos de trabalho da artista em escolas públicas, em bordados, vídeos, gravuras e objetos. Também termina no domingo. Lição de casa: ir até lá.</p>
+    <a class="go" href="https://www.google.com/search?q=Di%C3%A1rios+de+Classe+Fernanda+Morais+Centro+Cultural+Justi%C3%A7a+Federal" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Di%C3%A1rios+de+Classe%2C+de+Fernanda+Morais&amp;dates=20261119T110000/20261119T190000&amp;ctz=America/Sao_Paulo&amp;location=Centro+Cultural+Justi%C3%A7a+Federal%2C+Av.+Rio+Branco+241%2C+Centro&amp;details=Di%C3%A1rios+de+Classe%2C+de+Fernanda+Morais%0ACentro+Cultural+Justi%C3%A7a+Federal%2C+Av.+Rio+Branco+241+%C2%B7+at%C3%A9+domingo+22/11+%C2%B7+hor%C3%A1rio+e+pre%C3%A7o+a+confirmar%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DDi%25C3%25A1rios%2Bde%2BClasse%2BFernanda%2BMorais%2BCentro%2BCultural%2BJusti%25C3%25A7a%2BFederal%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Di%C3%A1rios%20de%20Classe%2C%20de%20Fernanda%20Morais%20%C2%B7%20Centro%20Cultural%20Justi%C3%A7a%20Federal%2C%20Av.%20Rio%20Branco%20241%2C%20Centro%20%C2%B7%20em%20cartaz%20%C2%B7%20https://www.google.com/search%3Fq%3DDi%25C3%25A1rios%2Bde%2BClasse%2BFernanda%2BMorais%2BCentro%2BCultural%2BJusti%25C3%25A7a%2BFederal%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Exposição"><div class="t">Qui a ter<small>11h às 18h</small></div><div class="b">
+    <p class="k">Exposição</p>
+    <h3>MAR: Armadilhas no Paraíso e Zanele Muholi</h3>
+    <p class="w">Museu de Arte do Rio, Praça Mauá · quinta a terça, 11h às 18h · Zanele até 29/11 · R$ 10 a R$ 20; grátis às terças</p>
+    <p class="s">Tainan Cabral faz esculturas e instalações de lona, manilha e pneu, com cores de baile funk, em Armadilhas no Paraíso. Zanele Muholi, retratos, termina dia 29. Dois por um.</p>
+    <a class="go" href="https://museudeartedorio.org.br/exposicoes/atuais/" target="_blank" rel="noopener">Exposições no MAR ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=MAR:+Armadilhas+no+Para%C3%ADso+e+Zanele+Muholi&amp;dates=20261119T110000/20261119T180000&amp;ctz=America/Sao_Paulo&amp;location=Museu+de+Arte+do+Rio%2C+Pra%C3%A7a+Mau%C3%A1&amp;details=MAR:+Armadilhas+no+Para%C3%ADso+e+Zanele+Muholi%0AMuseu+de+Arte+do+Rio%2C+Pra%C3%A7a+Mau%C3%A1+%C2%B7+quinta+a+ter%C3%A7a%2C+11h+%C3%A0s+18h+%C2%B7+Zanele+at%C3%A9+29/11+%C2%B7+R%24+10+a+R%24+20%3B+gr%C3%A1tis+%C3%A0s+ter%C3%A7as%0A%0AMais+informa%C3%A7%C3%B5es:+https://museudeartedorio.org.br/exposicoes/atuais/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=MAR:%20Armadilhas%20no%20Para%C3%ADso%20e%20Zanele%20Muholi%20%C2%B7%20Museu%20de%20Arte%20do%20Rio%2C%20Pra%C3%A7a%20Mau%C3%A1%20%C2%B7%20em%20cartaz%20%C2%B7%20https://museudeartedorio.org.br/exposicoes/atuais/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Cinema"><div class="t">Em cartaz<small>sessões no site</small></div><div class="b">
+    <p class="k">Cinema</p>
+    <h3>Estação Claro: Ran em relançamento e Classiquíssimos</h3>
+    <p class="w">Estação Claro Botafogo, Gávea e Rio · salas e horários no site</p>
+    <p class="s">Ran, de Kurosawa, volta em relançamento, e o ciclo Classiquíssimos inclui Arroz Amargo, que a semana pede. Salas e horários mudam por dia: confira no site.</p>
+    <a class="go" href="https://grupoestacao.com.br/em-cartaz/" target="_blank" rel="noopener">Programação das Estações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Esta%C3%A7%C3%A3o+Claro:+Ran+em+relan%C3%A7amento+e+Classiqu%C3%ADssimos&amp;dates=20261119T140000/20261119T160000&amp;ctz=America/Sao_Paulo&amp;location=Esta%C3%A7%C3%A3o+Claro+Botafogo%2C+Rua+Volunt%C3%A1rios+da+P%C3%A1tria+88&amp;details=Esta%C3%A7%C3%A3o+Claro:+Ran+em+relan%C3%A7amento+e+Classiqu%C3%ADssimos%0AEsta%C3%A7%C3%A3o+Claro+Botafogo%2C+G%C3%A1vea+e+Rio+%C2%B7+salas+e+hor%C3%A1rios+no+site%0A%0AMais+informa%C3%A7%C3%B5es:+https://grupoestacao.com.br/em-cartaz/%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Esta%C3%A7%C3%A3o%20Claro:%20Ran%20em%20relan%C3%A7amento%20e%20Classiqu%C3%ADssimos%20%C2%B7%20Esta%C3%A7%C3%A3o%20Claro%20Botafogo%2C%20Rua%20Volunt%C3%A1rios%20da%20P%C3%A1tria%2088%20%C2%B7%20em%20cartaz%20%C2%B7%20https://grupoestacao.com.br/em-cartaz/%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+  <article class="ev" data-cat="Exposição"><div class="t">Todo dia</div><div class="b">
+    <p class="k">Exposição</p>
+    <h3>Paço Imperial: Mostra sua cara, de Claudia Hersz</h3>
+    <p class="w">Paço Imperial, Praça XV · até domingo 22/11 · horário e preço a confirmar</p>
+    <p class="s">Cerca de 140 obras de Claudia Hersz, entre objetos, instalações e vídeos, incluindo capas de disco rasgadas e remontadas para refazer o mapa afetivo do Brasil. Último fim de semana.</p>
+    <a class="go" href="https://www.google.com/search?q=Mostra+sua+cara+Claudia+Hersz+Pa%C3%A7o+Imperial" target="_blank" rel="noopener">Buscar informações ↗</a>
+    <p class="acts"><a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Pa%C3%A7o+Imperial:+Mostra+sua+cara%2C+de+Claudia+Hersz&amp;dates=20261119T140000/20261119T180000&amp;ctz=America/Sao_Paulo&amp;location=Pa%C3%A7o+Imperial%2C+Pra%C3%A7a+Quinze+de+Novembro+48%2C+Centro&amp;details=Pa%C3%A7o+Imperial:+Mostra+sua+cara%2C+de+Claudia+Hersz%0APa%C3%A7o+Imperial%2C+Pra%C3%A7a+XV+%C2%B7+at%C3%A9+domingo+22/11+%C2%B7+hor%C3%A1rio+e+pre%C3%A7o+a+confirmar%0A%0AMais+informa%C3%A7%C3%B5es:+https://www.google.com/search%3Fq%3DMostra%2Bsua%2Bcara%2BClaudia%2BHersz%2BPa%25C3%25A7o%2BImperial%0A%0ADo+guia+MigShow:+https://miguelbconde.github.io/migshow/" target="_blank" rel="noopener">+ Agenda</a><a class="wa" href="https://wa.me/?text=Pa%C3%A7o%20Imperial:%20Mostra%20sua%20cara%2C%20de%20Claudia%20Hersz%20%C2%B7%20Pa%C3%A7o%20Imperial%2C%20Pra%C3%A7a%20Quinze%20de%20Novembro%2048%2C%20Centro%20%C2%B7%20em%20cartaz%20%C2%B7%20https://www.google.com/search%3Fq%3DMostra%2Bsua%2Bcara%2BClaudia%2BHersz%2BPa%25C3%25A7o%2BImperial%20%28do%20guia%20MigShow:%20https://miguelbconde.github.io/migshow/%29" target="_blank" rel="noopener">WhatsApp</a></p></div></article>
+</section>
+
+<p class="empty" id="empty">Nenhum evento com esse filtro nesta semana.</p>
+
+<section class="src">
+  <h2>Para conferir</h2>
+  <p>Preço do Festival Abraço Negro, de Cordélia Brasil, de Embarcação Perdue e da roda da Praça Tiradentes não foi confirmado, nem o preço dos filmes da Cinemateca do MAM e do CCBB; as salas e os horários das Estações estão no site; vale ligar ou olhar o perfil de cada casa antes de sair. Cacique de Ramos e Samba dos Guimarães são recorrentes e ficaram de fora desta edição. Os ensaios de rua das escolas são semanais e mudam com a chuva; durante a semana também há ensaios da Unidos da Tijuca e do Salgueiro às quintas, e da Vila Isabel às quartas. Confirme sempre com a escola.</p>
+  <p>Onde o link leva a uma agenda geral ou a uma busca, não havia página própria do evento. No feriado, confirme horários e transporte com cada organização.</p>
+</section>
+
+</main>
+</div>
+<footer>
+  <div class="wrap"><b>MigShow</b> é um guia pessoal de programação cultural do Rio, montado toda quinta-feira. Confira horários e preços com cada casa antes de sair. E lembre: ficar em casa segue em cartaz o ano inteiro, com entrada franca e estacionamento garantido.<p style="margin:10px 0 0"><a class="go" href="edicoes.html">Edições anteriores</a></p></div>
+</footer>
+
+<script>
+(function(){
+  var evs=[].slice.call(document.querySelectorAll('.ev'));
+  var days=[].slice.call(document.querySelectorAll('.day-sec'));
+  var chips=document.getElementById('chips');
+  var empty=document.getElementById('empty');
+  if(!chips)return;
+  var cats=[];
+  evs.forEach(function(e){var c=e.getAttribute('data-cat');if(c&&cats.indexOf(c)<0)cats.push(c)});
+  var opts=[{l:'Tudo',f:function(){return true}},
+             {l:'Destaques',f:function(e){return e.classList.contains('hl')}}]
+    .concat(cats.map(function(c){return {l:c,f:function(e){return e.getAttribute('data-cat')===c}}}))
+    .concat([{l:'Grátis',f:function(e){return e.getAttribute('data-free')==='1'}},
+             {l:'Com criança',f:function(e){return e.getAttribute('data-kid')==='1'}}]);
+  var btns=opts.map(function(o,i){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=o.l;
+    b.setAttribute('aria-pressed',i===0?'true':'false');
+    b.addEventListener('click',function(){apply(i)});
+    chips.appendChild(b);return b;
+  });
+  function apply(i){
+    btns.forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+    var shown=0;
+    evs.forEach(function(e){var ok=opts[i].f(e);e.hidden=!ok;if(ok)shown++});
+    days.forEach(function(d){d.hidden=!d.querySelector('.ev:not([hidden])')});
+    empty.style.display=shown?'none':'block';
+  }
+})();
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
+  var box=document.getElementById('inst');if(!box)return;
+  var standalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+  if(standalone){box.hidden=true;return;}
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  var txt=document.getElementById('inst-txt');var btn=document.getElementById('inst-btn');var ev=null;
+  if(ios){txt.innerHTML='<b>Tenha o MigShow como app.</b> No Safari, toque em Compartilhar (o quadrado com a seta) e depois em “Adicionar à Tela de Início”.';}
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();ev=e;btn.hidden=false;});
+  btn.addEventListener('click',function(){if(!ev)return;ev.prompt();ev.userChoice.then(function(){btn.hidden=true;ev=null;});});
+})();
+</script>
+</body>
+</html>

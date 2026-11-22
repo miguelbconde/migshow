@@ -1,0 +1,374 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>MigShow nº 0</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=Pacifico&family=Satisfy&display=swap">
+<style>
+/* Hub semanal para o celular: capa com onda do calçadão, texto de abertura, filtros por retranca e a semana dia a dia. */
+:root{
+  --paper:#f3f5f6; --card:#ffffff; --ink:#0f1b2d; --muted:#54627a; --line:#d8dee5;
+  --band:#0f1b2d; --band-fg:#f3f5f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#0a6c8f; --sea-soft:#dbeef5; --kid:#fff0c2; --kid-ink:#6b4a00; --link:#0a5f80;
+  --font-head:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0c1522; --card:#142033; --ink:#eef2f6; --muted:#9fb0c6; --line:#243349;
+  --band:#08101b; --band-fg:#eef2f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#62c6e6; --sea-soft:#14384a; --kid:#3d3210; --kid-ink:#ffd668; --link:#7fd0ec; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0c1522; --card:#142033; --ink:#eef2f6; --muted:#9fb0c6; --line:#243349;
+  --band:#08101b; --band-fg:#eef2f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#62c6e6; --sea-soft:#14384a; --kid:#3d3210; --kid-ink:#ffd668; --link:#7fd0ec; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.5;padding:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:10}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--font-head);margin:0;text-wrap:balance}
+.mast{background:var(--band);color:var(--band-fg);padding-block:28px 22px}
+.mast .kicker{font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin:0 0 6px}
+.mast h1{font-size:clamp(3rem,16vw,4.6rem);font-weight:800;line-height:.95;letter-spacing:-.02em}
+.mast h1 span{color:var(--sun)}
+.mast .week{margin:12px 0 0;font-size:1.05rem;font-weight:500}
+/* onda do calçadão de Copacabana, em máscara para acompanhar o tema */
+.wave{height:16px;background:var(--band);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M0 0H40V8Q30 16 20 8T0 8Z'/%3E%3C/svg%3E") repeat-x top/40px 16px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M0 0H40V8Q30 16 20 8T0 8Z'/%3E%3C/svg%3E") repeat-x top/40px 16px}
+.lede{font-size:1.06rem;line-height:1.6;margin:22px 0 0}
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line);margin-top:18px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:600 .8rem var(--font-body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:focus-visible,.go:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+main{padding-block:12px 36px;display:flex;flex-direction:column;gap:30px}
+.day-sec{display:flex;flex-direction:column;min-width:0}
+.day-sec>h2{font-size:1.35rem;font-weight:800;padding-bottom:6px;border-bottom:3px solid var(--sun);margin-bottom:4px;letter-spacing:-.01em}
+.day-sec>h2 small{font-family:var(--font-body);font-weight:500;font-size:.8rem;color:var(--muted);letter-spacing:0;margin-left:8px}
+.ev{display:grid;grid-template-columns:4.2rem 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);min-width:0}
+.ev.hl{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 12px;margin-block:6px}
+.t{font-weight:700;font-size:.85rem;font-variant-numeric:tabular-nums;line-height:1.35}
+.t small{display:block;font-weight:500;color:var(--muted);font-size:.74rem}
+.b{min-width:0}
+.k{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 3px;font-size:.7rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--sea)}
+.k .hlt{background:var(--sun);color:var(--sun-ink);border-radius:4px;padding:1px 7px;letter-spacing:.06em}
+.k .free{background:var(--sea-soft);color:var(--sea);border-radius:4px;padding:1px 7px}
+.k .kid{background:var(--kid);color:var(--kid-ink);border-radius:4px;padding:1px 7px}
+.b h3{font-size:1.08rem;font-weight:800;line-height:1.22}
+.w{font-size:.88rem;color:var(--muted);margin:2px 0 0}
+.s{font-size:.9rem;font-style:italic;margin:5px 0 0}
+.apoc{margin:18px 0 0;padding:22px 16px 14px;color:#fff8c4;border:5px ridge #f2c94c;border-radius:6px;background:linear-gradient(160deg,#5b2a86 0%,#2b3a9e 52%,#14808c 100%);box-shadow:5px 5px 0 rgba(0,0,0,.35);position:relative}
+.apoc::before{content:"\2726 \2605 \2726 \2605 \2726";position:absolute;top:2px;left:0;right:0;text-align:center;font-size:.7rem;letter-spacing:.4em;color:#f2c94c;line-height:1}
+.apoc blockquote{margin:0;min-width:0}
+.apoc p{margin:0;font-family:"Satisfy","Pacifico","Brush Script MT",cursive;font-size:1.35rem;font-weight:400;line-height:1.3;text-shadow:2px 2px 0 #1b0a3a;text-wrap:balance}
+.apoc cite{display:block;margin-top:8px;font:normal 1rem "Pacifico","Brush Script MT",cursive;color:#f2c94c;text-shadow:1px 1px 0 #1b0a3a;text-align:right}
+.apoc cite::before{content:"\2014 "}
+.go{display:inline-block;margin-top:6px;font-size:.84rem;font-weight:600;color:var(--link);text-decoration:underline;text-underline-offset:3px}
+.empty{display:none;color:var(--muted);padding:20px 0}
+.src{font-size:.82rem;color:var(--muted);display:flex;flex-direction:column;gap:6px;padding-top:6px;border-top:1px solid var(--line)}
+.src h2{font-size:1.05rem;color:var(--ink)}
+.src p{margin:0}
+footer{padding-block:6px 30px;font-size:.8rem;color:var(--muted)}
+footer b{font-family:var(--font-head);color:var(--ink)}
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <p class="kicker">Guia cultural do Rio · Edição nº 0</p>
+    <h1><span>Mig</span>Show</h1>
+    <p class="week">Semana de 10 a 15 de novembro de 2026</p>
+  </div>
+</header>
+<div class="wave" aria-hidden="true"></div>
+
+<div class="wrap">
+  <p class="lede">A semana abre hoje com Chico César no Teatro Sesc Ginástico e ganha corpo na sexta, quando o CCBB inaugura a YOKAI PARADE, com seus monstros japoneses, e o Theatro Municipal sobe Turandot (galeria a R$ 20, para chorar em italiano com orçamento). Os Gilsons recebem Gilberto Gil no Vivo Rio, Naiara Martins estreia na Lapa e o Lumen Film Festival se despede no sábado. No domingo, um filme de 1926 prova que o beijo ardente é anterior ao streaming. Na rua, Pedra do Sal na sexta, Feira da Glória e Samba do Passeio no domingo. Para os pequenos, há bonecos e contos africanos. E o sofá, como sempre, segue em cartaz.</p>
+
+  <figure class="apoc" style="margin-inline:0">
+    <blockquote>
+    <p>"Viver é uma ópera do Puccini: ninguém entende o enredo, todo mundo chora no final, e a gente só aguenta porque lá em cima, na galeria, o amor custa vinte reais."</p>
+    <cite>Clarice Lispector</cite>
+    </blockquote>
+  </figure>
+
+  <div class="filters"><div class="chips" id="chips" role="group" aria-label="Filtrar por tipo de evento"></div></div>
+
+<main id="days">
+
+<section class="day-sec"><h2>Terça 10/11<small>hoje</small></h2>
+  <article class="ev" data-cat="Cinema" data-free="1"><div class="t">16h15</div><div class="b">
+    <p class="k">Cinema <span class="free">grátis</span></p>
+    <h3>Lumen Film Festival: "Céu escuro!" e "Dharma Guns"</h3>
+    <p class="w">Cinemateca do MAM, Aterro do Flamengo</p>
+    <p class="s">Duas estreias de gente que você nunca ouviu falar, de graça, no cinema do museu. Risco financeiro zero; risco de gostar, alto.</p>
+    <a class="go" href="https://mam.rio/programacao-deste-mes" target="_blank" rel="noopener">Programação do MAM ↗</a></div></article>
+  <article class="ev hl" data-cat="Música"><div class="t">19h</div><div class="b">
+    <p class="k">Música <span class="hlt">Destaque</span></p>
+    <h3>Chico César</h3>
+    <p class="w">Teatro Sesc Ginástico, Centro · preço não informado</p>
+    <p class="s">O homem do "Mama África" ao vivo. Voz e letra de peso numa terça; o sofá, por sua vez, tem a vantagem de não exigir troca de roupa.</p>
+    <a class="go" href="https://www.sescrio.org.br/programacao/" target="_blank" rel="noopener">Programação do Sesc RJ ↗</a></div></article>
+</section>
+
+<section class="day-sec"><h2>Quarta 11/11</h2>
+  <article class="ev" data-cat="Cinema" data-free="1"><div class="t">16h e 18h30</div><div class="b">
+    <p class="k">Cinema <span class="free">grátis</span></p>
+    <h3>Lumen Film Festival: duas sessões de curtas</h3>
+    <p class="w">Cinemateca do MAM, Aterro do Flamengo</p>
+    <p class="s">Dois programas de curtas de graça no MAM. Se for ruim, dura pouco; se for bom, você finge que sempre soube.</p>
+    <a class="go" href="https://mam.rio/programacao-deste-mes" target="_blank" rel="noopener">Programação do MAM ↗</a></div></article>
+  <article class="ev" data-cat="Música"><div class="t">19h</div><div class="b">
+    <p class="k">Música</p>
+    <h3>Quartas Acústicas: Mel Carvalho</h3>
+    <p class="w">Centro da Música Carioca Artur da Távola, Tijuca · R$ 15 a R$ 30</p>
+    <p class="s">Música ao vivo na quarta, num centro dedicado à música carioca e com ingresso que não machuca. A quarta-feira agradece o esforço.</p>
+    <a class="go" href="https://www.sympla.com.br/eventos/rio-de-janeiro-rj" target="_blank" rel="noopener">Ingressos e informações na Sympla ↗</a></div></article>
+  <article class="ev" data-cat="Teatro"><div class="t">20h</div><div class="b">
+    <p class="k">Teatro</p>
+    <h3>Embarcação Perdue</h3>
+    <p class="w">Teatro Glaucio Gil, Copacabana · preço não informado</p>
+    <p class="s">Teatro em Copacabana, de quarta a sexta até 27/11. As fontes não trazem sinopse, então a surpresa está garantida, para o bem ou para o mal.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+</section>
+
+<section class="day-sec"><h2>Quinta 12/11</h2>
+  <article class="ev" data-cat="Infantil" data-free="1" data-kid="1"><div class="t">15h</div><div class="b">
+    <p class="k">Infantil · Literatura <span class="free">grátis</span> <span class="kid">com criança</span></p>
+    <h3>Clube do livro infantil</h3>
+    <p class="w">Biblioteca José de Alencar, Santa Teresa · livre · toda quinta</p>
+    <p class="s">Leitura para criança sobre inclusão e diversidade, de graça, em Santa Teresa. Uma das raras programações em que o adulto também sai melhor.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Cinema" data-free="1"><div class="t">16h e 18h30</div><div class="b">
+    <p class="k">Cinema <span class="free">grátis</span></p>
+    <h3>Lumen Film Festival: duas sessões de curtas</h3>
+    <p class="w">Cinemateca do MAM, Aterro do Flamengo</p>
+    <p class="s">Mais um programa duplo de curtas no MAM, entrada franca. Cultura de qualidade e a bilheteria não tem o que cobrar.</p>
+    <a class="go" href="https://mam.rio/programacao-deste-mes" target="_blank" rel="noopener">Programação do MAM ↗</a></div></article>
+  <article class="ev" data-cat="Rua" data-free="1"><div class="t">18h</div><div class="b">
+    <p class="k">Rua · Música <span class="free">grátis</span></p>
+    <h3>Música na Praça, no Leblon</h3>
+    <p class="w">Praça Cláudio Coutinho, Leblon · quinta, 18h às 22h · grátis · jazz ou bossa nova, alternando por semana</p>
+    <p class="s">Jazz ou bossa nova ao ar livre numa quinta, com o Leblon de cenário. A programação alterna por semana, então confirme o gênero antes de sair; o sofá, em compensação, nunca muda o repertório.</p>
+    <a class="go" href="https://www.jaeprogramacao.com.br/mais" target="_blank" rel="noopener">Agenda JáÉ! ↗</a></div></article>
+  <article class="ev" data-cat="Teatro"><div class="t">19h</div><div class="b">
+    <p class="k">Teatro</p>
+    <h3>Cordélia Brasil, tragicomédia</h3>
+    <p class="w">Teatro Glauce Rocha, Centro · preço não informado</p>
+    <p class="s">Tragicomédia em sala pequena no Centro, boa para depois do expediente. Chorar e rir no mesmo programa, e ainda pegar o metrô.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Teatro"><div class="t">19h e 20h</div><div class="b">
+    <p class="k">Teatro</p>
+    <h3>Dora &amp; Theo (19h) e Boca de Ouro (20h)</h3>
+    <p class="w">Sesc Copacabana · preço não informado</p>
+    <p class="s">Duas peças seguidas no Sesc Copacabana. "Boca de Ouro" lembra Nelson Rodrigues, mas confirme qual montagem está em cartaz antes de apostar a noite nisso.</p>
+    <a class="go" href="https://www.sescrio.org.br/programacao/" target="_blank" rel="noopener">Programação do Sesc RJ ↗</a></div></article>
+  <article class="ev hl" data-cat="Música"><div class="t">20h30</div><div class="b">
+    <p class="k">Música <span class="hlt">Destaque</span></p>
+    <h3>Naiara Martins: "Terras do Sem-Fim"</h3>
+    <p class="w">Dolores Club, Lapa · preço não informado</p>
+    <p class="s">Bossa nova e samba na Lapa, em show de estreia. Quem for ouve o repertório ainda sem calos; quem ficar em casa ouve a chuva.</p>
+    <a class="go" href="https://www.google.com/search?q=Naiara+Martins+Terras+do+Sem-Fim+Dolores+Club" target="_blank" rel="noopener">Buscar informações ↗</a></div></article>
+</section>
+
+<section class="day-sec"><h2>Sexta 13/11</h2>
+  <article class="ev hl" data-cat="Exposição" data-free="1"><div class="t">9h às 20h<small>qua a seg</small></div><div class="b">
+    <p class="k">Exposição <span class="hlt">Destaque</span> <span class="free">grátis</span></p>
+    <h3>Abertura de YOKAI PARADE: seres sobrenaturais do Japão</h3>
+    <p class="w">CCBB Rio, Centro · em cartaz até 03/01/2027 · fechado às terças</p>
+    <p class="s">Os yōkai são os monstros e espíritos do folclore japonês, e agora têm exposição no CCBB. Garantia de criança curiosa e de adulto fingindo que não está curioso.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/" target="_blank" rel="noopener">Programação do CCBB Rio ↗</a></div></article>
+  <article class="ev" data-cat="Cinema" data-free="1"><div class="t">15h, 16h45 e 19h</div><div class="b">
+    <p class="k">Cinema <span class="free">grátis</span></p>
+    <h3>Lumen Film Festival: três sessões de curtas</h3>
+    <p class="w">Cinemateca do MAM, Aterro do Flamengo</p>
+    <p class="s">Três horários de curtas, todos de graça, na mesma tarde e noite. Dá para montar a maratona perfeita ou, com mais realismo, assistir à primeira e voltar para casa.</p>
+    <a class="go" href="https://mam.rio/programacao-deste-mes" target="_blank" rel="noopener">Programação do MAM ↗</a></div></article>
+  <article class="ev" data-cat="Literatura" data-free="1"><div class="t">16h30</div><div class="b">
+    <p class="k">Literatura <span class="free">grátis</span></p>
+    <h3>Lançamento de "alguns e-mails", de Jandir Jr.</h3>
+    <p class="w">Biblioteca do MAM Rio, Aterro do Flamengo</p>
+    <p class="s">Lançamento numa biblioteca de museu, com autógrafo. Para constar: o título é "alguns e-mails" e, ao contrário dos seus, este vale a leitura.</p>
+    <a class="go" href="https://mam.rio/programacao-deste-mes" target="_blank" rel="noopener">Programação do MAM ↗</a></div></article>
+  <article class="ev" data-cat="Rua" data-free="1"><div class="t">19h</div><div class="b">
+    <p class="k">Rua · Samba <span class="free">grátis</span></p>
+    <h3>Roda de samba da Pedra do Sal</h3>
+    <p class="w">Pedra do Sal, Saúde · sexta, a partir das 19h · grátis</p>
+    <p class="s">Berço do samba carioca, tocado na rua, no degrau de pedra, com público de pé e copo na mão. Chegue cedo, porque a pontualidade aqui é do samba, não do relógio.</p>
+    <a class="go" href="https://www.instagram.com/pedradosaloficial/" target="_blank" rel="noopener">Pedra do Sal no Instagram ↗</a></div></article>
+  <article class="ev hl" data-cat="Música"><div class="t">19h<small>também sáb 14</small></div><div class="b">
+    <p class="k">Ópera <span class="hlt">Destaque</span></p>
+    <h3>Turandot, de Puccini</h3>
+    <p class="w">Theatro Municipal, Centro · R$ 20 (galeria) a R$ 90 (camarote)</p>
+    <p class="s">A última ópera de Puccini, a do "Nessun dorma". Galeria a R$ 20: a ópera mais barata da cidade, ainda que a vista dependa da altura do vizinho da frente.</p>
+    <a class="go" href="https://theatromunicipal.rj.gov.br/turandot-de-giacomo-puccini-com-coro-e-orquestra-sinfonica-do-theatro-municipal-do-rio-de-janeiro/" target="_blank" rel="noopener">Programação do Theatro Municipal ↗</a></div></article>
+  <article class="ev" data-cat="Música"><div class="t">19h30</div><div class="b">
+    <p class="k">Música</p>
+    <h3>Decco Torres, show do álbum "Neo"</h3>
+    <p class="w">Teatro Rival Petrobras, Cinelândia · preço não informado</p>
+    <p class="s">Show do álbum "Neo" num teatro tradicional da Cinelândia. Para quem acompanha a música brasileira recente e quer provar que ainda sai de casa.</p>
+    <a class="go" href="https://www.google.com/search?q=Decco+Torres+Neo+Teatro+Rival+Petrobras" target="_blank" rel="noopener">Buscar informações ↗</a></div></article>
+  <article class="ev hl" data-cat="Teatro"><div class="t">20h<small>sáb 20h, dom 19h</small></div><div class="b">
+    <p class="k">Teatro <span class="hlt">Destaque</span></p>
+    <h3>O Extermínio da Cegonha</h3>
+    <p class="w">Espaço Cultural Sérgio Porto, Humaitá · R$ 30 a R$ 60 · 14 anos</p>
+    <p class="s">Drama sobre tecnologia e memória familiar, no último fim de semana de temporada. Quem adiou até agora tem uma última desculpa a gastar.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Teatro"><div class="t">20h<small>sáb 20h, dom 19h</small></div><div class="b">
+    <p class="k">Teatro</p>
+    <h3>Superiores</h3>
+    <p class="w">Teatro Municipal Domingos Oliveira, Gávea · R$ 30 a R$ 60 · livre</p>
+    <p class="s">Peça de classificação livre na Gávea, até 29/11. Serve para o fim de semana sem restrição de idade e, em tese, sem restrição de bom humor.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev hl" data-cat="Música"><div class="t">21h</div><div class="b">
+    <p class="k">Música <span class="hlt">Destaque</span></p>
+    <h3>Gilsons com Gilberto Gil</h3>
+    <p class="w">Vivo Rio, Aterro do Flamengo · R$ 160 (meia) a R$ 320</p>
+    <p class="s">Os Gilsons com o próprio Gilberto Gil no palco: a geração nova e a história viva juntas. Há compromissos piores para uma sexta.</p>
+    <a class="go" href="https://www.google.com/search?q=Gilsons+Gilberto+Gil+Vivo+Rio+ingressos" target="_blank" rel="noopener">Buscar informações ↗</a></div></article>
+  <article class="ev" data-cat="Música"><div class="t">21h30</div><div class="b">
+    <p class="k">Música</p>
+    <h3>Nando Reis: "Pra Você Guardei o Amor"</h3>
+    <p class="w">Qualistage, Barra · preço não informado</p>
+    <p class="s">Canções de amor do ex-Titãs numa casa grande da Barra. Para cantar junto, o que também significa cantar errado junto, sem julgamento.</p>
+    <a class="go" href="https://www.google.com/search?q=Nando+Reis+Qualistage+Barra+ingressos" target="_blank" rel="noopener">Buscar informações ↗</a></div></article>
+</section>
+
+<section class="day-sec"><h2>Sábado 14/11</h2>
+  <article class="ev" data-cat="Infantil" data-kid="1"><div class="t">11h<small>também dom 11h</small></div><div class="b">
+    <p class="k">Infantil <span class="kid">com criança</span></p>
+    <h3>As Aventuras de Quitapena</h3>
+    <p class="w">Teatro Municipal Domingos Oliveira, Gávea · R$ 20 a R$ 40 · bonecos e histórias latino-americanas, livre</p>
+    <p class="s">Bonecos e histórias da América Latina para criança pequena, de manhã. A programação mais rara do sábado: acordar cedo compensa.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Infantil" data-kid="1"><div class="t">11h<small>também dom 11h</small></div><div class="b">
+    <p class="k">Infantil <span class="kid">com criança</span></p>
+    <h3>Zuzuê Contos Africanos</h3>
+    <p class="w">Teatro Ruth de Souza, Santa Teresa · R$ 20 a R$ 40 · narração com libras, livre</p>
+    <p class="s">Contos africanos com intérprete de libras, em cerca de 50 minutos. Duração certa para uma criança de 6 anos e para a paciência do pai.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Literatura"><div class="t">horário não informado</div><div class="b">
+    <p class="k">Literatura</p>
+    <h3>2ª Jornada PUC-Rio no CCBB: Memória e República</h3>
+    <p class="w">CCBB Rio, Centro · preço não informado</p>
+    <p class="s">Encontro acadêmico sobre memória e república, no CCBB. Interessa a quem lida com história e literatura; confirme o horário e leve café.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/" target="_blank" rel="noopener">Programação do CCBB Rio ↗</a></div></article>
+  <article class="ev hl" data-cat="Infantil" data-kid="1"><div class="t">15h<small>dom 11h e 16h</small></div><div class="b">
+    <p class="k">Infantil <span class="hlt">Destaque</span> <span class="kid">com criança</span></p>
+    <h3>Frankinh@: Uma Estória em Pedacinhos</h3>
+    <p class="w">CCBB Rio, Teatro I · R$ 30 (meia R$ 15) · livre, 50 min</p>
+    <p class="s">Espetáculo infantil de 50 minutos, classificação livre, em temporada que termina domingo. Meia hora de silêncio da criança não é garantida, mas tentar custa pouco.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/" target="_blank" rel="noopener">Programação do CCBB Rio ↗</a></div></article>
+  <article class="ev" data-cat="Cinema" data-free="1"><div class="t">15h e 18h</div><div class="b">
+    <p class="k">Cinema <span class="free">grátis</span></p>
+    <h3>Lumen Film Festival: último dia, duas sessões</h3>
+    <p class="w">Cinemateca do MAM, Aterro do Flamengo</p>
+    <p class="s">Último dia, duas sessões, entrada franca. Depois disso o cinema volta ao normal e a desculpa de que você "nunca viu" caduca.</p>
+    <a class="go" href="https://mam.rio/programacao-deste-mes" target="_blank" rel="noopener">Programação do MAM ↗</a></div></article>
+  <article class="ev" data-cat="Rua" data-free="1"><div class="t">18h</div><div class="b">
+    <p class="k">Rua · Samba <span class="free">grátis</span></p>
+    <h3>Roda de samba e choro na Praça São Salvador</h3>
+    <p class="w">Coreto da Praça São Salvador, Laranjeiras · sábado, a partir das 18h · grátis</p>
+    <p class="s">Samba e choro no coreto de uma das praças mais simpáticas de Laranjeiras. Programa de bairro de verdade, daqueles que fazem a cidade parecer menor e melhor.</p>
+    <a class="go" href="https://www.jaeprogramacao.com.br/mais" target="_blank" rel="noopener">Agenda JáÉ! ↗</a></div></article>
+  <article class="ev" data-cat="Dança"><div class="t">19h<small>dom 18h</small></div><div class="b">
+    <p class="k">Dança</p>
+    <h3>Equina, de Aline Bernardi e Dani Lima</h3>
+    <p class="w">Espaço Cultural Sérgio Porto, Humaitá · R$ 30 a R$ 60 · 18 anos</p>
+    <p class="s">Duas coreógrafas conhecidas do Rio, só para maiores de 18. Para quem acompanha a dança contemporânea e não se assusta com o corpo falando mais que o programa.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+</section>
+
+<section class="day-sec"><h2>Domingo 15/11</h2>
+  <article class="ev hl" data-cat="Rua" data-free="1"><div class="t">8h às 16h</div><div class="b">
+    <p class="k">Rua · Feira <span class="hlt">Destaque</span> <span class="free">grátis</span></p>
+    <h3>Feira da Glória</h3>
+    <p class="w">Praça Paris e entorno, Glória · domingo, 8h às 16h · entrada franca</p>
+    <p class="s">Mais de 150 barracas, de hortifrúti a discos de vinil, e roda de samba a partir das 14h. Dá para sair de lá com couve, um LP e a sensação de ter sido produtivo no domingo.</p>
+    <a class="go" href="https://www.timeout.com/pt/rio-de-janeiro/compras/feira-da-gloria" target="_blank" rel="noopener">Feira da Glória no Time Out ↗</a></div></article>
+  <article class="ev hl" data-cat="Rua" data-free="1"><div class="t">12h</div><div class="b">
+    <p class="k">Rua · Samba <span class="hlt">Destaque</span> <span class="free">grátis</span></p>
+    <h3>Samba do Passeio</h3>
+    <p class="w">Passeio Público, Lapa · domingo, 12h · grátis, com ingresso gratuito na Sympla</p>
+    <p class="s">Samba ao ar livre no jardim histórico do Passeio Público, projetado por Mestre Valentim, com comida e visual de cartão-postal. Retire o ingresso antes, ou ouça tudo da calçada, com dignidade.</p>
+    <a class="go" href="https://www.sympla.com.br/evento/samba-do-passeio---todo-domingo-tem/3642713" target="_blank" rel="noopener">Ingresso gratuito na Sympla ↗</a></div></article>
+  <article class="ev" data-cat="Cinema" data-free="1"><div class="t">14h e 16h</div><div class="b">
+    <p class="k">Cinema <span class="free">grátis</span></p>
+    <h3>Cinemateca do MAM no CCBB</h3>
+    <p class="w">CCBB Rio, Centro · "Mulheres de cinema" e "Canção do amor" (14h), "Coração materno" (16h) · ingressos liberados às 9h do dia</p>
+    <p class="s">Ciclo da Cinemateca no CCBB, até 30/11, com filmes do acervo de graça. Ingressos saem às 9h do dia: quem dorme até tarde assiste ao próximo ciclo.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/" target="_blank" rel="noopener">Programação do CCBB Rio ↗</a></div></article>
+  <article class="ev hl" data-cat="Cinema" data-free="1"><div class="t">16h e 18h</div><div class="b">
+    <p class="k">Cinema <span class="hlt">Destaque</span> <span class="free">grátis</span></p>
+    <h3>"Beijo ardente" (1926), seguido de "Vem que eu te levo"</h3>
+    <p class="w">Cinemateca do MAM, Aterro do Flamengo</p>
+    <p class="s">Cinema de cem anos atrás, e depois um filme inédito para ver o que mudou. Resposta curta: os beijos continuam ardentes.</p>
+    <a class="go" href="https://mam.rio/programacao-deste-mes" target="_blank" rel="noopener">Programação do MAM ↗</a></div></article>
+</section>
+
+<section class="day-sec"><h2>Em cartaz a semana toda</h2>
+  <article class="ev hl" data-cat="Exposição"><div class="t">Qui a ter<small>11h às 18h</small></div><div class="b">
+    <p class="k">Exposição <span class="hlt">Destaque</span></p>
+    <h3>MAR: Zanele Muholi e "Tião, um fotógrafo da Providência"</h3>
+    <p class="w">Museu de Arte do Rio, Praça Mauá · até 29/11 · R$ 10 a R$ 20, terça gratuita · fechado às quartas</p>
+    <p class="s">A fotografia de Zanele Muholi e o olhar de Tião sobre a Providência. Terça é grátis, o que torna a desculpa de "depois eu vejo" bem fraca.</p>
+    <a class="go" href="https://museudeartedorio.org.br" target="_blank" rel="noopener">Site do MAR ↗</a></div></article>
+  <article class="ev" data-cat="Exposição" data-free="1"><div class="t">Qua a dom<small>10h às 17h</small></div><div class="b">
+    <p class="k">Exposição <span class="free">grátis</span></p>
+    <h3>Memorial Getúlio Vargas: "CORPO" e a mostra de Gisele Nossar</h3>
+    <p class="w">Glória · até 06/12</p>
+    <p class="s">Duas exposições gratuitas na Glória, boas para visita curta. Dá para ver tudo e ainda almoçar sem culpa.</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Exposição" data-free="1"><div class="t">Ter a sáb<small>10h às 18h</small></div><div class="b">
+    <p class="k">Exposição <span class="free">grátis</span></p>
+    <h3>Parada 7</h3>
+    <p class="w">Centro de Arte Hélio Oiticica, Centro · último dia no sábado 14</p>
+    <p class="s">Última chance de ver a exposição do Centro de Arte Hélio Oiticica, de graça, até sábado. Depois só no "eu queria ter ido".</p>
+    <a class="go" href="https://cultura.prefeitura.rio/agendacultural/" target="_blank" rel="noopener">Agenda da Prefeitura ↗</a></div></article>
+  <article class="ev" data-cat="Exposição" data-free="1"><div class="t">Qua a seg<small>9h às 20h</small></div><div class="b">
+    <p class="k">Exposição <span class="free">grátis</span></p>
+    <h3>Amazônicas: Poéticas Femininas</h3>
+    <p class="w">CCBB Rio, Centro · até 16/11 · fechado às terças</p>
+    <p class="s">Obras de mulheres com a Amazônia como tema, de entrada franca, só até segunda 16/11. Prazo apertado, mas o sofá também não vai fugir.</p>
+    <a class="go" href="https://ccbb.com.br/rio-de-janeiro/programacao/" target="_blank" rel="noopener">Programação do CCBB Rio ↗</a></div></article>
+</section>
+
+<p class="empty" id="empty">Nenhum evento com esse filtro nesta semana.</p>
+
+<section class="src">
+  <h2>Para conferir</h2>
+  <p>Vários itens estão sem preço confirmado. Música na Praça, Pedra do Sal e a roda da Praça São Salvador são recorrentes que não deu para confirmar nesta semana, então vale olhar o Instagram deles antes de sair.</p>
+  <p>Onde o link leva a uma busca, não havia página própria do evento.</p>
+</section>
+
+</main>
+</div>
+<footer>
+  <div class="wrap"><b>MigShow</b> é um guia pessoal de programação cultural do Rio, montado toda quinta-feira. Confira horários e preços com cada casa antes de sair. E lembre: ficar em casa segue em cartaz o ano inteiro, com entrada franca e estacionamento garantido.<p style="margin:10px 0 0"><a class="go" href="../edicoes.html">Edições anteriores</a></p></div>
+</footer>
+
+<script>
+(function(){
+  var evs=[].slice.call(document.querySelectorAll('.ev'));
+  var days=[].slice.call(document.querySelectorAll('.day-sec'));
+  var chips=document.getElementById('chips');
+  var empty=document.getElementById('empty');
+  var cats=[];
+  evs.forEach(function(e){var c=e.getAttribute('data-cat');if(c&&cats.indexOf(c)<0)cats.push(c)});
+  var opts=[{l:'Tudo',f:function(){return true}}]
+    .concat(cats.map(function(c){return {l:c,f:function(e){return e.getAttribute('data-cat')===c}}}))
+    .concat([{l:'Grátis',f:function(e){return e.getAttribute('data-free')==='1'}},
+             {l:'Com criança',f:function(e){return e.getAttribute('data-kid')==='1'}},
+             {l:'Destaques',f:function(e){return e.classList.contains('hl')}}]);
+  var btns=opts.map(function(o,i){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=o.l;
+    b.setAttribute('aria-pressed',i===0?'true':'false');
+    b.addEventListener('click',function(){apply(i)});
+    chips.appendChild(b);return b;
+  });
+  function apply(i){
+    btns.forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+    var shown=0;
+    evs.forEach(function(e){var ok=opts[i].f(e);e.hidden=!ok;if(ok)shown++});
+    days.forEach(function(d){d.hidden=!d.querySelector('.ev:not([hidden])')});
+    empty.style.display=shown?'none':'block';
+  }
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MigShow: edições</title>
+<meta name="description" content="Guia cultural semanal do Rio de Janeiro, com curadoria e humor. Sai toda quinta.">
+<meta name="theme-color" content="#0f1b2d">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icones/icone-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="MigShow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta property="og:title" content="MigShow: edições">
+<meta property="og:description" content="Edições anteriores: o que vale a pena (e o que vale ficar em casa) no Rio.">
+<meta property="og:image" content="https://miguelbconde.github.io/migshow/icones/icone-512.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=Pacifico&family=Satisfy&display=swap">
+<style>
+/* Hub semanal para o celular: capa com onda do calçadão, texto de abertura, filtros por retranca e a semana dia a dia. */
+:root{
+  --paper:#f3f5f6; --card:#ffffff; --ink:#0f1b2d; --muted:#54627a; --line:#d8dee5;
+  --band:#0f1b2d; --band-fg:#f3f5f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#0a6c8f; --sea-soft:#dbeef5; --kid:#fff0c2; --kid-ink:#6b4a00; --link:#0a5f80;
+  --font-head:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0c1522; --card:#142033; --ink:#eef2f6; --muted:#9fb0c6; --line:#243349;
+  --band:#08101b; --band-fg:#eef2f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#62c6e6; --sea-soft:#14384a; --kid:#3d3210; --kid-ink:#ffd668; --link:#7fd0ec; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0c1522; --card:#142033; --ink:#eef2f6; --muted:#9fb0c6; --line:#243349;
+  --band:#08101b; --band-fg:#eef2f6; --sun:#ffc83d; --sun-ink:#0f1b2d;
+  --sea:#62c6e6; --sea-soft:#14384a; --kid:#3d3210; --kid-ink:#ffd668; --link:#7fd0ec; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.5;padding:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:10}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--font-head);margin:0;text-wrap:balance}
+.mast{background:var(--band);color:var(--band-fg);padding-block:28px 22px}
+.mast .kicker{font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin:0 0 6px}
+.mast h1{font-size:clamp(3rem,16vw,4.6rem);font-weight:800;line-height:.95;letter-spacing:-.02em}
+.mast h1 span{color:var(--sun)}
+.mast .week{margin:12px 0 0;font-size:1.05rem;font-weight:500}
+/* onda do calçadão de Copacabana, em máscara para acompanhar o tema */
+.wave{height:16px;background:var(--band);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M0 0H40V8Q30 16 20 8T0 8Z'/%3E%3C/svg%3E") repeat-x top/40px 16px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cpath d='M0 0H40V8Q30 16 20 8T0 8Z'/%3E%3C/svg%3E") repeat-x top/40px 16px}
+.lede{font-size:1.06rem;line-height:1.6;margin:22px 0 0}
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line);margin-top:18px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:600 .8rem var(--font-body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:focus-visible,.go:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+main{padding-block:12px 36px;display:flex;flex-direction:column;gap:30px}
+.day-sec{display:flex;flex-direction:column;min-width:0}
+.day-sec>h2{font-size:1.35rem;font-weight:800;padding-bottom:6px;border-bottom:3px solid var(--sun);margin-bottom:4px;letter-spacing:-.01em}
+.day-sec>h2 small{font-family:var(--font-body);font-weight:500;font-size:.8rem;color:var(--muted);letter-spacing:0;margin-left:8px}
+.ev{display:grid;grid-template-columns:4.2rem 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);min-width:0}
+.ev.hl{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 12px;margin-block:6px}
+.t{font-weight:700;font-size:.85rem;font-variant-numeric:tabular-nums;line-height:1.35}
+.t small{display:block;font-weight:500;color:var(--muted);font-size:.74rem}
+.b{min-width:0}
+.k{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 3px;font-size:.7rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--sea)}
+.k .hlt{background:var(--sun);color:var(--sun-ink);border-radius:4px;padding:1px 7px;letter-spacing:.06em}
+.k .free{background:var(--sea-soft);color:var(--sea);border-radius:4px;padding:1px 7px}
+.k .kid{background:var(--kid);color:var(--kid-ink);border-radius:4px;padding:1px 7px}
+.b h3{font-size:1.08rem;font-weight:800;line-height:1.22}
+.w{font-size:.88rem;color:var(--muted);margin:2px 0 0}
+.s{font-size:.9rem;font-style:italic;margin:5px 0 0}
+.apoc{margin:18px 0 0;padding:22px 16px 14px;color:#fff8c4;border:5px ridge #f2c94c;border-radius:6px;background:linear-gradient(160deg,#5b2a86 0%,#2b3a9e 52%,#14808c 100%);box-shadow:5px 5px 0 rgba(0,0,0,.35);position:relative}
+.apoc::before{content:"\2726 \2605 \2726 \2605 \2726";position:absolute;top:2px;left:0;right:0;text-align:center;font-size:.7rem;letter-spacing:.4em;color:#f2c94c;line-height:1}
+.apoc blockquote{margin:0;min-width:0}
+.apoc p{margin:0;font-family:"Satisfy","Pacifico","Brush Script MT",cursive;font-size:1.5rem;font-weight:400;line-height:1.35;text-wrap:balance}
+.apoc cite{display:block;margin-top:8px;font:normal 1rem "Pacifico","Brush Script MT",cursive;color:#f2c94c;text-align:right}
+.apoc cite::before{content:"\2014 "}
+.go{display:inline-block;margin-top:6px;font-size:.84rem;font-weight:600;color:var(--link);text-decoration:underline;text-underline-offset:3px}
+.days{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:18px 0 4px}
+.days span{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:4px}
+.days a{font-size:.85rem;font-weight:700;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
+.day-sec{scroll-margin-top:12px}
+.day-sec>h2 .up{float:right;font-family:var(--font-body);font-size:.75rem;font-weight:600;color:var(--link);text-decoration:none;margin-top:6px}
+.hls{margin:18px 0 0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.hls-t{margin:0 0 6px;font-family:var(--font-head);font-weight:800;font-size:1rem}
+.hls ol{list-style:none;margin:0;padding:0}
+.hls li{border-top:1px solid var(--line)}
+.hls li:first-child{border-top:0}
+.hls a{display:block;padding:8px 0;color:var(--ink);text-decoration:none;font-weight:600;font-size:.92rem;line-height:1.35}
+.hls a span{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--sea,var(--link))}
+.ev{scroll-margin-top:12px}
+.subs{margin:18px 0 0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.subs-t{margin:0;font-family:var(--font-head);font-weight:800;font-size:1rem}
+.subs .acts{margin-top:8px}
+.subs-n{margin:8px 0 0;font-size:.78rem;line-height:1.45;color:var(--muted)}
+.subs-n a{color:var(--link);font-weight:600}
+.subs-h{margin:14px 0 0;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.acts a{display:inline-block;font-size:.8rem;font-weight:600;line-height:1.2;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
+.acts a.cal{background:var(--sun);border-color:var(--sun);color:var(--sun-ink)}
+.empty{display:none;color:var(--muted);padding:20px 0}
+.src{font-size:.82rem;color:var(--muted);display:flex;flex-direction:column;gap:6px;padding-top:6px;border-top:1px solid var(--line)}
+.src h2{font-size:1.05rem;color:var(--ink)}
+.src p{margin:0}
+footer{padding-block:6px 30px;font-size:.8rem;color:var(--muted)}
+footer b{font-family:var(--font-head);color:var(--ink)}
+.hls li.gh{border-top:0;padding:10px 0 0;font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--sea,var(--link))}.hls li.gh:first-child{padding-top:2px}.hls li.gh+li a{padding-top:1px}.hls a{padding:3px 0;line-height:1.2;font-size:.9rem}.hls li.gh{padding:7px 0 0}.hls .hv{font-weight:500;color:var(--muted,#54617a);font-size:.8rem}.hls-t{margin-bottom:2px}.hls li:not(.gh){border-top:0}.hls li.gh~li.gh{border-top:1px solid var(--line);margin-top:6px}.hls a span{display:inline;margin-right:6px;text-transform:none;letter-spacing:0;font-size:.8rem}.zap{margin:18px 0 0}.zap-t{display:flex;align-items:center;gap:7px;margin:0 0 8px;font-family:var(--font-head);font-weight:800;font-size:1rem}.zap .zb{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--sea);border-radius:14px 14px 14px 4px;padding:10px 13px;margin:0 0 8px;font-size:.92rem;line-height:1.45}.zap .zb b{font-family:var(--font-head);font-weight:800}
+.inst{margin:18px 0 0;padding:12px 14px;border:1px dashed var(--sea);border-radius:14px;font-size:.9rem;line-height:1.45;background:var(--sea-soft)}
+.inst b{font-family:var(--font-head)}.inst[hidden]{display:none}.inst button{font:inherit;font-weight:600;margin-left:6px;border:0;background:var(--sea);color:#fff;border-radius:999px;padding:6px 12px;cursor:pointer}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <p class="kicker">Guia cultural do Rio · Arquivo</p>
+    <h1><span>Mig</span>Show</h1>
+    <p class="week">Edições anteriores</p>
+  </div>
+</header>
+<div class="wave" aria-hidden="true"></div>
+
+<div class="wrap">
+<p class="lede">Todas as edições do MigShow, da mais nova para a mais antiga.</p><ol class="lista-ed" style="list-style:none;padding:0;margin:18px 0 28px;line-height:2"><li><a href="edicoes/n2.html"><b>nº 2</b> · Agenda de 19 a 22 de novembro de 2026</a></li><li><a href="edicoes/n1.html"><b>nº 1</b> · Agenda de 12 a 15 de novembro de 2026</a></li><li><a href="edicoes/n0.html"><b>nº 0</b> · Agenda de 10 a 15 de novembro de 2026</a></li></ol>
+</div>
+<footer>
+  <div class="wrap"><b>MigShow</b> é um guia pessoal de programação cultural do Rio, montado toda quinta-feira. Confira horários e preços com cada casa antes de sair. E lembre: ficar em casa segue em cartaz o ano inteiro, com entrada franca e estacionamento garantido.<p style="margin:10px 0 0"><a class="go" href="edicoes.html">Edições anteriores</a></p></div>
+</footer>
+
+<script>
+(function(){
+  var evs=[].slice.call(document.querySelectorAll('.ev'));
+  var days=[].slice.call(document.querySelectorAll('.day-sec'));
+  var chips=document.getElementById('chips');
+  var empty=document.getElementById('empty');
+  if(!chips)return;
+  var cats=[];
+  evs.forEach(function(e){var c=e.getAttribute('data-cat');if(c&&cats.indexOf(c)<0)cats.push(c)});
+  var opts=[{l:'Tudo',f:function(){return true}},
+             {l:'Destaques',f:function(e){return e.classList.contains('hl')}}]
+    .concat(cats.map(function(c){return {l:c,f:function(e){return e.getAttribute('data-cat')===c}}}))
+    .concat([{l:'Grátis',f:function(e){return e.getAttribute('data-free')==='1'}},
+             {l:'Com criança',f:function(e){return e.getAttribute('data-kid')==='1'}}]);
+  var btns=opts.map(function(o,i){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=o.l;
+    b.setAttribute('aria-pressed',i===0?'true':'false');
+    b.addEventListener('click',function(){apply(i)});
+    chips.appendChild(b);return b;
+  });
+  function apply(i){
+    btns.forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+    var shown=0;
+    evs.forEach(function(e){var ok=opts[i].f(e);e.hidden=!ok;if(ok)shown++});
+    days.forEach(function(d){d.hidden=!d.querySelector('.ev:not([hidden])')});
+    empty.style.display=shown?'none':'block';
+  }
+})();
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
+  var box=document.getElementById('inst');if(!box)return;
+  var standalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+  if(standalone){box.hidden=true;return;}
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  var txt=document.getElementById('inst-txt');var btn=document.getElementById('inst-btn');var ev=null;
+  if(ios){txt.innerHTML='<b>Tenha o MigShow como app.</b> No Safari, toque em Compartilhar (o quadrado com a seta) e depois em “Adicionar à Tela de Início”.';}
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();ev=e;btn.hidden=false;});
+  btn.addEventListener('click',function(){if(!ev)return;ev.prompt();ev.userChoice.then(function(){btn.hidden=true;ev=null;});});
+})();
+</script>
+</body>
+</html>

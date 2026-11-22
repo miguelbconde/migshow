@@ -1,0 +1,14 @@
+[
+ {"codigo": "M01", "nome": "Cinemateca do MAM: agenda do mês", "url": "https://mam.rio/cinemateca/agenda/este-mes/"},
+ {"codigo": "M02", "nome": "MAM Rio: programação", "url": "https://mam.rio/programacao/"},
+ {"codigo": "M03", "nome": "CCBB Rio: programação", "url": "https://ccbb.com.br/rio-de-janeiro/programacao/"},
+ {"codigo": "M04", "nome": "Theatro Municipal do Rio: programação", "url": "https://theatromunicipal.rj.gov.br/programacao-beta/"},
+ {"codigo": "M05", "nome": "Sala Cecília Meireles: programação", "url": "https://salaceciliameireles.rj.gov.br/programacao/"},
+ {"codigo": "M06", "nome": "Arte que acontece: agenda do Rio", "url": "https://artequeacontece.com.br/agenda-rio-de-janeiro/"},
+ {"codigo": "M07", "nome": "IMS Rio: programação", "url": "https://ims.com.br/programacao/"},
+ {"codigo": "M08", "nome": "Grupo Estação: em cartaz", "url": "https://grupoestacao.com.br/em-cartaz/"},
+ {"codigo": "M09", "nome": "Casa do Choro: agenda", "url": "https://casadochoro.com.br/agenda/"},
+ {"codigo": "M10", "nome": "Circo Voador: agenda", "url": "https://www.circovoador.com.br/"},
+ {"codigo": "M11", "nome": "Blue Note Rio: agenda", "url": "https://bluenoterio.com.br/shows/"},
+ {"codigo": "M12", "nome": "Museu de Arte do Rio: exposições", "url": "https://museudeartedorio.org.br/exposicoes/atuais/"}
+]
