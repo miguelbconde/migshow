@@ -7,17 +7,20 @@ Fontes (todas públicas, lidas por git, sem login):
   2. grade de cinema da Ingresso.com e eventos da Sympla, que o robô do Todos os
      Rios guarda no ramo coleta-bruta (plataformas.json);
   3. texto das ~90 fontes do Todos os Rios (ramo coleta-bruta, F*.txt);
-  4. páginas lidas inteiras pela ronda do MigShow (ramo coleta deste repositório).
+  4. páginas lidas inteiras pela ronda do MigShow (ramo coleta deste repositório);
+  5. opcional (--extra): a ronda feita no computador da coordenação
+     (ronda_migshow.py, que entrega um .zip), útil para sites que recusam a nuvem.
 
 Saída: candidatos/AAAA-MM-DD/candidatos.md (para ler) e candidatos.json.
 Cada candidato traz o endereço da página onde o fato está escrito: é esse
 endereço que vai para o campo fonte.url da edição (regra dos links de 22/11).
 
 Uso: python3 ferramentas/candidatos.py [--inicio 2026-11-26 --fim 2026-11-29] [--sem-baixar]
+                                      [--extra coleta-migshow-AAAA-MM-DD.zip]
 Sem datas, usa a próxima quinta (ou hoje, se for quinta) até o domingo.
 Só biblioteca padrão e git.
 """
-import argparse, json, os, re, subprocess, sys
+import argparse, json, os, re, subprocess, sys, zipfile
 from datetime import date, datetime, timedelta
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -210,9 +213,26 @@ def trechos(pastas, ini, fim):
         if not pasta:
             continue
         for f in sorted(os.listdir(pasta)):
+            cam = os.path.join(pasta, f)
+            if re.match(r"^AGENDA_\w+\.txt$", f):  # agendas da ronda no computador: um evento por linha
+                linhas = open(cam, encoding="utf-8", errors="replace").read().split("\n")
+                nome = linhas[0].split("|")[1].strip() if linhas and linhas[0].count("|") >= 1 else f
+                achados = []
+                for l in linhas[1:]:
+                    isos = re.findall(r"\b20\d\d-\d\d-\d\d\b", l[:80])
+                    if isos and re.search(r"\bat[ée] ", l[:80]) and len(isos) >= 2:   # "de A até B": em cartaz
+                        dentro = isos[0] <= fim.isoformat() and isos[1] >= ini.isoformat()
+                    else:
+                        dentro = any(ini.isoformat() <= x <= fim.isoformat() for x in isos) or bool(pat.search(l))
+                    if dentro:
+                        u = re.search(r"https?://\S+", l)
+                        u = u.group(0) if u else ""
+                        achados.append({"pagina": u, "trecho": l[:700], "link_evento": None if sem_pagina(u) else u})
+                if achados:
+                    out.append({"fonte": nome, "arquivo": f, "origem": origem, "achados": achados[:80]})
+                continue
             if not re.match(r"^[FM]\w+\.txt$", f) or f.startswith("FPLAT"):
                 continue
-            cam = os.path.join(pasta, f)
             primeira = open(cam, encoding="utf-8", errors="replace").readline()
             nome = primeira.split("|", 1)[-1].strip() if "|" in primeira else f
             bs, links = blocos(cam)
@@ -306,6 +326,7 @@ def main():
     ap.add_argument("--inicio")
     ap.add_argument("--fim")
     ap.add_argument("--sem-baixar", action="store_true", help="usa o que já está em .cache/")
+    ap.add_argument("--extra", help="pasta ou .zip da ronda feita no computador (ronda_migshow.py)")
     a = ap.parse_args()
     hoje = date.today()
     ini = d(a.inicio) if a.inicio else hoje + timedelta((3 - hoje.weekday()) % 7)
@@ -330,7 +351,20 @@ def main():
     cine, av = cinema(bruta, ini, fim)
     if av:
         avisos.append(av)
-    trs = trechos([(propria, "ronda do MigShow"), (bruta, "Todos os Rios")], ini, fim)
+    extra = None
+    if a.extra:
+        if os.path.isdir(a.extra):
+            extra = a.extra
+        elif zipfile.is_zipfile(a.extra):
+            extra = os.path.join(CACHE, "extra-" + os.path.basename(a.extra)[:-4])
+            os.makedirs(extra, exist_ok=True)
+            with zipfile.ZipFile(a.extra) as z:
+                for nome in z.namelist():  # só arquivos soltos, sem subpastas
+                    if re.match(r"^[\w.-]+\.(txt|json)$", nome):
+                        open(os.path.join(extra, nome), "wb").write(z.read(nome))
+        else:
+            avisos.append(f"--extra: não achei {a.extra}")
+    trs = trechos([(propria, "ronda do MigShow"), (bruta, "Todos os Rios"), (extra, "ronda no computador")], ini, fim)
     lac = lacunas(fs, cine, ini, fim)
     pasta = os.path.join(RAIZ, "candidatos", ini.isoformat())
     os.makedirs(pasta, exist_ok=True)

@@ -10,5 +10,11 @@
  {"codigo": "M09", "nome": "Casa do Choro: agenda", "url": "https://casadochoro.com.br/agenda/"},
  {"codigo": "M10", "nome": "Circo Voador: agenda", "url": "https://www.circovoador.com.br/"},
  {"codigo": "M11", "nome": "Blue Note Rio: agenda", "url": "https://bluenoterio.com.br/shows/"},
- {"codigo": "M12", "nome": "Museu de Arte do Rio: exposições", "url": "https://museudeartedorio.org.br/exposicoes/atuais/"}
+ {"codigo": "M12", "nome": "Museu de Arte do Rio: exposições", "url": "https://museudeartedorio.org.br/exposicoes/atuais/"},
+ {"codigo": "M13", "nome": "Museu do Amanhã: programação (atividades com data, educativo)", "url": "https://museudoamanha.org.br/programacao"},
+ {"codigo": "M14", "nome": "Museu do Amanhã: exposições em cartaz", "url": "https://museudoamanha.org.br/exposicoes/agora"},
+ {"codigo": "M15", "nome": "Paço Imperial: programa de exposições (site do Iphan; pacoimperial.com.br NÃO é do museu)", "url": "https://www.gov.br/iphan/pt-br/unidades-especiais/centro-cultural-paco-imperial/programa-de-exposicoes"},
+ {"codigo": "M16", "nome": "Museu do Pontal: programação (infantil e família)", "url": "https://museudopontal.org.br/programacao/"},
+ {"codigo": "M17", "nome": "Casa Roberto Marinho: exposições e programação", "url": "https://casarobertomarinho.org.br"},
+ {"codigo": "M18", "nome": "Museu da Vida (Fiocruz): notícias com a programação do mês (família)", "url": "https://www.museudavida.fiocruz.br/"}
 ]
