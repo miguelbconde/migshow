@@ -1,0 +1,88 @@
+# M14 | Museu do Amanhã: exposições em cartaz
+# endereço: https://museudoamanha.org.br/exposicoes/agora
+# lida em 2026-11-26 01:10 UTC
+
+Agora | Museu do Amanhã
+Principal
+Visite
+Programe sua visita
+Loja
+Livraria e Café
+Restaurante
+Acessibilidade
+Programação
+Exposições
+Agora
+Vem aí
+Encerradas
+Formação
+Presencial
+Online
+Encerradas
+publicações e acervo
+livros
+artigos
+documentação e memória
+Projetos
+Educação
+Inovação
+Articulação
+Pesquisa
+O Museu
+Sobre o Museu
+Quem somos
+Faça parte
+Parceiros
+Faça seu evento
+Transparência
+Agora
+Nova instalação artística na área externa do Museu reúne obras para observar como o Rio de Janeiro constrói, cotidianamente, sua relação com a natureza, o espaço público, a matéria, a cidade e a Baía de Guanabara
+A new artistic installation in the Museum’s outdoor area brings together works that explore how Rio de Janeiro continuously shapes its relationship with nature, public space, matter, the city, and Guanabara Bay
+Nueva instalación artística en el área exterior del Museo reúne obras para observar cómo Río de Janeiro construye, cotidianamente, su relación con la naturaleza, el espacio público, la materia, la ciudad y la Bahía de Guanabara.
+Experiência em realidade virtual que permite revisitar exposições, explorar a infraestrutura do Museu e imaginar amanhãs
+A virtual reality experience that allows visitors to revisit exhibitions, explore the Museum’s infrastructure, and imagine tomorrows
+Experiencia en realidad virtual que permite revisitar exposiciones, explorar la infraestructura del Museo e imaginar mañanas
+Construída em conjunto com moradores do Morro da Providência, a exposição reúne trajetórias e experiências que expressam a força de suas relações. É um convite para olhar o futuro a partir das pessoas que guardam a memória a partir dos seus afetos
+Developed in collaboration with residents of Morro da Providência, the exhibition brings together life paths and experiences that reveal the strength of their relationships. It serves as an invitation to look toward the future through the eyes of those who preserve memory rooted in their personal bonds and affections
+Construida en conjunto con habitantes del Morro da Providência, la exposición reúne trayectorias y experiencias que expresan la fuerza de sus relaciones. Es una invitación a mirar el futuro a partir de las personas que guardan la memoria a través de sus afectos
+Percorra uma narrativa multimídia estruturada em cinco grandes momentos – Cosmos, Terra, Onde Estamos?, Amanhãs e Nós – cada um encarnando grandes perguntas que a humanidade sempre se fez – De onde viemos? Quem somos? Onde estamos? Para onde vamos? Como queremos ir?
+Explore a multimedia narrative structured around five major moments – Cosmos, Earth, Anthropocene, Tomorrows and Us – each one embodying the great questions that humanity has always asked itself – Where do we come from? Who are we? Where are we? Where are we going? How do we want to go?
+Recorra una narrativa multimedia estructurada en cinco grandes momentos —Cosmos, Tierra, Dónde estamos?, Mañanas y Nosotros—, cada uno encarnando grandes preguntas que la humanidad siempre se ha hecho: De dónde venimos? Quiénes somos? Dónde estamos? Hacia dónde vamos? Cómo queremos ir?
+A exposição propõe compreender o fogo como um princípio central da vida contemporânea, evidenciando que sustentabilidade não
+é controle ou preservação isolada, mas a capacidade de coexistir com forças transformadoras e contraditórias.
+The exhibition proposes understanding fire as a central principle of contemporary life, highlighting that sustainability is not control or isolated preservation, but the capacity to coexist with transformative and contradictory forces.
+La exposición propone comprender el fuego como un principio central de la vida contemporánea, evidenciando que la sostenibilidad no es control o preservación aislada, sino la capacidad de coexistir con fuerzas transformadoras y contradictorias.
+
+## LINKS DA PÁGINA
+- Principal | https://museudoamanha.org.br
+- Visite | https://museudoamanha.org.br/visite
+- Programe sua visita | https://museudoamanha.org.br/visite/programe-sua-visita
+- Loja | https://museudoamanha.org.br/visite/loja
+- Livraria e Café | https://museudoamanha.org.br/visite/livraria-e-cafe
+- Restaurante | https://museudoamanha.org.br/visite/restaurante
+- Acessibilidade | https://museudoamanha.org.br/visite/acessibilidade
+- Programação | https://museudoamanha.org.br/programacao
+- Exposições | https://museudoamanha.org.br/exposicoes
+- Agora | https://museudoamanha.org.br/exposicoes/agora
+- Vem aí | https://museudoamanha.org.br/exposicoes/vem-ai
+- Encerradas | https://museudoamanha.org.br/exposicoes/encerradas
+- Formação | https://museudoamanha.org.br/formacao
+- Presencial | https://museudoamanha.org.br/formacao/presencial
+- Online | https://museudoamanha.org.br/formacao/online
+- Encerradas | https://museudoamanha.org.br/formacao/encerradas
+- publicações e acervo | https://museudoamanha.org.br/publicacoes-e-acervo
+- livros | https://museudoamanha.org.br/publicacoes-e-acervo/livros
+- artigos | https://museudoamanha.org.br/publicacoes-e-acervo/artigos
+- documentação e memória | https://museudoamanha.org.br/publicacoes-e-acervo/documentacao-e-memoria
+- Projetos | https://museudoamanha.org.br/projetos
+- Educação | https://museudoamanha.org.br/projetos/educacao
+- Inovação | https://museudoamanha.org.br/projetos/inovacao
+- Articulação | https://museudoamanha.org.br/projetos/articulacao
+- Pesquisa | https://museudoamanha.org.br/projetos/pesquisa
+- O Museu | https://museudoamanha.org.br/o-museu
+- Sobre o Museu | https://museudoamanha.org.br/o-museu/sobre-o-museu
+- Quem somos | https://museudoamanha.org.br/o-museu/quem-somos
+- Faça parte | https://museudoamanha.org.br/o-museu/faca-parte
+- Parceiros | https://museudoamanha.org.br/o-museu/parceiros
+- Faça seu evento | https://museudoamanha.org.br/o-museu/faca-seu-evento
+- Transparência | https://museudoamanha.org.br/o-museu/transparencia
