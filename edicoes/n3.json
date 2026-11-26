@@ -1,0 +1,737 @@
+{
+ "numero": 3,
+ "inicio": "2026-11-26",
+ "fim": "2026-11-29",
+ "semana": "Agenda de 26 a 29 de novembro de 2026",
+ "abertura": "A Black Friday é amanhã, mas já dura um mês, com descontos imperdíveis de até 30% sobre o dobro do preço. Fim de mês, bolso vazio, mas agenda cheia, e parte dela de graça. Nos palcos do Rio, a melhor oferta da semana atualiza um must centenário: Machado de Assis em dose dupla no teatro, com Brás Cubas, pela Armazém Companhia de Teatro, na Lapa, e Um Homem Célebre, no Centro. Na música, a Furiosa Portátil festeja hoje os 80 anos de Cristóvão Bastos na Casa do Choro, e na sexta a Velha Guarda da Mangueira comemora 70 anos, de graça. Sábado e domingo pedem rua: arte popular grátis no Píer Mauá e blues no Aterro, com Zuzuê e Contos de Príncipe para as crianças. E domingo é a última chance de ver, no MAR, a beleza valente da comunidade negra LGBTQIAPN+ clicada por Zanele Muholi.",
+ "frase": {
+  "texto": "\"Nesse valor vocês parcelam?\"",
+  "autor": "Guimarães Rosa"
+ },
+ "leitores": [],
+ "para_conferir": [
+  "Preço não confirmado: Furiosa Portátil, Azymuth, Os Tincoãs, A Bruxinha que Era Boa, O Mercador de Veneza, Rio Blues Festival e os filmes da Cinemateca do MAM; horário e preço do MAR no domingo também valem a checagem. A página de Contos de Príncipe, no Museu do Pontal, cita também o dia 22. Confirme antes de ir.",
+  "Zuzuê não tem página própria: o link leva à agenda da Prefeitura. O recital de Hercules Gomes pede reserva no site do BNDES."
+ ],
+ "notas_dia": {
+  "2026-11-26": "hoje"
+ },
+ "eventos": [
+  {
+   "dia": "2026-11-26",
+   "categoria": "Ópera",
+   "hora": "12h",
+   "hora_nota": "",
+   "retranca": "Ópera",
+   "gratis": true,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Rigoletto em versão de bolso, na hora do almoço",
+   "onde": "Escadaria interna do Theatro Municipal, Cinelândia · hoje, 12h · grátis, senhas a partir das 11h · livre",
+   "texto": "Verdi compacto, com piano e cantores a um passo do público: Fábio Bellizalo é Rigoletto e Michele Menezes, Gilda. Direção cênica de Fernando Portari. A maldição do bufão cabe no intervalo do almoço.",
+   "inicio": "12:00",
+   "local": "Theatro Municipal, Praça Floriano s/n, Centro",
+   "fonte": {
+    "url": "https://theatromunicipal.rj.gov.br/uma-pausa-para-verdi-rigoletto-ocupa-a-hora-do-almoco-no-tmrj-9-10-25-e-26-11/"
+   },
+   "fim": "13:00",
+   "link_rotulo": "Página do Municipal"
+  },
+  {
+   "dia": "2026-11-26",
+   "categoria": "Cinema",
+   "hora": "17h",
+   "hora_nota": "",
+   "retranca": "Cinema",
+   "gratis": false,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Bravo, Maria! 100 anos de Maria Della Costa",
+   "onde": "Cinemateca do MAM, Parque do Flamengo · hoje, 17h · preço: confirme",
+   "texto": "Abertura da pequena retrospectiva do centenário da atriz, com os documentários Retratos brasileiros, de Luiz Carlos Lacerda, e Vox Populi. Segue até domingo.",
+   "inicio": "17:00",
+   "local": "Cinemateca do MAM, Av. Infante Dom Henrique 85, Parque do Flamengo",
+   "fonte": {
+    "url": "https://mam.rio/cinemateca/agenda/este-mes/"
+   },
+   "fim": "18:30",
+   "link_rotulo": "Agenda da Cinemateca",
+   "local_destaque": "Cinemateca do MAM"
+  },
+  {
+   "dia": null,
+   "categoria": "Dança",
+   "hora": "Até dom 29",
+   "hora_nota": "18h ou 19h",
+   "retranca": "Dança · Festival",
+   "gratis": false,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "Festival Dança à Deriva",
+   "onde": "Teatro Cacilda Becker, Rua do Catete 338, Catete · de quinta a domingo, às 18h (sexta, 19h) · R$ 20 (meia R$ 10) por noite",
+   "texto": "Dança contemporânea latino-americana: Chile hoje, Rio e Argentina na sexta, Colômbia e Rio no sábado, Bolívia, Argentina e México no domingo. Abre com Translúcidxs, da chilena Pseudónimo Compañía (14 anos).",
+   "inicio": "18:00",
+   "local": "Teatro Cacilda Becker, Rua do Catete 338, Catete",
+   "fonte": {
+    "url": "https://www.sympla.com.br/evento/26-11-translucidxs-ch-la-politica-del-malestar-ch-ar-danca-a-deriva-edicao-rj/3651168"
+   },
+   "fim": "20:00",
+   "link_rotulo": "Ingressos e programa",
+   "local_destaque": "Teatro Cacilda Becker, Catete"
+  },
+  {
+   "dia": "2026-11-26",
+   "categoria": "Exposição",
+   "hora": "18h",
+   "hora_nota": "",
+   "retranca": "Artes visuais · Abertura",
+   "gratis": true,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Adrianna Eu: Trago um mar de incertezas",
+   "onde": "Cassia Bomeny Galeria, Rua Garcia d'Avila 196, Ipanema · hoje, abertura das 18h às 21h · grátis",
+   "texto": "Cerca de 20 trabalhos, entre instalações, objetos, fotografias e telas, com curadoria de Marcus Lontra. Vernissage em Ipanema: o vinho costuma ser mais certo que o mar.",
+   "inicio": "18:00",
+   "local": "Cassia Bomeny Galeria, Rua Garcia d'Avila 196, Ipanema",
+   "fonte": {
+    "url": "https://artrio.com/agenda-cultural/cassia-bomeny-galeria-adrianna-eu"
+   },
+   "fim": "21:00",
+   "link_rotulo": "Página da exposição"
+  },
+  {
+   "dia": "2026-11-26",
+   "categoria": "Música",
+   "hora": "19h",
+   "hora_nota": "",
+   "retranca": "Música · Choro",
+   "gratis": false,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "Orquestra Furiosa Portátil celebra os 80 anos de Cristóvão Bastos",
+   "onde": "Casa do Choro, Rua da Carioca 38, Centro · hoje, 19h · preço: confirme",
+   "texto": "Último concerto da temporada, com o próprio Cristóvão ao piano e as vozes de Amelia e Miguel Rabello. Peças que ele escreveu para a orquestra e clássicos como Resposta ao tempo.",
+   "inicio": "19:00",
+   "local": "Casa do Choro, Rua da Carioca 38, Centro",
+   "fonte": {
+    "url": "https://www.sympla.com.br/evento/orquestra-furiosa-portatil-temporada-2026-cristovao-bastos-80-anos-casa-do-choro/3621204"
+   },
+   "fim": "20:30",
+   "link_rotulo": "Página do concerto",
+   "local_destaque": "Casa do Choro, Centro"
+  },
+  {
+   "dia": "2026-11-26",
+   "categoria": "Teatro",
+   "hora": "19h",
+   "hora_nota": "também sex 27 e sáb 28, 19h",
+   "retranca": "Teatro",
+   "gratis": false,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "Brás Cubas, pela Armazém Companhia de Teatro",
+   "onde": "Espaço Armazém, Fundição Progresso, Lapa · hoje, 19h · R$ 40 a R$ 80 · 14 anos · 110 min",
+   "texto": "Machado pela Armazém, direção de Paulo de Moraes: o defunto autor revisita a vida frívola e o emplasto contra a melancolia. Prêmio APTR 2024 de espetáculo e direção. São 105 lugares.",
+   "inicio": "19:00",
+   "local": "Fundição Progresso, Rua dos Arcos 24, Lapa",
+   "fonte": {
+    "url": "https://www.sympla.com.br/evento/bras-cubas-armazem-companhia-de-teatro/3643911"
+   },
+   "fim": "20:50",
+   "link_rotulo": "Ingressos",
+   "local_destaque": "Fundição Progresso, Lapa"
+  },
+  {
+   "dia": "2026-11-26",
+   "categoria": "Música",
+   "hora": "19h30",
+   "hora_nota": "",
+   "retranca": "Música · Jazz",
+   "gratis": false,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Azymuth: Águia Não Come Mosca e grandes clássicos",
+   "onde": "Teatro Rival Petrobras, Cinelândia · hoje, 19h30 · preço: confirme",
+   "texto": "O trio do samba-jazz carioca revisita o disco Águia Não Come Mosca e os clássicos da casa. Linha evolutiva do groove, sem precisar sair do Centro.",
+   "inicio": "19:30",
+   "local": "Teatro Rival Petrobras, Rua Álvaro Alvim 33, Cinelândia",
+   "fonte": {
+    "url": "https://bileto.sympla.com.br/event/124326"
+   },
+   "fim": "21:00",
+   "link_rotulo": "Ingressos"
+  },
+  {
+   "dia": "2026-11-27",
+   "categoria": "Música",
+   "hora": "18h",
+   "hora_nota": "",
+   "retranca": "Música · Samba",
+   "gratis": true,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "70 anos da Velha Guarda Musical da Mangueira",
+   "onde": "Circo Crescer e Viver, Cidade Nova (perto do metrô Praça Onze) · sexta, 18h · grátis, com ingresso pelo Sympla",
+   "texto": "A Velha Guarda da Verde e Rosa comemora sete décadas de partido-alto e samba de terreiro, com entrada franca. Programa para pegar o ingresso antes que acabe.",
+   "inicio": "18:00",
+   "local": "Circo Crescer e Viver, Rua Carmo Neto 143, Cidade Nova",
+   "fonte": {
+    "url": "https://www.sympla.com.br/evento/velha-guarda-apresenta-70-anos-da-velha-guarda-musical-da-mangueira/3643739"
+   },
+   "fim": "21:00",
+   "link_rotulo": "Retirar ingresso",
+   "local_destaque": "Circo Crescer e Viver"
+  },
+  {
+   "dia": "2026-11-27",
+   "categoria": "Música",
+   "hora": "19h",
+   "hora_nota": "",
+   "retranca": "Música · Piano",
+   "gratis": true,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Hercules Gomes toca Radamés Gnattali",
+   "onde": "Espaço Cultural BNDES, Av. República do Chile 100, Centro · sexta, 19h · grátis, com reserva no site do BNDES",
+   "texto": "Recital de obras de Radamés, nos 120 anos do compositor que pôs o choro de smoking sem lhe tirar o balanço.",
+   "inicio": "19:00",
+   "local": "Espaço Cultural BNDES, Av. República do Chile 100, Centro",
+   "fonte": {
+    "url": "https://www.concerto.com.br/roteiros/2026-11-27"
+   },
+   "fim": "20:30",
+   "link_rotulo": "Serviço do recital"
+  },
+  {
+   "dia": "2026-11-27",
+   "categoria": "Teatro",
+   "hora": "19h",
+   "hora_nota": "também sáb 28 e dom 29, 18h",
+   "retranca": "Teatro",
+   "gratis": false,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Duas Vezes Ponto de Partida: Na Corda Bamba de Sombrinha",
+   "onde": "CCBB Rio, Teatro I, Centro · sexta, 19h · R$ 30 (meia R$ 15) · 14 anos",
+   "texto": "O grupo Ponto de Partida, de Barbacena, monta um texto feito só com palavras de letras e crônicas de Aldir Blanc, dos anos de chumbo até hoje. Direção de Regina Bertola. Inédito no Rio.",
+   "inicio": "19:00",
+   "local": "CCBB Rio, Rua Primeiro de Março 66, Centro",
+   "fonte": {
+    "url": "https://ccbb.com.br/rio-de-janeiro/programacao/duas-vezes-ponto-de-partida-na-corda-bamba-de-sombrinha/"
+   },
+   "fim": "20:30",
+   "link_rotulo": "Página no CCBB"
+  },
+  {
+   "dia": "2026-11-27",
+   "categoria": "Cinema",
+   "hora": "19h",
+   "hora_nota": "",
+   "retranca": "Cinema",
+   "gratis": true,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "CineLage: Athos Bulcão e Júlio Paraty",
+   "onde": "Capelinha da EAV Parque Lage, Jardim Botânico · sexta, 19h · grátis, 30 lugares, senhas 30 min antes",
+   "texto": "Dois documentários fecham o CineLage de 2026: Athos Bulcão, de Malu De Martino, e Júlio Paraty, de Luiz Carlos Lacerda. Trinta lugares numa capela: chegar cedo é a única curadoria possível.",
+   "inicio": "19:00",
+   "local": "EAV Parque Lage, Rua Jardim Botânico 414",
+   "fonte": {
+    "url": "https://eavparquelage.rj.gov.br/acontece/cine-lage-8"
+   },
+   "fim": "21:00",
+   "link_rotulo": "Página do evento"
+  },
+  {
+   "dia": "2026-11-27",
+   "categoria": "Teatro",
+   "hora": "20h",
+   "hora_nota": "sáb 28, 20h; dom 29, 18h (fim da temporada)",
+   "retranca": "Teatro",
+   "gratis": false,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Morra, Amor, com Mariana Santos",
+   "onde": "Teatro TotalEnergies, Rua do Russel 804, Glória · sexta, 20h · R$ 50 a R$ 120 (meia pela metade) · 14 anos · 75 min",
+   "texto": "Solo de Mariana Santos sobre o romance de Ariana Harwicz, adaptado pela própria autora: uma mulher em crise numa casa de campo. Direção de Victor Garcia Peralta. Últimas sessões.",
+   "inicio": "20:00",
+   "local": "Teatro TotalEnergies, Rua do Russel 804, Glória",
+   "fonte": {
+    "url": "https://www.ingresso.com/espetaculos/morra-amor"
+   },
+   "fim": "21:15",
+   "link_rotulo": "Ingressos"
+  },
+  {
+   "dia": "2026-11-27",
+   "categoria": "Música",
+   "hora": "20h",
+   "hora_nota": "",
+   "retranca": "Música",
+   "gratis": false,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "Pra Gira Girar: celebração a Os Tincoãs",
+   "onde": "Manouche, Jardim Botânico · sexta, 20h · preço: confirme",
+   "texto": "Show de lançamento em homenagem ao trio baiano que levou os cantos de terreiro à canção popular nos anos 1970.",
+   "inicio": "20:00",
+   "local": "Manouche, Rua Jardim Botânico 983, Jardim Botânico",
+   "fonte": {
+    "url": "https://bileto.sympla.com.br/event/128392"
+   },
+   "fim": "21:30",
+   "link_rotulo": "Ingressos",
+   "local_destaque": "Manouche, Jardim Botânico"
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Exposição",
+   "hora": "11h",
+   "hora_nota": "todos os dias até dom 29; qui das 14h",
+   "retranca": "Rua · Feira",
+   "gratis": true,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "Arpoarte: festival de arte popular e artesanato",
+   "onde": "Armazéns 3 e 4 do Píer Mauá, Centro · sábado, das 11h às 21h · grátis · livre",
+   "texto": "Primeira edição: artistas populares e artesãos de todas as regiões, com feira, exposição, música, oficinas e comida. O lugar certo para gastar a Black Friday em coisa feita à mão.",
+   "inicio": "11:00",
+   "local": "Armazéns 3 e 4, Píer Mauá, Av. Rodrigues Alves, Centro",
+   "fonte": {
+    "url": "https://www.sympla.com.br/evento/festival-arpoarte-2026/3648416"
+   },
+   "fim": "21:00",
+   "link_rotulo": "Página do festival",
+   "local_destaque": "Píer Mauá"
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Infantil",
+   "hora": "11h",
+   "hora_nota": "também dom 29, 11h",
+   "retranca": "Infantil · Teatro",
+   "gratis": false,
+   "crianca": true,
+   "destaque": false,
+   "titulo": "Zuzuê: Contos Africanos",
+   "onde": "Teatro Municipal Ruth de Souza, Santa Teresa · sábado, 11h · R$ 20 a R$ 40 · livre",
+   "texto": "Contos africanos para crianças, numa manhã que ainda deixa o resto do sábado livre.",
+   "inicio": "11:00",
+   "local": "Teatro Municipal Ruth de Souza, Santa Teresa",
+   "fonte": {
+    "url": "https://cultura.prefeitura.rio/agendacultural/"
+   },
+   "fim": "12:00",
+   "link_rotulo": "Agenda da Prefeitura",
+   "sem_pagina": true
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Cinema",
+   "hora": "11h",
+   "hora_nota": "",
+   "retranca": "Cinema · Clássico",
+   "gratis": false,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "O Caso dos Irmãos Naves",
+   "onde": "Estação Claro Rio, Botafogo · sábado, 11h · R$ 23 · 14 anos · 92 min",
+   "texto": "O filme de 1967 de Luiz Sérgio Person sobre dois irmãos torturados até confessar um crime que não houve, num dos grandes erros judiciais do país. Sessão única de manhã.",
+   "inicio": "11:00",
+   "local": "Estação Claro Rio, Rua Voluntários da Pátria 35, Botafogo",
+   "fonte": {
+    "url": "https://www.ingresso.com/filme/o-caso-dos-irmaos-naves?city=rio-de-janeiro"
+   },
+   "fim": "12:35",
+   "link_rotulo": "Sessão e ingressos"
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Rua",
+   "hora": "12h",
+   "hora_nota": "também dom 29",
+   "retranca": "Rua · Música",
+   "gratis": false,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "Rio Blues Festival",
+   "onde": "Aterro do Flamengo, Posto 3 (perto do Belmonte) · sábado, das 12h às 22h · preço não informado",
+   "texto": "Blues, rock, soul, folk e country ao ar livre, com comida, artesanato e espaço infantil. Doze compassos com vista para o Pão de Açúcar, e os pequenos entretidos enquanto isso.",
+   "inicio": "12:00",
+   "local": "Aterro do Flamengo, Posto 3, Praia do Flamengo",
+   "fonte": {
+    "url": "https://www.sympla.com.br/evento/rio-blues-festival-aterro-do-flamengo-28-e-29-novembro/3647984"
+   },
+   "fim": "22:00",
+   "link_rotulo": "Página do festival",
+   "local_destaque": "Aterro do Flamengo"
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Rua",
+   "hora": "13h",
+   "hora_nota": "",
+   "retranca": "Rua · Samba",
+   "gratis": true,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Feira das Yabás no CCBB",
+   "onde": "Praça da Pira, área externa do CCBB Rio, Centro · sábado, das 13h às 20h · grátis · livre",
+   "texto": "Comida de quintal suburbano, roda de samba de Marquinhos de Oswaldo Cruz e convidados e atividades para crianças, na praça ao lado do CCBB.",
+   "inicio": "13:00",
+   "local": "CCBB Rio, Rua Primeiro de Março 66, Centro",
+   "fonte": {
+    "url": "https://ccbb.com.br/rio-de-janeiro/programacao/feira-das-yabas/"
+   },
+   "fim": "20:00",
+   "link_rotulo": "Página no CCBB"
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Infantil",
+   "hora": "16h",
+   "hora_nota": "",
+   "retranca": "Infantil · Música",
+   "gratis": true,
+   "crianca": true,
+   "destaque": false,
+   "titulo": "Raízes que pulsaM: vivência musical",
+   "onde": "Museu do Pontal, Barra da Tijuca · sábado, 16h · grátis",
+   "texto": "A musicista e educadora Renata Sousa Santos conduz uma vivência de escuta e música a partir das culturas africanas e afro-brasileiras. Dá para emendar com as exposições do museu.",
+   "inicio": "16:00",
+   "local": "Museu do Pontal, Av. Célia Ribeiro da Silva Mendes 3300, Barra da Tijuca",
+   "fonte": {
+    "url": "https://museudopontal.org.br/programacao/raizes-que-pulsam-28-novembro-16h/"
+   },
+   "fim": "17:30",
+   "link_rotulo": "Página do museu"
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Infantil",
+   "hora": "17h",
+   "hora_nota": "também dom 29, 17h",
+   "retranca": "Infantil · Teatro",
+   "gratis": false,
+   "crianca": true,
+   "destaque": false,
+   "titulo": "A Bruxinha que Era Boa, no Tablado",
+   "onde": "Teatro O Tablado, Jardim Botânico · sábado, 17h · preço: confirme",
+   "texto": "O clássico de Maria Clara Machado na casa que ela fundou: a bruxa que não consegue ser má. Leva o filho; você revê a sua própria infância de graça.",
+   "inicio": "17:00",
+   "local": "Teatro O Tablado, Av. Lineu de Paula Machado 795, Jardim Botânico",
+   "fonte": {
+    "url": "https://bileto.sympla.com.br/event/123789"
+   },
+   "fim": "18:00",
+   "link_rotulo": "Ingressos"
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Rua",
+   "hora": "18h",
+   "hora_nota": "",
+   "retranca": "Rua · Samba",
+   "gratis": true,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Samba do Alba na Praça Marechal Âncora",
+   "onde": "Praça Marechal Âncora, Centro · sábado, a partir das 18h · cortesia ou ingresso colaborativo pelo Sympla",
+   "texto": "Casa de Marimbondo, LadoB e Cozinha Arrumada, mais DJs, numa praça ao lado da Praça XV, com lotação limitada.",
+   "inicio": "18:00",
+   "local": "Praça Marechal Âncora, Centro",
+   "fonte": {
+    "url": "https://www.sympla.com.br/evento/samba-do-alba-28-11-cozinha-arrumada-ladob-e-casa-de-marimbondo/3657435"
+   },
+   "fim": "23:00",
+   "link_rotulo": "Retirar ingresso"
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Cinema",
+   "hora": "18h",
+   "hora_nota": "",
+   "retranca": "Cinema",
+   "gratis": false,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Como Era Gostoso o Meu Francês",
+   "onde": "Cinemateca do MAM, Parque do Flamengo · sábado, 18h · 84 min · preço: confirme",
+   "texto": "O filme de 1974 de Nelson Pereira dos Santos, na mostra dedicada a Ana Maria Magalhães, que está no elenco. Antropofagia literal, antes de virar slogan de exposição.",
+   "inicio": "18:00",
+   "local": "Cinemateca do MAM, Av. Infante Dom Henrique 85, Parque do Flamengo",
+   "fonte": {
+    "url": "https://mam.rio/cinemateca/agenda/este-mes/"
+   },
+   "fim": "19:30",
+   "link_rotulo": "Agenda da Cinemateca"
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Teatro",
+   "hora": "19h",
+   "hora_nota": "também dom 29, 18h (fim da temporada)",
+   "retranca": "Teatro",
+   "gratis": false,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Um Homem Célebre, a partir de Machado de Assis",
+   "onde": "Centro Cultural Justiça Federal, Av. Rio Branco 241, Centro · sábado, 19h · R$ 60 (meia R$ 30) · 14 anos",
+   "texto": "A Trupe Qualquer, de Minas, estreia no Rio o conto do compositor de polcas que sonhava escrever uma sonata. Machado em dose dupla na semana.",
+   "inicio": "19:00",
+   "local": "Centro Cultural Justiça Federal, Av. Rio Branco 241, Centro",
+   "fonte": {
+    "url": "https://www.sympla.com.br/evento/um-homem-celebre-baseado-em-machado-de-assis-espetaculo-teatral/3605830"
+   },
+   "fim": "20:30",
+   "link_rotulo": "Ingressos"
+  },
+  {
+   "dia": "2026-11-28",
+   "categoria": "Teatro",
+   "hora": "21h",
+   "hora_nota": "dom 29, 19h (última)",
+   "retranca": "Teatro",
+   "gratis": false,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "O Mercador de Veneza, com Dan Stulbach",
+   "onde": "Teatro Axia Casa Grande, Leblon · sábado, 21h · preço: confirme · 14 anos · 120 min",
+   "texto": "Dan Stulbach é Shylock na montagem de Daniela Stirbulov, com elenco de doze atores. Últimas apresentações no Rio.",
+   "inicio": "21:00",
+   "local": "Teatro Axia Casa Grande, Av. Afrânio de Melo Franco 290, Leblon",
+   "fonte": {
+    "url": "https://www.teatroaxiacasagrande.com.br/programacao/detalhes/o-mercador-de-veneza/"
+   },
+   "fim": "23:00",
+   "link_rotulo": "Página do teatro"
+  },
+  {
+   "dia": "2026-11-29",
+   "categoria": "Cinema",
+   "hora": "11h",
+   "hora_nota": "",
+   "retranca": "Cinema · Clássico",
+   "gratis": false,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Tempo de Viver",
+   "onde": "Estação Claro Rio, Botafogo · domingo, 11h · R$ 23 · 14 anos · 133 min",
+   "texto": "Zhang Yimou, 1994: uma família atravessa quatro décadas de China revolucionária. Sessão única, para quem prefere a manhã no escuro.",
+   "inicio": "11:00",
+   "local": "Estação Claro Rio, Rua Voluntários da Pátria 35, Botafogo",
+   "fonte": {
+    "url": "https://www.ingresso.com/filme/tempo-de-viver?city=rio-de-janeiro"
+   },
+   "fim": "13:15",
+   "link_rotulo": "Sessão e ingressos"
+  },
+  {
+   "dia": "2026-11-29",
+   "categoria": "Exposição",
+   "hora": "11h",
+   "hora_nota": "",
+   "retranca": "Exposição · Último dia",
+   "gratis": false,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "Zanele Muholi: Beleza valente",
+   "onde": "Museu de Arte do Rio, Praça Mauá · domingo, último dia · horário e preço: confirme no museu",
+   "texto": "Mais de cem obras na primeira individual no Brasil da artista sul-africana que fotografa comunidades negras LGBTQIAPN+. Curadoria de Daniele Queiroz, Thyago Nogueira e Ana Paula Vitorio. Termina hoje.",
+   "inicio": "11:00",
+   "local": "Museu de Arte do Rio, Praça Mauá 5, Centro",
+   "fonte": {
+    "url": "https://museudeartedorio.org.br/programacao/zanele-muholi/"
+   },
+   "fim": "18:00",
+   "link_rotulo": "Página da exposição",
+   "local_destaque": "MAR, Praça Mauá"
+  },
+  {
+   "dia": "2026-11-29",
+   "categoria": "Cinema",
+   "hora": "14h",
+   "hora_nota": "",
+   "retranca": "Cinema · Documentário",
+   "gratis": false,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "Orí, de Raquel Gerber e Beatriz Nascimento",
+   "onde": "Cinemateca do MAM, Parque do Flamengo · domingo, 14h · 91 min · livre · preço: confirme",
+   "texto": "O documentário de 1989 que acompanha os movimentos negros brasileiros a partir do pensamento da historiadora Beatriz Nascimento, sobre quilombo e identidade.",
+   "inicio": "14:00",
+   "local": "Cinemateca do MAM, Av. Infante Dom Henrique 85, Parque do Flamengo",
+   "fonte": {
+    "url": "https://mam.rio/cinemateca/agenda/este-mes/"
+   },
+   "fim": "15:40",
+   "link_rotulo": "Agenda da Cinemateca",
+   "local_destaque": "Cinemateca do MAM"
+  },
+  {
+   "dia": "2026-11-29",
+   "categoria": "Infantil",
+   "hora": "16h",
+   "hora_nota": "",
+   "retranca": "Infantil · Teatro",
+   "gratis": true,
+   "crianca": true,
+   "destaque": false,
+   "titulo": "Contos de Príncipe",
+   "onde": "Museu do Pontal, Barra da Tijuca · domingo, 16h · grátis, sujeito à lotação · livre",
+   "texto": "Solo do ator e escritor Junior Dantas com histórias africanas e a força da tradição oral.",
+   "inicio": "16:00",
+   "local": "Museu do Pontal, Av. Célia Ribeiro da Silva Mendes 3300, Barra da Tijuca",
+   "fonte": {
+    "url": "https://museudopontal.org.br/programacao/contos-de-principe-29-nov/"
+   },
+   "fim": "17:00",
+   "link_rotulo": "Página do museu"
+  },
+  {
+   "dia": null,
+   "categoria": "Cinema",
+   "hora": "Até 30/11",
+   "hora_nota": "grátis",
+   "retranca": "Cinema · Festival",
+   "gratis": true,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "21º Festival de Cinema Italiano: reta final",
+   "onde": "CCBB Rio, Cinema I, Centro · até segunda 30/11 · grátis, retirada a partir das 9h do dia",
+   "texto": "Últimos dias: hoje, Arroz Amargo, de Giuseppe De Santis (16h); sexta, Os Noivos, de Mario Camerini (16h); sábado, Travessura, de Mario Martone (18h). Neorrealismo de graça, com fila de brinde.",
+   "inicio": "09:00",
+   "local": "CCBB Rio, Rua Primeiro de Março 66, Centro",
+   "fonte": {
+    "url": "https://ccbb.com.br/rio-de-janeiro/programacao/21o-festival-de-cinema-italiano-no-brasil/"
+   },
+   "fim": "11:00",
+   "link_rotulo": "Programação no CCBB",
+   "local_destaque": "CCBB Rio"
+  },
+  {
+   "dia": null,
+   "categoria": "Exposição",
+   "hora": "Ter a dom",
+   "hora_nota": "10h às 20h",
+   "retranca": "Exposição · Abertura",
+   "gratis": false,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Infâncias, na FGV Arte",
+   "onde": "FGV Arte, Praia de Botafogo 190, Botafogo · inaugura qui 26 e sáb 28 · ter a sex, 10h às 20h; sáb, dom e feriados, 10h às 18h · entrada: confirme",
+   "texto": "Exposição nova com curadoria de Andréa Hygino e Paulo Herkenhoff.",
+   "inicio": "10:00",
+   "local": "FGV Arte, Praia de Botafogo 190, Botafogo",
+   "fonte": {
+    "url": "https://artequeacontece.com.br/evento/infancias-na-fgv-arte/"
+   },
+   "fim": "18:00",
+   "link_rotulo": "Página da exposição"
+  },
+  {
+   "dia": null,
+   "categoria": "Exposição",
+   "hora": "Qui a dom",
+   "hora_nota": "10h às 18h",
+   "retranca": "Exposição",
+   "gratis": true,
+   "crianca": false,
+   "destaque": false,
+   "titulo": "Festas, Sambas e Outros Carnavais",
+   "onde": "Museu do Pontal, Barra da Tijuca · quinta a domingo, 10h às 18h · grátis",
+   "texto": "A arte popular brasileira em festa, no acervo do museu. Combina com as atividades infantis de sábado e domingo.",
+   "inicio": "10:00",
+   "local": "Museu do Pontal, Av. Célia Ribeiro da Silva Mendes 3300, Barra da Tijuca",
+   "fonte": {
+    "url": "https://museudopontal.org.br/exposicao/festas-sambas-e-outros-carnavais/"
+   },
+   "fim": "18:00",
+   "link_rotulo": "Página da exposição"
+  },
+  {
+   "dia": null,
+   "categoria": "Cinema",
+   "hora": "Qui a dom",
+   "hora_nota": "na quinta, horários variam um pouco",
+   "retranca": "Cinema · Estreia",
+   "gratis": false,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "A Terra do Meu Pai",
+   "onde": "Estação Claro Gávea (13h50, 16h25, 18h50) · Estação Claro Rio, Botafogo (16h05, 19h05) · Cinesystem Belas Artes Botafogo (14h, 18h40) · qui a dom · R$ 54 a R$ 80 · 12 anos · 82 min",
+   "texto": "Pawlikowski leva Thomas Mann e a filha Erika (Sandra Hüller) de carro pela Alemanha em ruínas de 1949, de Frankfurt a Weimar, depois de 16 anos de exílio. Viagem em família, versão Nobel.",
+   "inicio": "18:50",
+   "fim": "20:15",
+   "local": "Estação Claro Gávea, Rua Marquês de São Vicente 52, Gávea",
+   "fonte": {
+    "url": "https://www.ingresso.com/filme/a-terra-do-meu-pai?city=rio-de-janeiro"
+   },
+   "link_rotulo": "Sessões e ingressos",
+   "local_destaque": "Estação Gávea e Rio, Belas Artes"
+  },
+  {
+   "dia": null,
+   "categoria": "Cinema",
+   "hora": "Qui a dom",
+   "hora_nota": "na quinta, horários variam um pouco",
+   "retranca": "Cinema",
+   "gratis": false,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "Contos Paralelos",
+   "onde": "Estação Claro Gávea (15h35, 18h10, 20h30) · Estação Claro Rio, Botafogo (16h10) · Belas Artes Botafogo (15h50) · Cine Santa Teresa (15h45) · CineCarioca José Wilker, Laranjeiras (17h20, exceto sexta) · qui a dom · R$ 34 a R$ 80 · 14 anos · 139 min",
+   "texto": "Asghar Farhadi em Paris: uma escritora sem ideias espia os vizinhos da frente para o novo romance, até a observação virar interferência. Com Isabelle Huppert, Vincent Cassel, Virginie Efira e Catherine Deneuve.",
+   "inicio": "18:10",
+   "fim": "20:30",
+   "local": "Estação Claro Gávea, Rua Marquês de São Vicente 52, Gávea",
+   "fonte": {
+    "url": "https://www.ingresso.com/filme/contos-paralelos?city=rio-de-janeiro"
+   },
+   "link_rotulo": "Sessões e ingressos",
+   "local_destaque": "Estação, Belas Artes, Santa Teresa"
+  },
+  {
+   "dia": null,
+   "categoria": "Cinema",
+   "hora": "Qui a dom",
+   "hora_nota": "na quinta, horários variam um pouco",
+   "retranca": "Cinema",
+   "gratis": false,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "O Ser Querido",
+   "onde": "Estação Claro Gávea (16h15, 21h) · Estação Claro Rio, Botafogo (14h, 20h45) · CineCarioca José Wilker, Laranjeiras (20h, exceto sexta) · qui a dom · R$ 41 a R$ 80 · 14 anos · 135 min",
+   "texto": "Rodrigo Sorogoyen põe Javier Bardem como um cineasta de passado violento que chama a filha atriz para o novo filme. As filmagens reaproximam os dois e reabrem as feridas.",
+   "inicio": "21:00",
+   "fim": "23:15",
+   "local": "Estação Claro Gávea, Rua Marquês de São Vicente 52, Gávea",
+   "fonte": {
+    "url": "https://www.ingresso.com/filme/o-ser-querido?city=rio-de-janeiro"
+   },
+   "link_rotulo": "Sessões e ingressos",
+   "local_destaque": "Estação Gávea e Rio, CineCarioca"
+  },
+  {
+   "dia": "2026-11-26",
+   "categoria": "Música",
+   "hora": "15h",
+   "hora_nota": "e 18h30",
+   "retranca": "Música · Contemporânea",
+   "gratis": true,
+   "crianca": false,
+   "destaque": true,
+   "titulo": "Symbiophilia: Panthalassa Ensemble no MAM",
+   "onde": "MAM Rio, Parque do Flamengo · hoje, 15h, no pilotis, e 18h30, na Cinemateca · grátis",
+   "texto": "Às 15h, estreia mundial de uma obra de Bryan Holmes feita para o pilotis; às 18h30, concerto com peças de Camila Nebbia e Pasquale Calò. Música nova com o vão livre de caixa de ressonância.",
+   "inicio": "15:00",
+   "fim": "16:00",
+   "local": "MAM Rio, Av. Infante Dom Henrique 85, Parque do Flamengo",
+   "fonte": {
+    "url": "https://mam.rio/cinemateca/agenda/este-mes/"
+   },
+   "link_rotulo": "Agenda do MAM",
+   "local_destaque": "MAM Rio, pilotis"
+  }
+ ]
+}

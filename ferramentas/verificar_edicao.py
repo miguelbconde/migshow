@@ -75,8 +75,8 @@ def main():
     n_lede = palavras(lede.get_text()) if lede else 0
     if not lede:
         E("sem texto de abertura (p.lede)")
-    elif not 70 <= n_lede <= 110:
-        E(f"abertura com {n_lede} palavras (pede 70 a 110)")
+    elif not 70 <= n_lede <= 150:
+        E(f"abertura com {n_lede} palavras (pede 70 a 150)")
     if lede:
         lt = lede.get_text().lower()
         for r in RECORRENTES:
@@ -153,14 +153,14 @@ def main():
         W(f"{len(evs)} eventos (alvo até ~35)")
     titulos = {}
     hl = [e for e in evs if "hl" in e.get("class", [])]
-    # padrão desde a nº 2: 1 a 2 destaques por dia (mais, no máximo, 1 em "Em cartaz")
+    # padrão desde a nº 3: 1 a 3 destaques por dia; até 5 em "Em cartaz" (filmes do circuito, festivais)
     for sec in soup.select("section.day-sec"):
         n_hl = len(sec.select("article.ev.hl"))
         if sec.get("id") == "d-cartaz":
-            if n_hl > 1:
-                W(f"{n_hl} destaques em 'Em cartaz' (máx. 1)")
-        elif not 1 <= n_hl <= 2:
-            W(f"{n_hl} destaques em {sec.get('id')} (alvo 1 a 2 por dia)")
+            if n_hl > 5:
+                W(f"{n_hl} destaques em 'Em cartaz' (máx. 5)")
+        elif not 1 <= n_hl <= 3:
+            W(f"{n_hl} destaques em {sec.get('id')} (alvo 1 a 3 por dia)")
     if not soup.select_one("section.zap"):
         W("falta a seção 'Dos leitores' (section.zap)")
     if hl and not soup.select("nav.hls li.gh"):

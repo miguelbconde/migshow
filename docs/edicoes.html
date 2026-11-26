@@ -118,7 +118,7 @@ footer b{font-family:var(--font-head);color:var(--ink)}
 <div class="wave" aria-hidden="true"></div>
 
 <div class="wrap">
-<p class="lede">Todas as edições do MigShow, da mais nova para a mais antiga.</p><ol class="lista-ed" style="list-style:none;padding:0;margin:18px 0 28px;line-height:2"><li><a href="edicoes/n2.html"><b>nº 2</b> · Agenda de 19 a 22 de novembro de 2026</a></li><li><a href="edicoes/n1.html"><b>nº 1</b> · Agenda de 12 a 15 de novembro de 2026</a></li><li><a href="edicoes/n0.html"><b>nº 0</b> · Agenda de 10 a 15 de novembro de 2026</a></li></ol>
+<p class="lede">Todas as edições do MigShow, da mais nova para a mais antiga.</p><ol class="lista-ed" style="list-style:none;padding:0;margin:18px 0 28px;line-height:2"><li><a href="edicoes/n3.html"><b>nº 3</b> · Agenda de 26 a 29 de novembro de 2026</a></li><li><a href="edicoes/n2.html"><b>nº 2</b> · Agenda de 19 a 22 de novembro de 2026</a></li><li><a href="edicoes/n1.html"><b>nº 1</b> · Agenda de 12 a 15 de novembro de 2026</a></li><li><a href="edicoes/n0.html"><b>nº 0</b> · Agenda de 10 a 15 de novembro de 2026</a></li></ol>
 </div>
 <footer>
   <div class="wrap"><b>MigShow</b> é um guia pessoal de programação cultural do Rio, montado toda quinta-feira. Confira horários e preços com cada casa antes de sair. E lembre: ficar em casa segue em cartaz o ano inteiro, com entrada franca e estacionamento garantido.<p style="margin:10px 0 0"><a class="go" href="edicoes.html">Edições anteriores</a></p></div>
@@ -161,7 +161,6 @@ footer b{font-family:var(--font-head);color:var(--ink)}
   if(standalone){box.hidden=true;return;}
   var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
   var txt=document.getElementById('inst-txt');var btn=document.getElementById('inst-btn');var ev=null;
-  if(ios){txt.innerHTML='<b>Tenha o MigShow como app.</b> No Safari, toque em Compartilhar (o quadrado com a seta) e depois em “Adicionar à Tela de Início”.';}
   window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();ev=e;btn.hidden=false;});
   btn.addEventListener('click',function(){if(!ev)return;ev.prompt();ev.userChoice.then(function(){btn.hidden=true;ev=null;});});
 })();

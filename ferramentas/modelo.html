@@ -161,7 +161,6 @@ footer b{font-family:var(--font-head);color:var(--ink)}
   if(standalone){box.hidden=true;return;}
   var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
   var txt=document.getElementById('inst-txt');var btn=document.getElementById('inst-btn');var ev=null;
-  if(ios){txt.innerHTML='<b>Tenha o MigShow como app.</b> No Safari, toque em Compartilhar (o quadrado com a seta) e depois em “Adicionar à Tela de Início”.';}
   window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();ev=e;btn.hidden=false;});
   btn.addEventListener('click',function(){if(!ev)return;ev.prompt();ev.userChoice.then(function(){btn.hidden=true;ev=null;});});
 })();

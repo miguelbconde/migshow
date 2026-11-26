@@ -145,8 +145,10 @@ def conteudo(ed, site):
     if ed.get("leitores"):
         notas = "".join(f'<p class="zb"><b>{esc(x["titulo"])}.</b> {esc(x["texto"])}</p>' for x in ed["leitores"])
         out.append(f'<section class="zap" aria-label="Dos leitores"><p class="zap-t">{ZAP_ICONE} Dos leitores</p>{notas}</section>\n')
-    out.append('<aside class="inst" id="inst"><span id="inst-txt"><b>Tenha o MigShow como app.</b> No Chrome do Android, '
-               'toque no menu ⋮ e depois em “Instalar app” ou “Adicionar à tela inicial”.</span>'
+    out.append('<aside class="inst" id="inst"><span id="inst-txt"><b>Tenha o MigShow como app.</b> No Android, abra no Chrome, '
+               'toque no menu ⋮ e depois em “Instalar app” ou “Adicionar à tela inicial”. '
+               'No iPhone, abra no Safari, toque em Compartilhar (o quadrado com a seta) '
+               'e depois em “Adicionar à Tela de Início”.</span>'
                '<button type="button" id="inst-btn" hidden>Instalar</button></aside>\n')
     out.append(open(os.path.join(RAIZ, "ferramentas", "assinatura.html"), encoding="utf-8").read())
     # índice de destaques, agrupado por dia
